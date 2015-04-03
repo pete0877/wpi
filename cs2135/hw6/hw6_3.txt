@@ -1,0 +1,39 @@
+
+;No value
+
+1 ]=> (load "defs")
+
+;Loading "defs.scm" -- done
+;Value: rexp12
+
+1 ]=> (load " hw6_3")
+
+;Unable to find file " hw6_3" because: File does not exist.
+;To continue, call RESTART with an option number:
+; (RESTART 1) => Return to read-eval-print level 1.
+
+
+2 error> 
+;Quit!
+
+1 ]=> (load "hw6_3")
+
+;Loading "hw6_3.scm"
+;Loading "/cs/cs2135/mitmacros.scm" -- done -- done
+;Value: eval-rexp
+
+1 ]=> (eval-rexp (rexp-parser rexp10))
+
+;Value 1: ((3 2 1) (2 2 2))
+
+1 ]=> (transcript-off_
+)
+
+;Unbound variable: transcript-off_
+;To continue, call RESTART with an option number:
+; (RESTART 3) => Specify a value to use instead of transcript-off_.
+; (RESTART 2) => Define transcript-off_ to a given value.
+; (RESTART 1) => Return to read-eval-print level 1.
+
+
+2 error> (transcript-off)

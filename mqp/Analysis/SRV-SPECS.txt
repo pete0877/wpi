@@ -1,0 +1,2917 @@
+
+
+
+
+
+       Class name:
+          Engine
+
+       Category:		Analysis
+       Documentation:
+          Engine Class is responsible for providing game
+          decision services for games of various types. It also
+          provides estimation on how long a move desicion might
+          take.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                Helper	
+	                GameTreeNode	
+	                EngineConfiguration	
+	                HelperRegistry	
+	                GameType	
+	                GameState	
+	                MoveDecision	
+	                GameTreeRootNode	
+
+       Public Interface:
+          Operations:
+                        Engine
+                        Engine
+                        Engine
+                        getConfiguration
+                        setConfiguration
+                        isGameImplemented
+                        getAllGameTypes
+                        estimateMoveTime
+                        makeMove
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        helperRegistry : HelperRegistry
+                        configuration : EngineConfiguration
+
+          Operations:
+                        distributeNode
+
+       Private Interface:
+          Attributes:
+                        helperRegistry : HelperRegistry
+                        configuration : EngineConfiguration
+
+       Implementation:
+          Attributes:
+                        helperRegistry : HelperRegistry
+                        configuration : EngineConfiguration
+
+       State machine:	No
+
+
+
+
+
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          Engine
+
+       Public member of:	Engine
+       Documentation:
+          Engine () - default constructor.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Engine
+
+       Public member of:	Engine
+       Arguments:
+	          const Engine&	new_engine
+       Documentation:
+          Engine () - copy constructor.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Engine
+
+       Public member of:	Engine
+       Arguments:
+	          const EngineConfiguration&	new_configuration
+       Documentation:
+          Engine() - constructor with the default configuration
+          for the engine.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getConfiguration
+
+       Public member of:	Engine
+       Return Class:	EngineConfiguration
+       Documentation:
+          getConfiguration() - returns current engine
+          configuration.
+
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          setConfiguration
+
+       Public member of:	Engine
+       Arguments:
+	          const EngineConfiguration&	new_configuration
+       Documentation:
+          setConfiguration() - overwrites the current engine
+          configuration with the one provided as the argument.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          isGameImplemented
+
+       Public member of:	Engine
+       Return Class:	boolean
+       Arguments:
+	          const GameType&	gametype
+       Documentation:
+          isGameImplemented() - returns true if the engine
+          supports given game type, else returns false.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAllGameTypes
+
+       Public member of:	Engine
+       Return Class:	Vector<GameType>
+       Documentation:
+          getAllGameTypes() - returns all game types supported
+          by the Engine.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          estimateMoveTime
+
+       Public member of:	Engine
+       Return Class:	float
+       Arguments:
+	          const GameType&	gametype
+	          int	ply
+       Documentation:
+          estimateMoveTime() - returns float value of seconds
+          that the engine would need to come up with the
+          decision move if all resources were free.
+
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          makeMove
+
+       Public member of:	Engine
+       Return Class:	MoveDecision
+       Arguments:
+	          const GameState&	gamestate
+	          const GameType&	gametype
+	          int	ply
+	          float	timelimit
+       Documentation:
+          makeMove() - returns decision move to a given board
+          setup within certain amount of time.
+          THROWS: GameNotSupportedException exception.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	Engine
+       Return Class:	Engine&
+       Arguments:
+	          const Engine&	new_engine
+       Documentation:
+          operator=() - compares two Engine class objects to
+          eachother. Returns true if the two objects are the
+          same, false otherwise.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          distributeNode
+
+       Protected member of:	Engine
+       Arguments:
+	          GameTreeNode*	node
+	          Vector<Helper*>	helpers
+	          CTime	deadline
+       Documentation:
+          distributeNode() - takes a tree node, list of
+          available helpers that implement the game type and the
+          deadline for finishing evaluation of the node.
+
+       Concurrency:	Sequential
+
+
+
+       Class name:
+
+
+
+
+
+          EngineConfiguration
+
+       Category:		Analysis
+       Documentation:
+          EngineConfiguration Class stores customized settings
+          for the functionality of the Engine Class.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        EngineConfiguration
+                        EngineConfiguration
+                        getLogStream
+                        setLogStream
+                        save
+                        load
+                        operator==
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        logStream : ostream
+
+       Private Interface:
+          Attributes:
+                        logStream : ostream
+
+       Implementation:
+          Attributes:
+                        logStream : ostream
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          EngineConfiguration
+
+       Public member of:	EngineConfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          EngineConfiguration
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          const EngineConfiguration&	new_engineconfiguration
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          getLogStream
+
+       Public member of:	EngineConfiguration
+       Return Class:	ostream
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLogStream
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          ostream	new_logstream
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          save
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          wstring	filepath
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          load
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          wstring	filepath
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	EngineConfiguration
+       Return Class:	boolean
+       Arguments:
+	          const EngineConfiguration&	new_engineconfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	EngineConfiguration
+       Return Class:	EngineConfiguration&
+       Arguments:
+
+
+
+
+
+	          const EngineConfiguration&	new_engineconfiguration
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameServer
+
+       Category:		Analysis
+       Documentation:
+          GameServer Class is responsible for providing
+          multi-threaded interface to outside game clients. It
+          provides simple text-based interface using TCP
+          sockets. GameServer Class uses the Engine Class for
+          all game computations and it stores all current game
+          sessions.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                Engine	
+	                GameServerConfiguration	
+	                Session	
+	                MoveDecision	
+	                GameType	
+
+       Private Uses:
+	                GameState	
+
+       Public Interface:
+          Operations:
+                        GameServer
+                        GameServer
+                        GameServer
+                        GameServer
+                        GameServer
+                        getConfiguration
+                        setConfiguration
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        engine : Engine*
+                        sessions : Vector<Session>
+
+       Private Interface:
+          Attributes:
+                        engine : Engine*
+                        sessions : Vector<Session>
+
+       Implementation:
+          Attributes:
+                        engine : Engine*
+                        sessions : Vector<Session>
+
+
+
+
+
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Arguments:
+	          const GameServer&	new_gameserver
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Arguments:
+	          const GameServerConfiguration&	new_configuration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Arguments:
+	          Engine*	new_engine
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Arguments:
+	          const GameServerConfiguration&	new_configuration
+	          Engine*	new_engine
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+
+
+
+
+
+          getConfiguration
+
+       Public member of:	GameServer
+       Return Class:	GameServerConfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setConfiguration
+
+       Public member of:	GameServer
+       Arguments:
+	          const GameServerConfiguration&	new_configuration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	GameServer
+       Return Class:	GameServer&
+       Arguments:
+	          const GameServer&	new_gameserver
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameServerConfiguration
+
+       Category:		Analysis
+       Documentation:
+          GameServerConfiguration Class is used to store
+          parameters that customize functionality of the Game
+          Server Class.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        GameServerConfiguration
+                        GameServerConfiguration
+                        getPort
+                        setPort
+                        getLogStream
+                        setLogStream
+                        getName
+                        setName
+                        getDescription
+                        setDescription
+                        getCompany
+                        setCompany
+
+
+
+
+
+                        getVersion
+                        setVersion
+                        getCopyright
+                        setCopyright
+                        save
+                        load
+                        operator==
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        port : int
+                        logStream : ostream
+                        name : wstring
+                        description : wstring
+                        company : wstring
+                        version : wstring
+                        copyright : wstring
+
+       Private Interface:
+          Attributes:
+                        port : int
+                        logStream : ostream
+                        name : wstring
+                        description : wstring
+                        company : wstring
+                        version : wstring
+                        copyright : wstring
+
+       Implementation:
+          Attributes:
+                        port : int
+                        logStream : ostream
+                        name : wstring
+                        description : wstring
+                        company : wstring
+                        version : wstring
+                        copyright : wstring
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          GameServerConfiguration
+
+       Public member of:	GameServerConfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServerConfiguration
+
+
+
+
+
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const GameServerConfiguration&	new_gameserverconfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPort
+
+       Public member of:	GameServerConfiguration
+       Return Class:	int
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPort
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          int	new_port
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getLogStream
+
+       Public member of:	GameServerConfiguration
+       Return Class:	ostream
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLogStream
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          ostream	new_logstream
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getName
+
+       Public member of:	GameServerConfiguration
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setName
+
+
+
+
+
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          wstring	new_name
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getDescription
+
+       Public member of:	GameServerConfiguration
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setDescription
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          wstring	new_description
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getCompany
+
+       Public member of:	GameServerConfiguration
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setCompany
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          wstring	new_company
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getVersion
+
+       Public member of:	GameServerConfiguration
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+
+
+
+
+
+          setVersion
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          wstring	new_version
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getCopyright
+
+       Public member of:	GameServerConfiguration
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setCopyright
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          wstring	new_copyright
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          save
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          wstring	filepath
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          load
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          wstring	filepath
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	GameServerConfiguration
+       Return Class:	boolean
+       Arguments:
+	          const GameServerConfiguration&	new_gameserverconfiguration
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	GameServerConfiguration
+       Return Class:	GameServerConfiguration&
+       Arguments:
+	          const GameServerConfiguration&	new_gameserverconfiguration
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameState
+
+       Category:		Analysis
+       Documentation:
+          GameState Structure encapsulates the current board
+          state and the color of server's pieces.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        board : wstring
+
+       Protected Interface:
+          Attributes:
+                        board : wstring
+
+       Private Interface:
+          Attributes:
+                        board : wstring
+
+       Implementation:
+          Attributes:
+                        board : wstring
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          GameTreeNode
+
+       Category:		Analysis
+       Documentation:
+          GameTreeNode Class is used to create game trees. It
+          encapsulates any information that might be required by
+
+
+
+
+
+          the system to make the decision as to what the next
+          move should be. 
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                GameState	
+	                Move	
+
+       Public Interface:
+          Operations:
+                        GameTreeNode
+                        GameTreeNode
+                        GameTreeNode
+                        addChildNode
+                        generateDecision
+                        getPly
+                        setPly
+                        getGameState
+                        setGameState
+                        getLevel
+                        setLevel
+                        getLastMove
+                        setLastMove
+                        getQuality
+                        setQuality
+                        isCompleted
+                        markAsCompleted
+                        markChildNodeCompletion
+                        getPctCompleted
+                        setPctCompleted
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        ply : int
+                        gameState : GameState
+                        level : LevelType
+                        lastMove : Move
+                        isCompleted : boolean
+                        pctCompleted : float
+                        parentNode : GameTreeNode*
+                        childrenNodes : Vector<GameTreeNode*>
+                        completedChildrenCount : int
+                        completionLock : CSemaphore
+
+       Private Interface:
+          Attributes:
+                        ply : int
+                        gameState : GameState
+                        level : LevelType
+                        lastMove : Move
+                        isCompleted : boolean
+                        pctCompleted : float
+
+
+
+
+
+                        parentNode : GameTreeNode*
+                        childrenNodes : Vector<GameTreeNode*>
+                        completedChildrenCount : int
+                        completionLock : CSemaphore
+
+       Implementation:
+          Attributes:
+                        ply : int
+                        gameState : GameState
+                        level : LevelType
+                        lastMove : Move
+                        isCompleted : boolean
+                        pctCompleted : float
+                        parentNode : GameTreeNode*
+                        childrenNodes : Vector<GameTreeNode*>
+                        completedChildrenCount : int
+                        completionLock : CSemaphore
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          GameTreeNode
+
+       Public member of:	GameTreeNode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameTreeNode
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          const GameTreeNode&	new_gametreenode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameTreeNode
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	new_ply
+	          const GameState&	new_gamestate
+	          LevelType	new_level
+	          const Move&	new_lastmove
+	          GameTreeNode*	parentNode
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          addChildNode
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          GameTreeNode	childnode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          generateDecision
+
+       Public member of:	GameTreeNode
+       Return Class:	MoveDecision
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPly
+
+       Public member of:	GameTreeNode
+       Return Class:	int
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPly
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	new_ply
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameState
+
+       Public member of:	GameTreeNode
+       Return Class:	GameState
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameState
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          const GameState&	new_gamestate
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          getLevel
+
+       Public member of:	GameTreeNode
+       Return Class:	LevelType
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLevel
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          LevelType	new_level
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getLastMove
+
+       Public member of:	GameTreeNode
+       Return Class:	Move
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLastMove
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          const Move&	new_lastmove
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getQuality
+
+       Public member of:	GameTreeNode
+       Return Class:	int
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setQuality
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	new_quality
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          isCompleted
+
+       Public member of:	GameTreeNode
+       Return Class:	boolean
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          markAsCompleted
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	new_quality
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          markChildNodeCompletion
+
+       Public member of:	GameTreeNode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPctCompleted
+
+       Public member of:	GameTreeNode
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPctCompleted
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          float	new_pctcompleted
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	GameTreeNode
+       Return Class:	GameTreeNode&
+       Arguments:
+	          const GameTreeNode&	new_gametreenode
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Class name:
+          GameTreeRootNode
+
+       Category:		Analysis
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	GameTreeNode
+       Public Uses:
+	                GameTreeNode	
+	                GameState	
+	                Move	
+
+       Public Interface:
+          Operations:
+                        markAsCompleted
+                        GameTreeRootNode
+
+       Protected Interface:
+          Attributes:
+                        masterThread : int
+
+       Private Interface:
+          Attributes:
+                        masterThread : int
+
+       Implementation:
+          Attributes:
+                        masterThread : int
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          markAsCompleted
+
+       Public member of:	GameTreeRootNode
+       Arguments:
+	          int	new_quality
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameTreeRootNode
+
+       Public member of:	GameTreeRootNode
+       Arguments:
+	          int	new_ply
+	          const GameState&	new_gamestate
+	          LevelType	new_level
+	          const Move&	new_lastmove
+	          GameTreeNode*	parentNode
+
+
+
+
+
+	          int	new_masterthread
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameType
+
+       Category:		Analysis
+       Documentation:
+          GameType Class contains any descriptive informaiton
+          directly related to a particular game type (e.g. game
+          name, author, game version, description, copyright,
+          etc.)
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                GameTypeData	
+
+       Public Interface:
+          Operations:
+                        GameType
+                        GameType
+                        GameType
+                        getGameName
+                        setGameName
+                        getCompany
+                        setCompany
+                        getVersion
+                        setVersion
+                        getCopyright
+                        setCopyright
+                        getDescription
+                        setDescription
+                        getAvgBranchingFactor
+                        setAvgBranchingFactor
+                        getAvgAlphaBetaGain
+                        setAvgAlphaBetaGain
+                        toString
+                        operator=
+                        operator==
+
+       Protected Interface:
+          Attributes:
+                        gameTypeData : GameTypeData
+
+       Private Interface:
+          Attributes:
+                        gameTypeData : GameTypeData
+
+       Implementation:
+          Attributes:
+                        gameTypeData : GameTypeData
+
+
+
+
+
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          GameType
+
+       Public member of:	GameType
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameType
+
+       Public member of:	GameType
+       Arguments:
+	          const GameType&	gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameType
+
+       Public member of:	GameType
+       Arguments:
+	          const GameTypeData&	new_gametypedata
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameName
+
+       Public member of:	GameType
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameName
+
+       Public member of:	GameType
+       Arguments:
+	          wstring	new_gamename
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getCompany
+
+
+
+
+
+
+       Public member of:	GameType
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setCompany
+
+       Public member of:	GameType
+       Arguments:
+	          wstring	new_gameauthor
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getVersion
+
+       Public member of:	GameType
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setVersion
+
+       Public member of:	GameType
+       Arguments:
+	          wstring	new_gameversion
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getCopyright
+
+       Public member of:	GameType
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setCopyright
+
+       Public member of:	GameType
+       Arguments:
+	          wstring	new_copyright
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getDescription
+
+
+
+
+
+
+       Public member of:	GameType
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setDescription
+
+       Public member of:	GameType
+       Arguments:
+	          wstring	new_description
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAvgBranchingFactor
+
+       Public member of:	GameType
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setAvgBranchingFactor
+
+       Public member of:	GameType
+       Arguments:
+	          float	new_avebranchingfactor
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAvgAlphaBetaGain
+
+       Public member of:	GameType
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setAvgAlphaBetaGain
+
+       Public member of:	GameType
+       Arguments:
+	          float	new_avgalphabetagain
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+
+
+
+
+
+          toString
+
+       Public member of:	GameType
+       Return Class:	wstring
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	GameType
+       Return Class:	GameType&
+       Arguments:
+	          const GameType&	gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	GameType
+       Return Class:	boolean
+       Arguments:
+	          const GameType&	gametype
+       Documentation:
+          based only on the gameName, gameVersion and company.
+
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameTypeData
+
+       Category:		Analysis
+       Documentation:
+          GameTypeData Structure holds all data members required
+          for game identification.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        gameName : wstring
+                        gameVersion : wstring
+                        description : wstring
+                        copyright : wstring
+                        company : wstring
+                        avgBranchingFactor : float
+                        avgAlphaBetaGain : float
+
+
+
+
+
+
+       Protected Interface:
+          Attributes:
+                        gameName : wstring
+                        gameVersion : wstring
+                        description : wstring
+                        copyright : wstring
+                        company : wstring
+                        avgBranchingFactor : float
+                        avgAlphaBetaGain : float
+
+       Private Interface:
+          Attributes:
+                        gameName : wstring
+                        gameVersion : wstring
+                        description : wstring
+                        copyright : wstring
+                        company : wstring
+                        avgBranchingFactor : float
+                        avgAlphaBetaGain : float
+
+       Implementation:
+          Attributes:
+                        gameName : wstring
+                        gameVersion : wstring
+                        description : wstring
+                        copyright : wstring
+                        company : wstring
+                        avgBranchingFactor : float
+                        avgAlphaBetaGain : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          Helper
+
+       Category:		Analysis
+       Documentation:
+          Helper Class provides logical connection between the
+          current process on the game server and the physical
+          helper process on a different machine. Helper Class
+          uses DCom in all network communication. It provides
+          game state  evaluation services, game state split
+          services and other. It throws HelperDeadException
+          exception.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                HelperPerformance	
+	                JobManager	
+
+
+
+
+
+	                InternetAddress	
+	                GameType	
+	                IHelper	
+	                GameTreeNode	
+	                GameState	
+	                HelperPerformanceData	
+
+       Public Interface:
+          Operations:
+                        Helper
+                        Helper
+                        Helper
+                        getPerformance
+                        setPerformance
+                        getAddress
+                        setAddress
+                        getGameType
+                        setGameType
+                        isAvailable
+                        estimateEvaluationTime
+                        estimateBusyTime
+                        evaluateBoard
+                        splitBoard
+                        makeRapidDesicion
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        performance : HelperPerformance
+                        address : InternetAddress
+                        jobManager : JobManager
+                        gameType : GameType
+                        performanceSemaphore : CSemaphore
+                        jobManagerSemaphore : CSemaphore
+                        available : boolean
+
+       Private Interface:
+          Attributes:
+                        performance : HelperPerformance
+                        address : InternetAddress
+                        jobManager : JobManager
+                        gameType : GameType
+                        performanceSemaphore : CSemaphore
+                        jobManagerSemaphore : CSemaphore
+                        available : boolean
+
+       Implementation:
+          Attributes:
+                        performance : HelperPerformance
+                        address : InternetAddress
+                        jobManager : JobManager
+                        gameType : GameType
+                        performanceSemaphore : CSemaphore
+                        jobManagerSemaphore : CSemaphore
+                        available : boolean
+
+
+
+
+
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          Helper
+
+       Public member of:	Helper
+       Documentation:
+          Helper() - default constructor.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Helper
+
+       Public member of:	Helper
+       Arguments:
+	          const Helper&	helper
+       Documentation:
+          Helper() - copy constructor.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Helper
+
+       Public member of:	Helper
+       Arguments:
+	          const HelperPerformance&	new_performance
+	          const InternetAddress&	new_address
+	          const GameType&	new_gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPerformance
+
+       Public member of:	Helper
+       Return Class:	HelperPerformance
+       Documentation:
+          THROWS HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPerformance
+
+
+
+
+
+
+       Public member of:	Helper
+       Arguments:
+	          const HelperPerformance&	new_performance
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAddress
+
+       Public member of:	Helper
+       Return Class:	InternetAddress
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setAddress
+
+       Public member of:	Helper
+       Arguments:
+	          const InternetAddress&	new_address
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameType
+
+       Public member of:	Helper
+       Return Class:	GameType
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameType
+
+       Public member of:	Helper
+       Arguments:
+	          const GameType&	new_gametype
+       Documentation:
+          throws HelperDeadException exception
+
+
+
+
+
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          isAvailable
+
+       Public member of:	Helper
+       Return Class:	boolean
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          estimateEvaluationTime
+
+       Public member of:	Helper
+       Return Class:	float
+       Arguments:
+	          int	ply
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          estimateBusyTime
+
+       Public member of:	Helper
+       Return Class:	float
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          evaluateBoard
+
+       Public member of:	Helper
+       Arguments:
+	          const GameState&	gamestate
+	          int	ply
+	          LevelType	level
+	          float	timelimit
+	          GameTreeNode*	node
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          splitBoard
+
+       Public member of:	Helper
+       Arguments:
+	          const GameState&	gamestate
+	          LevelType	level
+	          GameTreeNode*	node
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          makeRapidDesicion
+
+       Public member of:	Helper
+       Return Class:	Move
+       Arguments:
+	          const GameState&	gamestate
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	Helper
+       Return Class:	Helper&
+       Arguments:
+	          const Helper&	helper
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          HelperPerformance
+
+       Category:		Analysis
+       Documentation:
+          HelperPerformance Class is used by each helper to
+          store and evaluate certain parameters, such as the
+          average time that a particular helper needs to
+          evlauate a board, or overhead time in communication.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                HelperPerformanceData	
+
+
+
+
+
+
+       Public Interface:
+          Operations:
+                        HelperPerformance
+                        HelperPerformance
+                        HelperPerformance
+                        update
+                        update
+                        getBranchingFactor
+                        setBranchingFactor
+                        getOverheadTime
+                        setOverheadTime
+                        getEvaluationTime
+                        setEvaluationTime
+                        getSplitTime
+                        setSplitTime
+                        getPctCompleted
+                        setPctCompleted
+                        getAlphaBetaGain
+                        setAlphaBetaGain
+                        getTotalWorkTime
+                        setTotalWorkTime
+                        operator=
+                        operator==
+
+       Protected Interface:
+          Attributes:
+                        helperPerformanceData : HelperPerformanceData
+                        overHeadTime : float
+
+       Private Interface:
+          Attributes:
+                        helperPerformanceData : HelperPerformanceData
+                        overHeadTime : float
+
+       Implementation:
+          Attributes:
+                        helperPerformanceData : HelperPerformanceData
+                        overHeadTime : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          HelperPerformance
+
+       Public member of:	HelperPerformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          HelperPerformance
+
+
+
+
+
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          const HelperPerformance&	new_helperperformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          HelperPerformance
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          const HelperPerformanceData&	new_helperperformancedata
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          update
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          const HelperPerformanceData&	new_helperperformancedata
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          update
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          const HelperPerformance&	new_helperperformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getBranchingFactor
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setBranchingFactor
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_branchingfactor
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          getOverheadTime
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setOverheadTime
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_overheadtime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getEvaluationTime
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setEvaluationTime
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_evaluationtime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getSplitTime
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setSplitTime
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_splittime
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          getPctCompleted
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPctCompleted
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_pctcompleted
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAlphaBetaGain
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setAlphaBetaGain
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_alphabetagain
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getTotalWorkTime
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setTotalWorkTime
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_totalworktime
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	HelperPerformance
+       Return Class:	HelperPerformance&
+       Arguments:
+	          const HelperPerformance&	new_helperperformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	HelperPerformance
+       Return Class:	boolean
+       Arguments:
+	          const HelperPerformance&	helperperformance
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          HelperPerformanceData
+
+       Category:		Analysis
+       Documentation:
+          HelperPerformanceData Structure encapsulates data
+          members that are used by the HelperPerformance Class.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        branchingFactor : float
+                        evaluationTime : float
+                        splitTime : float
+                        alphaBetaGain : float
+                        pctCompleted : float
+                        totalWorkTime : float
+
+       Protected Interface:
+          Attributes:
+                        branchingFactor : float
+                        evaluationTime : float
+                        splitTime : float
+                        alphaBetaGain : float
+                        pctCompleted : float
+                        totalWorkTime : float
+
+       Private Interface:
+          Attributes:
+                        branchingFactor : float
+
+
+
+
+
+                        evaluationTime : float
+                        splitTime : float
+                        alphaBetaGain : float
+                        pctCompleted : float
+                        totalWorkTime : float
+
+       Implementation:
+          Attributes:
+                        branchingFactor : float
+                        evaluationTime : float
+                        splitTime : float
+                        alphaBetaGain : float
+                        pctCompleted : float
+                        totalWorkTime : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          HelperRegistry
+
+       Category:		Analysis
+       Documentation:
+          HelperRegistry Class provides DCom interface for
+          helpers to register and unregister with the server. It
+          stores references to all known helpers.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	IRegisterHelper
+       Public Uses:
+	                Helper	
+	                GameType	
+	                GameTypeData	
+
+       Public Interface:
+          Operations:
+                        getHelpers
+                        returnHelpers
+
+       Protected Interface:
+          Attributes:
+                        helpers : Vector<Helper*>
+                        helpersLocks : Vector<CSemaphore>
+                        refereceCounts : Vector<int>
+
+       Private Interface:
+          Attributes:
+                        helpers : Vector<Helper*>
+                        helpersLocks : Vector<CSemaphore>
+                        refereceCounts : Vector<int>
+
+
+
+
+
+
+       Implementation:
+          Attributes:
+                        helpers : Vector<Helper*>
+                        helpersLocks : Vector<CSemaphore>
+                        refereceCounts : Vector<int>
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          getHelpers
+
+       Public member of:	HelperRegistry
+       Return Class:	Vector<Helper*>
+       Arguments:
+	          GameType	gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          returnHelpers
+
+       Public member of:	HelperRegistry
+       Arguments:
+	          Vector<Helper*>	helpers
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          IHelper
+
+       Category:		Analysis
+       Documentation:
+          IHelper Interface is used by the system to communicate
+          with the physical helper machines.  It allows the
+          system to talk to the helpers.
+
+       Stereotype:	Interface
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        evaluate
+                        split
+                        getQuickMove
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+
+
+
+
+
+       Operation name:
+          evaluate
+
+       Public member of:	IHelper
+       Arguments:
+	          Board	board
+	          LevelType	level
+	          int	ply
+	          float	timelimit
+	          int*	quality
+	          HelperPerformanceData*	data
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          split
+
+       Public member of:	IHelper
+       Arguments:
+	          Board	board
+	          LevelType	level
+	          int*	movecount
+	          Move*	moves
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getQuickMove
+
+       Public member of:	IHelper
+       Arguments:
+	          Board	board
+	          Move*	move
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          InternetAddress
+
+       Category:		Analysis
+       Documentation:
+          InternetAddress Class is used to store the Internet
+          identity of a particular helper. It gathers all the
+          information on would need to contact the helper
+          process on another machine and request one of the
+          services.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+
+
+
+
+
+       Hierarchy:
+          Superclasses:	none
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          IRegisterHelper
+
+       Category:		Analysis
+       Documentation:
+          IRegisterHelper Interface is the interface allows
+          physical helpers to talk to the system (e.g. when a
+          helper needs to register with the system)
+
+       Stereotype:	Interface
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        registerHelper
+                        unregisterHelper
+                        isRegistered
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          registerHelper
+
+       Public member of:	IRegisterHelper
+       Arguments:
+	          REFCLSID	rclsid
+	          wstring	ipaddress
+	          GameTypeData	data
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          unregisterHelper
+
+       Public member of:	IRegisterHelper
+       Arguments:
+	          REFCLSID	rclsid
+	          wstring	ipaddress
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          isRegistered
+
+       Public member of:	IRegisterHelper
+       Arguments:
+	          REFCLSID	rclsid
+	          wstring	ipaddress
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          Job
+
+       Category:		Analysis
+       Documentation:
+          Job Structure is a simple data type to store and track
+          work assigments.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        timeStarted : CTime
+                        jobNumber : int
+                        length : float
+
+       Protected Interface:
+          Attributes:
+                        timeStarted : CTime
+                        jobNumber : int
+                        length : float
+
+       Private Interface:
+          Attributes:
+                        timeStarted : CTime
+                        jobNumber : int
+                        length : float
+
+       Implementation:
+          Attributes:
+                        timeStarted : CTime
+                        jobNumber : int
+                        length : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          JobManager
+
+
+
+
+
+
+       Category:		Analysis
+       Documentation:
+          JobManager Class is used by each helper to put in jobs
+          of particular lenghts into its schedule as well as to
+          figure out how much time will elapse before the helper
+          is idle.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                Job	
+
+       Public Interface:
+          Operations:
+                        JobManager
+                        JobManager
+                        addJob
+                        deleteJob
+                        isJobRunning
+                        getJobRunningTime
+                        getTotalQueueTime
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        jobs : Vector<Job>
+                        newJobNumber : int
+
+       Private Interface:
+          Attributes:
+                        jobs : Vector<Job>
+                        newJobNumber : int
+
+       Implementation:
+          Attributes:
+                        jobs : Vector<Job>
+                        newJobNumber : int
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          JobManager
+
+       Public member of:	JobManager
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+
+
+
+
+
+          JobManager
+
+       Public member of:	JobManager
+       Arguments:
+	          const JobManager&	new_jobqueue
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          addJob
+
+       Public member of:	JobManager
+       Return Class:	int
+       Arguments:
+	          float	joblength
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          deleteJob
+
+       Public member of:	JobManager
+       Arguments:
+	          int	jobnumber
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          isJobRunning
+
+       Public member of:	JobManager
+       Return Class:	boolean
+       Arguments:
+	          int	jobnumber
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getJobRunningTime
+
+       Public member of:	JobManager
+       Return Class:	float
+       Arguments:
+	          int	jobnumber
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getTotalQueueTime
+
+       Public member of:	JobManager
+
+
+
+
+
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	JobManager
+       Return Class:	JobManager&
+       Arguments:
+	          const JobManagere&	new_jobqueue
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          Move
+
+       Category:		Analysis
+       Documentation:
+          Move Structure is used to ecapsulate move string and
+          the quality of the move. It is used in the game tree
+          evaluation and in communication between the system and
+          the helpers.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        move : wstring
+                        quality : float
+
+       Protected Interface:
+          Attributes:
+                        move : wstring
+                        quality : float
+
+       Private Interface:
+          Attributes:
+                        move : wstring
+                        quality : float
+
+       Implementation:
+          Attributes:
+                        move : wstring
+                        quality : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+
+
+
+
+
+       Class name:
+          MoveDecision
+
+       Category:		Analysis
+       Documentation:
+          MoveDecision Structure encapsulates any informaiton
+          that the system needs to return results back to the
+          game client (e.g. the move string).
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        move : wstring
+                        pctCompleted : float
+
+       Protected Interface:
+          Attributes:
+                        move : wstring
+                        pctCompleted : float
+
+       Private Interface:
+          Attributes:
+                        move : wstring
+                        pctCompleted : float
+
+       Implementation:
+          Attributes:
+                        move : wstring
+                        pctCompleted : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          Session
+
+       Category:		Analysis
+       Documentation:
+          Session Class contains information about any current
+          game session played with an outside client (e.g. game
+          type, ply of the search, time limit)
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                GameType	
+
+
+
+
+
+
+       Public Interface:
+          Operations:
+                        Session
+                        Session
+                        Session
+                        getPly
+                        setPly
+                        getGameType
+                        setGameType
+                        getTimeLimit
+                        setTimeLimit
+                        operator==
+                        operator=
+
+       Protected Interface:
+          Attributes:
+                        ply : int
+                        gameType : GameType
+                        timeLimit : float
+
+       Private Interface:
+          Attributes:
+                        ply : int
+                        gameType : GameType
+                        timeLimit : float
+
+       Implementation:
+          Attributes:
+                        ply : int
+                        gameType : GameType
+                        timeLimit : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          Session
+
+       Public member of:	Session
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Session
+
+       Public member of:	Session
+       Arguments:
+	          const Session&	session
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          Session
+
+       Public member of:	Session
+       Arguments:
+	          int	new_ply
+	          const GameType&	new_gametype
+	          float	new_timelimit
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPly
+
+       Public member of:	Session
+       Return Class:	int
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPly
+
+       Public member of:	Session
+       Arguments:
+	          int	new_ply
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameType
+
+       Public member of:	Session
+       Return Class:	GameType
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameType
+
+       Public member of:	Session
+       Arguments:
+	          const GameType&	new_gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getTimeLimit
+
+       Public member of:	Session
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+
+
+
+
+
+       Operation name:
+          setTimeLimit
+
+       Public member of:	Session
+       Arguments:
+	          float	new_timelimit
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	Session
+       Return Class:	boolean
+       Arguments:
+	          const Session&	session
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	Session
+       Return Class:	GameSession&
+       Arguments:
+	          const Session&	session
+       Concurrency:	Sequential

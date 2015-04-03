@@ -1,0 +1,26 @@
+package csl;
+
+import csl.primitives;
+
+// Definitions relevant to the JavaBeans component style
+
+component type JavaBean;
+
+port type ReceiveEvent    : IncomingMethod;
+port type ActionMethod    : IncomingMethod;
+port type PropertySetter  : IncomingMethod;
+port type PropertyGetter  : IncomingMethod;
+
+port type ReceiveVetoEvent : ExceptionMethod, ReceiveEvent;
+port type ActionEvent : ActionMethod;
+
+port type ActionEventReceiveEvent : ActionEvent, ReceiveEvent;
+port type BoundPropertySetter : ActionEvent, PropertySetter;
+
+port type VetoablePropertySetter : BoundPropertySetter, ReceiveVetoEvent;
+
+port type FireEvent               : OutgoingMethod;
+port type FirePropertyChangeEvent : FireEvent;
+port type EventHandler            : IncomingMethod, FireEvent;
+port type AddListener             : IncomingMethod;
+

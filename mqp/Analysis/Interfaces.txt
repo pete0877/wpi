@@ -1,0 +1,95 @@
+Class Analysis                                                  Version 0.3
+___________________________________________________________________________
+
+TODO List:
+	- string representation (might have to use COM BSTR)
+
+//////////////////////////////////////////////////////////////////////////
+// Data Types
+
+typedef struct tagBoard 
+{
+	[string] char *board;
+} Board;
+
+typedef struct tagMove
+{
+	[string] char *move;
+	int quality;
+} Move;
+
+typedef enum tagLevelType
+{
+	MAXIMAXING = 1,
+	MINIMAZING = 2
+} LevelType;
+
+typedef struct tagGameTypeData
+{
+	[string] char *gameName;
+	[string] char *gameVersion;
+	[string] char *description;
+	[string] char *copyright;
+	[string] char *company;
+	float avgAlphaBetaGain;
+	float avgBranchingFactor;
+} GameTypeData;
+
+typedef struct tagHelperPerformanceData
+{
+	float alphaBetaGain;
+	float branchingFactor;
+	float evaluationTime;
+	float pctCompleted;
+	float splitTime;
+} HelperPerformanceData;
+
+//////////////////////////////////////////////////////////////////////////
+// Interface IHelper
+
+interface IHelper : IUnknown
+{
+	HRESULT evaluate(
+				[in] Board board,
+				[in] LevelType level,
+				[in] int ply,
+				[in] double timelimit,
+				[out] int *quality,
+				[out] HelperPerformanceData *data;
+			);
+
+	HRESULT split(
+				[in] Board board,
+				[in] LevelType level,
+				[out] int *movecount,
+				[out, size_is(movecount)] Move moves[]
+			);
+
+	HRESULT getQuickMove(
+				[in] Board board,
+				[out] Move *move;
+			);
+};
+
+//////////////////////////////////////////////////////////////////////////
+// Interface IRegisterHelper
+
+interface IRegisterHelper : IUnknown
+{
+	HRESULT registerHelper(
+				[in] REFCLSID rclsid,
+				[in, string] char *ipaddress,
+				[in] GameTypeData data
+			);
+			
+	HRESULT unregisterHelper(
+				[in] REFCLSID rclsid,
+				[in, string] char *ipaddress
+			);
+			
+	HRESULT isRegistered(
+				[in] REFCLSID rclsid, 
+				[in, string] char *ipaddress
+			);
+};
+

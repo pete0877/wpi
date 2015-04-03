@@ -1,0 +1,26 @@
+MQP Term Report
+Date: 12/16/99
+__________________________________________________________
+I. Tasks completed since the beginning of the term:
+
+ 1. Analysis and design of the server software,
+ 2. Analysis and design of the helper software,
+ 3. Implementation of the helper software framework,
+ 4. Implementation of a simple prime-number checker helper plug-in.
+__________________________________________________________
+II. Tasks in progress and their status:
+
+ 1. Implementation of the server software (server is now multi-threaded
+    and can use helpers over DCom to perform rapid decision-making,
+	one-level splitting, sub-tree evaluation and finally decision making),
+ 2. Implementation of the chess plug-in ().
+ 3. Design and implementation of the chess game client (client is now
+    operational, but it lacks esthetic GUI).
+__________________________________________________________
+III. Tasks for next term:
+ 1. Completing implementation of the server software,
+ 2. Completing implementation of the chess plug-in,
+ 3. Completing implementation of the chess game client,
+ 4. Data collection and analysis.
+
+

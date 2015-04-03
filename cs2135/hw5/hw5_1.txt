@@ -1,0 +1,22 @@
+
+;No value
+
+1 ]=> (load "hw5_1.scm")
+
+;Loading "hw5_1.scm"
+;Loading "/cs/cs2135/mitmacros.scm" -- done -- done
+;Value: apply-proc
+
+1 ]=> (read-eval-print)
+-->  (list 1 2 3)
+(1 2 3)
+-->  (car (cons 4 emptylist))
+4
+-->  (cons (* 2 4) (cons 4 emptylist))
+(8 4)
+-->  (cons (* 2 4) (cons 4 (list 1 2 3)))
+(8 4 1 2 3)
+-->
+;Quit!
+
+1 ]=> (transcript-off)

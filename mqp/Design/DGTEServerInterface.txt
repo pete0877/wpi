@@ -1,0 +1,14 @@
+//////////////////////////////////////////////////////////////////////////
+// Interface IRegisterHelper
+
+interface IRegisterHelper : IUnknown
+{
+ HRESULT registerHelper(
+    [in, string] char* address,
+    [in] GameTypeData data
+   );
+   
+ HRESULT unregisterHelper(
+    [in, string] char* address
+   );
+};

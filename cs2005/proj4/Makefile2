@@ -1,0 +1,36 @@
+
+proj4tree: CountLeafNode.o CountNode.o ComputeHeight.o ShowTree.o DeleteNode.o AddNode.o FindNode.o FindParentNode.o MakeTreeNode.o proj4tree.o proj4tree.h
+	g++ -o CountLeafNode.o CountNode.o ComputeHeight.o ShowTree.o DeleteNode.o AddNode.o FindNode.o FindParentNode.o MakeTreeNode.o proj4tree.o
+
+CountLeafNode.o: CountLeafNode.cpp proj4tree.h
+	g++ -c CountLeafNode.cpp
+
+CountNode.o: CountNode.cpp proj4tree.h
+	g++ -c CountNode.cpp
+
+ComputeHeight.o: ComputeHeight.cpp proj4tree.h
+	g++ -c ComputeHeight.cpp
+
+ShowTree.o: ShowTree.cpp proj4tree.h
+	g++ -c ShowTree.cpp
+
+DeleteNode.o: DeleteNode.cpp proj4tree.h
+	g++ -c DeleteNode.cpp
+
+AddNode.o: AddNode.cpp proj4tree.h
+	g++ -c AddNode.cpp
+
+FindNode.o: FindNode.cpp proj4tree.h
+	g++ -c FindNode.cpp
+
+FindParentNode.o: FindParentNode.cpp proj4tree.h
+	g++ -c FindParentNode.cpp
+
+MakeTreeNode.o: MakeTreeNode.cpp proj4tree.h
+	g++ -c MakeTreeNode.cpp
+
+proj4tree.o: proj4tree.cpp proj4tree.h
+	g++ -c proj4tree.cpp
+
+clean:
+	 rm -f *.o proj4tree

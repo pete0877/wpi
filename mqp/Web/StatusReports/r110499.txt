@@ -1,0 +1,40 @@
+MQP Status Report
+Date: 11/04/99
+__________________________________________________________________________
+Things completed since the last meeting:
+ 
+1.  Did more research on implementing DCOM and its limitiations
+ 
+ - Parameter marshalling in DCOM
+  a. Interface Definition Language
+ - Connection issues in DCOM
+  a. Pinging mechanism used
+  b. Timeout limitations
+ - Implemenation of DCOM component objects using ATL (Active Template Library)
+ 
+2. Used Object-Oriented Analysis to determine a set of classes and objects that will be required for the design and implementation of the project.
+ 
+ a) Class modeling diagram (showing relationship between classes) 
+ b) Class analysis diagram (showing the operations/data for each class) 
+ 
+__________________________________________________________________________
+Things to do before the next meeting:
+ 
+1. Complete the Object-Oriented Analysis.
+ 
+ a) Develop the class-responsibility-collaboration diagram.
+ b) Finalize the analysis.
+ 
+2. Start the Object-Oriented Design.
+ 
+ a) Develop the use cases that will describe the overall interaction of the system.
+ b) Develop object interaction graphs to capture the important interactions between the components.
+ 
+3. Prepare a document containg the Object-Oriented Analysis and Design.
+
+
+
+
+
+
+

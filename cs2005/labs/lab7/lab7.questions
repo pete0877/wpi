@@ -1,0 +1,27 @@
+1. Are the results for the number of comparisons as you expect?  Do these
+results demonstrate the expected behavior of these algorithms?
+
+The results of these sorts are pretty much as I expected. The quick sort
+seemed to be the fastest in this case, and the bubble sort seemed to be
+the slowest of all of the methods. The rusults do demonstrate general
+behaivor of the four methods, but we have to keep in mind that the
+characteristics of these method would become more crucial when dealing
+with larger number of elements such as milions or more of elements to
+sort. We also have to realize that these methods depend on character of 
+data we used to test the program. In our case, the data was pretty
+random, which was a perfect for quick sort, but it slowed down the bubbble
+sort.
+
+2. Are results for the timing comparisons the same as for the number of
+comparisons?  If the results vary can you explain the differences?
+Consider that the number of comparisons is not the only factor in the time it
+takes for the algorithm to run.  What are other factors?
+
+No, for example selection sort came out to have same characteristics on 
+the comaprisons graph as the bubble sort. When we timed it though, we
+found out that the time required for the selection method was much less
+then time required for the bubble sort. Number of comaprisons is just one
+of the factors in the process of timing. Other factors are number, and 
+way of moving the elements in the array, and also character of randomnesss
+of the array.
+

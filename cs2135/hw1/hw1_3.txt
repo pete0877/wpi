@@ -1,0 +1,17 @@
+
+;No value
+
+1 ]=> (load "hw1_3")
+
+;Loading "hw1_3.scm" -- done
+;Value: out-nums
+
+1 ]=>  (out-nums '(a 1 (1 c 2) 3)) 
+
+;Value 2: (a (c))
+
+1 ]=> (out-nums '())
+
+;Value: ()
+
+1 ]=> (transcript-off)

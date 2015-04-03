@@ -1,0 +1,18 @@
+MQP Status Report
+Date: 9/23/99
+______________________________________________________________________________
+Done since last meeting:
+1. Restructured the communication between client, server and helper to 
+   guarantee that the server is stateless
+2. Developed an initial formula to determine the time needed for a helper 
+   to compute a tree of a given depth.  This formula takes into account
+   communication overhead, board evaluations and move generation
+3. Found article on distributed (multiple computer) game tree search
+4. Developed sample DCOM application that will be used to test communication
+   overhead
+______________________________________________________________________________
+To Do for next week:
+
+1. Decide on strategy for dividing work into distribution units
+2. Measure overhead of sample DCOM object
+3. Research more on multi-computer distributed game tree algorithms

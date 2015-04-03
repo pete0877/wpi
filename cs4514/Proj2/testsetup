@@ -1,0 +1,6 @@
+rm -rf test
+mkdir test
+mkdir test/srv
+cp -rf server test/srv
+cp -rf client test
+cp sourcefile test/srv

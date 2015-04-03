@@ -1,0 +1,245 @@
+/////////////////////////////////////////////////////////////////////////////
+// Class HelperApp
+
+BOOL HelperApp::InitInstance()
+{
+	initialize COM;
+	initATL();
+	loadSettings();
+	enable splash screen;
+
+	m_helperAddress = address of the helper;
+	m_statusWnd = new StatusWnd;
+		
+	if m_autoConnect is true {
+			statusWnd.connect();
+	}
+}
+
+BOOL HelperApp::ExitInstance()
+{
+	if m_connected is true {
+		Disconnect();
+	}
+	
+	SaveSettings();
+	uninitialize COM;
+}
+
+void HelperApp::Connect()
+{
+	if serverAddress is empty
+		throw InvalidServerException
+
+	if gameName is empty
+		thorw InvalidGameException
+		
+	create pIRegisterHelper;
+	
+	result = pIRegisterHelper.registerHelper(helperAddress, game.gameTypeData);
+	
+	if result is S_OK
+		return true;
+	else {
+		trace debug output;
+		return false;
+	}
+}
+
+void HelperApp::Disconnect()
+{
+	create pIRegisterHelper;
+	
+	result = pIRegisterHelper.unregisterHelper(helperAddres);
+	
+	if result is S_OK
+		return true;
+	else {
+		trace debug output;
+		return false;
+	}
+}
+
+bool HelperApp::IsConnected()
+{
+	return this.m_connected;
+}
+
+BOOL HelperApp::InitATL()
+{
+	if not registered {
+		register helper with the OS;
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Class StatusWnd
+
+StatusWnd::OnCreate()
+{
+	show Splash screen;
+	
+	create m_trayIcon;
+	load m_popupMenu;
+
+	if theApp.GetPlugin return null {
+		disable menu item Connect;
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// StatusWnd message handlers
+
+void StatusWnd::OnShowStatus()
+{
+	show this window;
+}
+
+void StatusWnd::OnConnect()
+{
+	if not theApp.isConnected() {
+		theApp.Connect();
+	}
+	else
+		theApp.Disconnect();
+	}
+}
+
+void StatusWnd::OnAbout()
+{
+	AboutDlg aboutDlg;
+	show aboutDlg;
+}
+
+void StatusWnd::OnProperties()
+{
+	Properties propSheet;
+	
+	initialize propSheet;
+	show propSheet;
+	if user clicks on OK {
+		collect data;
+		update the settings;
+	}
+}
+
+void StatusWnd::OnClose()
+{
+	initiate shutdown process;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Class Plugin
+
+Plugin::Plugin(CString pluginDll);
+{
+	if not this.m_module = LoadLibrary pluginDll {
+		throw DllNotFoundException();
+	}
+	
+	if not this.gameTypeData = obtain address for GameTypeData structure {
+		throw InvalidDllException();
+	}
+	
+	if not this.evalute = obtain address for evaluate method {
+		throw InvalidDllException();
+	}
+
+	if not this.split = obtain address for split method {
+		throw InvalidDllException();
+	}
+
+	if not this.getQuickMove = obtain address for getQuickMove method {
+		throw InvalidDllException();
+	}
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Class HelperObj
+
+... TODO: check how the dll logic fits into this schema ...
+... TODO: check if have to allocate space for any of the parameters ...
+ 
+HelperObj::HelperObj(Plugin plugin)
+{
+	this.m_plugin = plugin;
+}
+
+HRESULT HelperObj::evaluate(/*[in]*/ GameState gs, /*[in]*/ LevelType level, /*[in]*/ int ply, /*[in]*/ int timelimit, /*[out]*/ int *quality, /*[out]*/ HelperPerformanceData *data)
+{
+	call m_plugin.evalute();
+	return S_OK;
+}
+
+HRESULT HelperObj::getQuickMove(/*[in]*/ GameState gs, /*[out]*/ Move *move, /*[out]*/ int *gameOver)
+{
+	call m_plugin.getQuickMove();
+	return S_OK;
+}
+
+HRESULT HelperObj::split(GameState gs, LevelType level, int *movecount, Move *moves)
+{
+	call m_plugin.split();
+	return S_OK;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// Class Properties
+
+Properties::Properties(CWnd* pWndParent)
+{
+	this.m_Page1 = new instance of GeneralPage;
+	this.m_Page2 = new instance of PluginsPage;
+	
+	AddPage(m_Page1);
+	AddPage(m_Page2);
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// ConnectionPage dialog
+
+GeneralPage::GeneralPage() 
+{
+	this.m_autoConnect = FALSE;
+	this.m_serverAddress = "";
+}
+
+void GeneralPage::DoDataExchange(CDataExchange* pDX)
+{
+	exchange data between data members and dialog elements;
+}
+
+/////////////////////////////////////////////////////////////////////////////
+// PluginsPage dialog
+
+PluginsPage::PluginsPage() 
+{
+	this.m_selectedPlugin = "";
+	this.m_selectedPluginIndex = -1;
+	
+	InitPlugins();
+}
+
+void PluginsPage::DoDataExchange(CDataExchange* pDX)
+{
+	exchange data between data members and dialog elements;
+}
+
+BOOL PluginsPage::OnInitDialog() 
+{
+	for each plugin name in the m_plugins vector {
+		load the listbox with the name;
+	}
+}
+
+void PluginsPage::InitPlugins() 
+{
+	for each pluginDll in the plugins folder
+	{
+		try {
+			Plugin plugin(pluginDll);
+			this.m_plugins.add(plugin);
+		}
+		catch Exceptions
+	}
+}

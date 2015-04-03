@@ -1,0 +1,50 @@
+DGTE Client/Server Communication Protocol
+Version 0.9
+Author: Tim O'Brien
+
+-----------------------------------------------
+Messages Sent By Server
+-----------------------------------------------
+
+SERVER_MESSAGE & char(0) & [some message] & char(0)
+
+SERVER_NUMGAMETYPES & char(0) & [number of server game types] & char(0)
+
+SERVER_GAMETYPE & char(0) & [game type number] & char(0) & [the game type] & char(0)
+
+SERVER_STARTGAME & char(0)
+
+SERVER_WAITTIME & char(0) & [time to wait in msec] & char(0)
+
+SERVER_MOVE & char(0) & WIN/LOOSE/DRAW/CONTINUE & char(0) & [the encoded move] & char(0) & [percent completed] & char(0) & [other message] & char(0)
+
+SERVER_ENDGAME & char(0)
+
+SERVER_ERROR & char(0) & [reason for error] & char(0)
+
+
+-----------------------------------------------
+Messages Sent By Client
+-----------------------------------------------
+
+CLIENT_ENCODING & char(0) & [encoding type] & char(0)
+
+CLIENT_GAMETYPE & char(0) & [game type to play as integer] & char(0)
+
+CLIENT_PLY & char(0) & [ply as integer] & char(0)
+
+CLIENT_GAMESTATE & char(0) & [current encoded game state] & char(0)
+
+CLIENT_ERROR & char(0) & [reason for error] & char(0)
+
+
+-----------------------------------------------
+Comments
+-----------------------------------------------
+- [type number] in the SERVERTYPE message will be the number returned to the server in the CLIENTTYPE message
+
+- CLIENT_ENCODING message refers to the encoding of a game state as well as a move
+
+
+CLIENT_ENCODING!A!CLIENT_GAMETYPE!1!CLIENT_PLY!10!CLIENT_GAMESTATE!board_encoded_here!
+CLIENT_GAMESTATE!board_encoded_here!

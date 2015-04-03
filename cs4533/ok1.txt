@@ -1,0 +1,59 @@
+
+E:\Compilers>c:\jdk1.2beta4\bin\java tea sample_a.tea  
+
+program (
+LINE 1:
+
+     method_declaration (
+          void
+          input_a
+LINE 2:
+
+          = (
+               a
+               b3
+          )
+LINE 3:
+
+          = (
+               xyz
+               + (
+                    a
+                    + (
+                         b
+                         - (
+                              c
+                              / (
+                                   p
+                                   q
+                              )
+                         )
+                    )
+               )
+          )
+LINE 4:
+
+          = (
+               a
+               * (
+                    xyz
+                    + (
+                         p
+                         q
+                    )
+               )
+          )
+LINE 5:
+
+          = (
+               p
+               - (
+                    a
+                    - (
+                         xyz
+                         p
+                    )
+               )
+          )
+     )
+)Parse completed.

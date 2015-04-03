@@ -1,0 +1,15 @@
+:Base ECON.hlp
+:Title ECON Help
+1 Help Topics=hpad10
+1 Requirements=hpad20
+1 Special Terms=hpad50
+1 Getting Started=hpad60
+1 Installation
+2 PreInstallation=hpad130
+2 Installation=hpad120
+1 Getting Started
+2 Opening or Changing a Server=hpad70
+2 Changing the Calendar=hpad80
+2 Adding an Event=hpad90
+2 Viewing an Event=hpad100
+2 Setting-up Your Server=hpad110

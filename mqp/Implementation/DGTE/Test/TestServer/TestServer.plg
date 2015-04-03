@@ -1,0 +1,86 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: TestServer - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "rc.exe /l 0x409 /fo"Debug/TestServer.res" /d "_DEBUG" "D:\Dev\Dgte\Test\TestServer\TestServer.rc"" 
+Creating temporary file "E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP148.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/TestServer.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\Dev\Dgte\Test\TestServer\HelperRegistrar.cpp"
+"D:\Dev\Dgte\Test\TestServer\TestServer.cpp"
+]
+Creating command line "cl.exe @E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP148.tmp" 
+Creating temporary file "E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP149.tmp" with contents
+[
+/nologo /MLd /W3 /Gm /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_MBCS" /Fp"Debug/TestServer.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"D:\Dev\Dgte\Test\TestServer\StdAfx.cpp"
+]
+Creating command line "cl.exe @E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP149.tmp" 
+Creating temporary file "E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP14A.tmp" with contents
+[
+kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:windows /incremental:yes /pdb:"Debug/TestServer.pdb" /debug /machine:I386 /out:"Debug/TestServer.exe" /pdbtype:sept 
+.\Debug\HelperRegistrar.obj
+.\Debug\StdAfx.obj
+.\Debug\TestServer.obj
+.\Debug\TestServer.res
+]
+Creating command line "link.exe @E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP14A.tmp"
+Creating temporary file "E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP14B.bat" with contents
+[
+@echo off
+nmake -f "TestServer"ps.mk
+regsvr32 /s /c "TestServer"ps.dll
+echo Server Proxy/Stub registration done!
+".\Debug\TestServer.exe" /RegServer
+echo regsvr32 exec. time > ".\Debug\regsvr32.trg"
+echo Server registration done!
+]
+Creating command line "E:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP14B.bat"
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+HelperRegistrar.cpp
+TestServer.cpp
+Generating Code...
+Linking...
+<h3>Output Window</h3>
+Performing registration
+
+Microsoft (R) Program Maintenance Utility   Version 6.00.8168.0
+Copyright (C) Microsoft Corp 1988-1998. All rights reserved.
+
+ cl /c /Ox /DWIN32 /D_WIN32_WINNT=0x0400 /DREGISTER_PROXY_DLL  dlldata.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+
+dlldata.c
+ cl /c /Ox /DWIN32 /D_WIN32_WINNT=0x0400 /DREGISTER_PROXY_DLL  TestServer_p.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+
+TestServer_p.c
+ cl /c /Ox /DWIN32 /D_WIN32_WINNT=0x0400 /DREGISTER_PROXY_DLL  TestServer_i.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+
+TestServer_i.c
+ link /dll /out:TestServerps.dll /def:TestServerps.def /entry:DllMain dlldata.obj TestServer_p.obj TestServer_i.obj  kernel32.lib rpcndr.lib rpcns4.lib rpcrt4.lib oleaut32.lib uuid.lib
+Microsoft (R) Incremental Linker Version 6.00.8447
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+
+   Creating library TestServerps.lib and object TestServerps.exp
+Server Proxy/Stub registration done!
+Server registration done!
+
+
+
+<h3>Results</h3>
+TestServer.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

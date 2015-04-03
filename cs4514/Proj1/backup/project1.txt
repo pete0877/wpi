@@ -1,0 +1,114 @@
+Author:                         Peter Golaszewski
+Date:                           11/13/98
+Version:                        1.0
+Project ID:                     Project 1
+CS Class:                       CS4514
+Programming Language:           C++
+OS/Hardware dependencies:       Network connection that supports UDP and TCP
+
+Problem Description:            To implement dynamicly binded service program and
+ 				a client based on the Oracle service.
+
+Overall Design:
+                                
+        System structure        NA
+        Data representation     Both client and the server communicate with the 
+				Oracle service via UDP (using specific message structures)
+        Algorithms              NA
+
+Program Assumptions 
+      and Restrictions:         1. Oracle service needs to be runnning at all times.
+				2. The server evaluates only following operations: * / + -
+
+Interfaces:
+        User                    STD I/O
+        File/D-B                NA
+        Program/Module          NA
+
+Implementation Details:
+        Data                    Oracle Message structure:
+			struct om {                     /* oracle message */
+			  char ver;                     /* version number of this structure */
+			  enum cmd cmd;                 /* command/reply code */
+			  char sbDesc[cchMaxDesc];      /* description of service (or error reply) */
+			  char uid[luid];               /* user id (login id) of requester/provider */
+			  char sbServ[cchMaxServ];      /* name of service requested/provided */
+			  struct sockaddr_in sa;        /* socket addr where service is available */
+			  unsigned long ti;             /* time of registration */
+			};
+        Variables               NA
+        Algorithm               NA
+
+				See the project sylabus for more details.
+
+How to build the program:       make
+
+Program Source:
+
+1. see server.cpp
+2. see client.cpp
+3. see oracle.h
+4. see project1.h
+
+Additional Files:               makefile - used by make program
+
+Results:                        
+
+1. Starting server:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Reverse Polish Notation Evaluator
+ Oracle service by Peter Golaszewski, version 1.0.
+
+    Trying to allocate the socket ... ok
+    Getting the username: peterg
+    Getting the server address ... ok
+    Trying to register the service ... ok.
+____________________________
+SERVER LOG:
+    Opening a new connection.
+    Closing existing connection. 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+2. Starting client:
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+Oracle client by Peter Golaszewski, version 1.0.
+Type help for list of commands.
+
+Command: list .* peterg
+    Connecting to Oracle ... ok.
+   exp_eval [peterg] - Reverse Polish Notation Evaluator
+
+Command: connect exp_eval
+    Connecting to Oracle ... ok.
+    Connecting to: exp_eval [peterg] ... ok.
+    Use CTRL-D to terminate service connection:
+
+
+Reverse Polish Notation Evaluator, by Peter Golaszewski.
+
+EVAL: 4 3 2 + * 10 /
+2.00000
+
+EVAL: 10 2 /
+5.00000
+
+EVAL: ^D
+    Service connection closed.
+
+Command:  
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+Test Procedures:                1. Start the server.
+				2. Start the client.
+				3. Issue 'list' command for the client (Note: exp_eval service)
+				4. Issue 'connect exp_eval' command for the client
+				5. Use the service to evaluate few simple expressions
+				6. Press CTRL-D to terminate the service connection
+				7. Test the client with other interactive services, and
+				   test the server with other interactive clients.
+
+Test Data:                      Simple Reverse polish notation expressions.
+
+Performance Evaluation:         N/A
+
+References:                     CS4514B98.

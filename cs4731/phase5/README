@@ -1,0 +1,123 @@
+PLEASE NOTE:
+ 
+        0. The world is defined in my model.in file, and it allows
+           modeling without recompiling the code, so that my program
+           can be used as a real CG tool - yeah right :)
+
+	1. Modeling and rendering takes time. The input file (300Kb)
+           has around 4k polygons.
+ 
+	2. When running the modeler don't say "y" to "do you want to 
+	   display the read data" question - unless you have a LOT 
+           of time to watch the numbers fly through. :)
+
+	3. My model.format file (the actual model data file contains
+           additional info about the colors (RGB format))
+
+---------------------------------------------------------------------------------------
+
+Authors:                         Peter Golaszewski
+				 Sebastian Jastrzebski
+Date:                           2/20/98
+Version:                        5.0
+Project ID:                     3-D modeler and renderer
+CS Class:                       CS4731
+Programming Language:           C++
+OS/Hardware dependencies:       Needs Windows X station.
+
+Problem Description:            
+	This project is composed of two parts:
+MODELER:
+  - creates model.format file that contains description of
+    the 3-D model to be displayed by renderer.
+RENDERER
+  - uses data from view files, and displays the model
+    in 4 viewport windows (XY, YZ, an Eye perspective, and Parallel 
+    perspective) defined in 3 View files: 
+	view_noZ.format,
+	view_noX.format,
+        view_eye.format, and
+	view_par.format
+  - program creates flat shading with hiden surface removal.
+  - this program uses LIBSX library.
+
+Overall Design:
+                                
+        System structure        N/A
+        Data representation     All components of the project are
+				represented by c++ objects defined in 
+				definitions.h file.
+        Algorithms              Modeler uses model.in file to generate
+				list of vertexies, edges, polygons and
+				colors.
+				model.in contains :
+  			        [Comment line]
+				[number of figures]
+			        [list of figures]	
+				[number of colors]
+			        [list of RGB colors]				
+
+Program Assumptions 
+      and Restrictions:         Renderer needs to be ran on X-Windows
+				Station. The 4 view files file needs to
+				exist in renderer's local directory.
+				renderer assumes that each polygon 
+				contains only 3 edges. This limit can
+				be easyly changed by applying loops.
+
+Interfaces:
+        User                    Only output through standard IO (for
+				modeler)
+				X-Windows interface for Renderer
+        File/D-B                
+        Program/Module          N/A
+
+Implementation Details:
+        Data                    Mostly OOP representation.
+        Variables               float type for vertexes, and other world
+				coordinates.
+        Algorithm               Modeler checks model object for any
+				missing components by going though
+				each polygon, and making sure that
+				each of its edges exists, and that
+				each vertex exists for these edges.
+				Renderer renders the model in flat 
+ 				shading with surface removal. (poly
+				sorting)
+
+How to build the program:       make
+				(make sure that all the files are
+				in the same directory)
+
+How to run the program:         
+				modeler  (that will create model.format)
+				renderer (this will display the model)
+
+Program Source:			in files:
+				 definitions.h
+				 modeler.cpp
+				 renderer.cpp
+				 matrix.cpp
+
+Additional Files:               makefile - used to compile project
+				model.in - used by modeler to define model
+				view_noX.format - viewport file
+				view_noZ.format - viewport file
+				view_par.format - viewport file
+				view_eye.format - viewport file
+				README - this file
+				libsx.h - needed to build the project
+				libsx_defs - needed to build the project				
+				
+Results:                        N/A
+
+Test Procedures:                run "modeler"
+				run "renderer"
+
+Test Data:                      model.in
+
+Performance Evaluation:         NA
+        Time/Space
+        User Interface
+
+References:                     LibSX, Lectures

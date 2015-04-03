@@ -1,0 +1,31 @@
+ADAPTCLASSES = $(ADAPT_HOME)/classes
+
+GLUEFILES =
+
+MAINFILE = \
+	 FinalApp.class
+
+all: guiJAR sheetFiles spreadsheetJAR $(GLUEFILES) $(MAINFILE)
+
+sheetFiles:
+	make -f sheet/sheet.gmk
+
+guiJAR:
+	make -f gui/gui.gmk
+
+spreadsheetJAR:
+	make -f spreadsheet/spreadsheet.gmk
+
+# Must be tab separators
+%.class: %.java
+	 export CLASSPATH; CLASSPATH=.:$(ADAPTCLASSES) ; \
+	 javac $<
+
+clean:
+	make clean -f sheet/sheet.gmk
+	make clean -f gui/gui.gmk
+	make clean -f spreadsheet/spreadsheet.gmk
+
+run:
+	 export CLASSPATH; CLASSPATH=.:$(ADAPTCLASSES) ; \
+	 appletviewer Final.html

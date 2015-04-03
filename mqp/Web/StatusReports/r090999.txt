@@ -1,0 +1,30 @@
+
+MQP Status Report
+Date: 9/9/99
+______________________________________________________________________________
+What has been done since last meeting:
+
+1. General plan for the requirements was drawn.
+2. WPI library was searched for computer chess related materials.
+	(mostly Artificial Intelligence journal)	
+3. Few articles has been found and printed.
+4. ICCA journal was researched for distributed computation related 
+	articles.
+5. Few interesting sites has been found:
+	http://forum.swarthmore.edu/~jay/learn-game/
+	http://www.dcs.qmw.ac.uk/~icca/
+	http://forum.swarthmore.edu/~jay/learn-game/
+	http://www.xs4all.nl/~verhelst/chess/programming.html
+	http://ai.iit.nrc.ca/ai_journals.html		
+6. Project site has been established.
+______________________________________________________________________________
+What will be done by the next meeting:
+
+1. Requirements document will be presented along with overall software
+	specifications.
+2. Various articles will be aquired and ordered.
+3. List of references will be composed and posted on the site.
+4. A standard chess game protocal as well as a simple chess client will 
+	be chosen.
+	
+	

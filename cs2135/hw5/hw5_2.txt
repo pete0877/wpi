@@ -1,0 +1,9 @@
+<exp> ::= <number>
+        | <varref>
+        | (<exp> {<exp>}* )
+        | (if <exp> <exp> <exp>)
+        | (let  <decls>  <exp>)
+        | (lambda <varlist> <exp>)
+<decls> ::=  ( <decl>  {<decl>}*  )
+<decl>  ::=  ( <var> <exp>)
+<varlist> ::= ( {<var>}* {(<var> <exp>)}* )

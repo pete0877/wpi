@@ -1,0 +1,174 @@
+D:\CS4432\PROJECT2>java TestDriver
+Symantec Java! JustInTime Compiler Version 4.00.006(x) for JDK 1.2 (Symantec GC)
+Copyright (C) 1996-99 Symantec Corporation
+
+
+____________________________________________________
+
+
+Object Transaction Manager, v1.0
+Peter Golaszewski, <peterg@wpi.edu>
+WPI, CS 4432, D00, Project 2
+
+Type 'help' for list of commands
+
+ > ST 1
+
+[ST 1]
+
+Transaction 1 started.
+
+ > ST 2
+
+[ST 2]
+
+Transaction 2 started.
+
+ > SL 1 A
+
+[SL 1 A]
+
+Granted share lock on A to transaction 1.
+
+ > SL 2 A
+
+[SL 2 A]
+
+Granted share lock on A to transaction 2.
+
+ > XL 2 A
+
+[XL 2 A]
+
+Waiting for lock (shared lock held by: 1 )
+
+ > UO 1 A
+
+[UO 1 A]
+
+Transaction 1 released shared lock on A.
+Granted exclusive lock on A to transaction 2.
+
+ > UO 2 A
+
+[UO 2 A]
+
+Transaction 2 released exclusive lock on A.
+
+ > XL 2 B
+
+[XL 2 B]
+
+Granted exclusive lock on B to transaction 2.
+
+ > XL 1 B
+
+[XL 1 B]
+
+Waiting for lock (exclusive lock held by: 2 )
+
+ > UO 2 A
+
+[UO 2 A]
+
+Transaction 2 has no locks on object A.
+
+ > UO 2 B
+
+[UO 2 B]
+
+Transaction 2 released exclusive lock on B.
+Granted exclusive lock on B to transaction 1.
+
+ > UO 1 A
+
+[UO 1 A]
+
+Transaction 1 has no locks on object A.
+
+ > UO 1 B
+
+[UO 1 B]
+
+Transaction 1 released exclusive lock on B.
+
+ > XL 1 A
+
+[XL 1 A]
+
+Granted exclusive lock on A to transaction 1.
+
+ > XL 2 B
+
+[XL 2 B]
+
+Granted exclusive lock on B to transaction 2.
+
+ > XL 1 B
+
+[XL 1 B]
+
+Waiting for lock (exclusive lock held by: 2 )
+
+ > XL 2 A
+
+[XL 2 A]
+
+Waiting for lock (exclusive lock held by: 1 )
+Detected dead-lock between transaction 2 and 1.
+
+ > ST 3
+
+[ST 3]
+
+Transaction 3 started.
+
+ > XL 3 B
+
+[XL 3 B]
+
+Waiting for lock (exclusive lock held by: 2 )
+
+ > UO 2 B
+
+[UO 2 B]
+
+Transaction 2 released exclusive lock on B.
+Granted exclusive lock on B to transaction 1.
+
+ > UO 2 A
+
+[UO 2 A]
+
+
+ > EN 2
+
+[EN 2]
+
+Transaction 2 stopped.
+
+ > EN 1
+
+[EN 1]
+
+Transaction 1 stopped.
+Transaction 1 released exclusive lock on A.
+Transaction 1 released exclusive lock on B.
+Granted exclusive lock on B to transaction 3.
+
+ > EN 3
+
+[EN 3]
+
+Transaction 3 stopped.
+Transaction 3 released exclusive lock on B.
+
+ > quit
+
+[QUIT]
+
+____________________________________________________
+
+
+
+D:\CS4432\PROJECT2>

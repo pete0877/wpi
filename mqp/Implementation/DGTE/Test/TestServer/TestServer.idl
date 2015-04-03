@@ -1,0 +1,41 @@
+// TestServer.idl : IDL source for TestServer.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (TestServer.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "..\..\Include\Types.idl";
+
+[
+	object,
+	uuid(B5D4EBC0-C7D9-4C14-BFCF-C9AB4CBCABB5),
+	helpstring("IHelperRegistrar Interface"),
+	pointer_default(unique)
+]
+interface IHelperRegistrar : IUnknown
+{
+	[helpstring("method registerHelper")] HRESULT registerHelper([in, string] char *address, [in] GameTypeData data);
+	[helpstring("method unregisterHelper")] HRESULT unregisterHelper([in, string] char *address);
+};
+
+[
+	uuid(2D48855F-2B71-4AAB-A382-547E2946F7B4),
+	version(1.0),
+	helpstring("TestServer 1.0 Type Library")
+]
+library TESTSERVERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(F721574E-DC47-44B9-954E-84D31170C388),
+		helpstring("HelperRegistrar Class")
+	]
+	coclass HelperRegistrar
+	{
+		[default] interface IHelperRegistrar;
+	};
+};

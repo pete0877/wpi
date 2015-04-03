@@ -1,0 +1,23 @@
+HKCR
+{
+	DistributedGameTreeServer.HelperRegistrar.1 = s 'HelperRegistrar Class'
+	{
+		CLSID = s '{2CE3C490-A77B-11D3-90F1-004095100085}'
+	}
+	DistributedGameTreeServer.HelperRegistrar = s 'HelperRegistrar Class'
+	{
+		CLSID = s '{2CE3C490-A77B-11D3-90F1-004095100085}'
+		CurVer = s 'DistributedGameTreeServer.HelperRegistrar.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {2CE3C490-A77B-11D3-90F1-004095100085} = s 'HelperRegistrar Class'
+		{
+			ProgID = s 'DistributedGameTreeServer.HelperRegistrar.1'
+			VersionIndependentProgID = s 'DistributedGameTreeServer.HelperRegistrar'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{2CE3C48E-A77B-11D3-90F1-004095100085}'
+			'TypeLib' = s '{2CE3C48D-A77B-11D3-90F1-004095100085}'
+		}
+	}
+}

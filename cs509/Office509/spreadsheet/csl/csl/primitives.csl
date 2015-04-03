@@ -1,0 +1,14 @@
+package csl;
+
+// These are the basic primitives for CSL
+
+port type OutgoingMethod;
+port type IncomingMethod;
+port type ExceptionMethod : IncomingMethod;
+port type Constructor : IncomingMethod;
+
+// An internal method that may, or may not, make external references, but
+// it can only be invoked within the component
+port type PrivateMethod;
+
+component type ConnectingComponent;

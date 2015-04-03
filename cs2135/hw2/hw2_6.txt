@@ -1,0 +1,26 @@
+
+;No value
+
+1 ]=> (load "hw2_6")
+
+;Loading "hw2_6.scm" -- done
+;Value: filter0
+
+1 ]=> (pp POLY-MULT)
+
+(named-lambda (poly-mult p1 p2)
+  (if (null? p1)
+      ()
+      (filter0
+       (poly-add (poly-mult-term (car p1) p2) (poly-mult (cdr p1) p2)))))
+;No value
+
+1 ]=> (POLY-MULT (quote ( (3 2) (2 1) (5 0) ) ) (quote ( (2 1) (1 0) ) ) ) 
+
+;Value 2: ((6 3) (7 2) (12 1) (5 0))
+
+1 ]=> (POLY-MULT (quote ( (1 1) (1 0) ) ) (quote ( (1 1) (-1 0) ) ) ) 
+
+;Value 3: ((1 2) (-1 0))
+
+1 ]=> (transcript-off)

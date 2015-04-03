@@ -1,0 +1,170 @@
+REQUIREMENTS LEVEL: A
+_____________________________________________________________________________________________________
+
+Author:				Peter Golaszewski
+Date:				5/1/99
+Version:			1.0
+Project ID:			Assigment 3
+CS Class:			CS4513
+Programming Language:		C++
+OS/Hardware dependencies:	None
+
+Problem Description:		
+
+		  To write a distributed file system based on Assigment 2.
+		  The server will server clients as a file storage device.
+		  Multiple clients are able to connect to the server.
+		  The server-client paradigm is implemented using RPC.
+
+		  Program simulates a file system using two block methods:	  		  
+          the linked-list method and the bit-map method. Both
+          methods can be initiated into contiguous mode, in which
+          blocks are allocated without fragmentation. The program
+          is command based, but it also allows feeding the commands
+          from file. Run 'FileSystem -help' quick description of other
+          options.
+				
+          Note: This documentation describes design and implementation only
+          of the File System module of the project. For more information
+          on the design of the block device modules, please read the 
+          project documentation for Assigment 1 of the project.
+		  
+Overall Design:
+
+  All of the design from Assigment 2 is included in this version of the 
+  project except for the ability to create and change directories.
+				        
+  System structure: 
+          Files are composed of blocks, each block is fixed size. There are
+          fixed number of blocks. 
+
+  Data representation:
+          In general, there are following main data structures used to track the file system information:
+          - blocks (stored physically in files) - store directory information
+          - inodes (store only in memory) - keep track of which blocks belong to which files
+
+  Algorithms
+  
+          Sun RPC was used to implement the distributed part of the project.          		          
+  
+          Simple linear search algorithms were used for both methods.
+          In addition, when running in a contiguous mode, each
+          method allocates blocks in the smallest range possible for
+          higher disk usage efficiency. 
+
+Program Assumptions and Restrictions:         
+          -There is only one, root directory	
+          -There are only 127 blocks.
+          -Filename of the input file can only be 100 in length.
+          -Each command can only be 100 characters long.
+          -When called to loop through the input file, program will loop 500 times throught the file.
+          -There can be only 1000 inodes (files).
+          -Each block is only 512 in size.
+          -There are 5 direct block numbers at each i-node
+          -Filenames can be max. 255 characters in lenght
+             (ALL these values can be changed by accessing the FileSystem.h file.)                    
+		  
+User Interface:
+          User prompted for each command, or can use an input file by
+          specifying it on the command line (after '-f' switch)
+
+Program/Module Interface:
+          The project composes of tree modules at this point:
+          -Bit-map based device manager
+          -Linked-list based device manager
+          -file/directory manager
+          Each of these modules is defined in a seperate .h file and can 
+          be easily addopted.
+
+Implementation Details:
+  Data:
+          Blocks are represented as seperate files. For example, block number
+          18 would be written to filename block_81.dat. The digits were reversed,
+          to gain some performance on filename generation.
+		  
+          In addition to inodes, there are few more structures defined, to improve 
+          keep track of the files. The first one is current_dir[] array, which stores
+          shortcuts to i-nodes of all the files and directories in the current directory.
+          Second is current_path, which stores the shortcuts to i-nodes to all the 
+          directories above the current path.
+		  
+          One other important data structure is folder_blocks[] array, which stores
+          block numbers of all blocks that are used (or will be needed) by the 
+          current directory.		  
+		  
+          There are also few help buffers used to read and write to blocks, as
+          well as special buffer used to store the numbers of allocated blocks.		  
+		  	
+  Algorithm:
+          There is only one remote procedure that can be called. This procedure 
+		  takes a string as the argument, and it returns results string. When the
+		  client wants to create a file on the remote NFS, it sends 
+		  "create (filename) (size)" command, which then is interpreted on the server
+		  side. All the output that the file manager class would usually give is sent
+		  back to client, including error messages, etc. The client has to be able
+		  to recognize the success of the command. Other commands look at the i-node
+		  of a file under question, and check if it's remote. If it is, they contact
+		  the server in similar fassion, issuing string commands. This way, the client-server
+		  protocal can be easily expanded. The system is fairly scalable.
+
+          Each file or the root directory gets its own I-node. Root directory gets 
+		  assigned blocks, where the contents of that directory can be stored. For the 
+		  most part algorithsm used in this project resample the algorithms used in Linux FS, 
+		  and do not need to be described in detail. For more information on the Linux 
+		  File System, pleare read: Andrew S. Tanenbaum, "Modern Operating Systems", 1992.		  
+		  
+How to build the program:	Type 'make'
+
+Program Source:  see all .c, .cpp, .h and .x files.
+
+Project Files:		
+
+          README.1ST - quick reference to the program commands and other hints to remember.
+          documentation.txt	- complete project documentation (using WPI CS standard)
+          blmgr_list.h - class definition for the Linked-list manager
+          blmgr_map.h - class definition for the bit-map manager
+          makefile - file used to compile the project          
+          FileSystem.h - constants definition for the project. No restrictions.
+          input.txt - sample input script 
+          output.txt - output of running the program on input.txt
+          client.cpp - wrap program for the client FS
+          file_mgr.h - file manger class definition.
+          pgnfs.h - system header file used during the compilation of both, the client 
+		  				and the server.
+          pgnfs.x - Sun RPC generator script file
+          pgnfs_clnt.c - client stub created by the genrpc
+          pgnfs_svc.c - server program/stub created by the genrpc
+          server.cpp - implementation of the remote procedure
+
+Results: 		
+          Please see the output.txt file.
+
+Test Procedures:                
+          There are two ways to test the program:
+          
+	  1. Through command-line interface - Simply run the server program with no
+          command line switches, and the client with '-nfs (address)' switches.
+		  It will default into verbose mode with bit-map method and non-contiguous mode. 
+		  If you would like start the client program with other settings, please run 
+		  'client -help' for help. When running the client program, 'help' command can 
+		  be also used to view valid commands list. Use 'quit' command to quit the program.
+
+          2. Using command input file - create a new input file, or use the 
+          input file that comes with the program (input.txt). For list 
+          of commands allowable in the input file, run 'client -help'. To run the 
+          client program using command input file, type: 
+		  	'client -f (filename) -nfs (address)' where filename is the name of the file.
+		  
+Test Data: See input.txt, as well as the output.txt
+
+Performance Evaluation:		
+  Time/Space:		
+          N/A (for some details of the file system itself, please refer to the previous 
+		  documentations of this project)
+
+  User Interface: 
+          N/A
+
+References:			
+          Andrew S. Tanenbaum, "Modern Operating Systems", 1992
+

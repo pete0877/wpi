@@ -1,0 +1,43 @@
+// Helper.idl : IDL source for Helper.dll
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (Helper.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+import "Types.idl";
+
+	[
+		object,
+		uuid(481B9E3E-E37B-11D3-91CA-004095100085),
+	
+		helpstring("IHelper Interface"),
+		pointer_default(unique)
+	]
+	interface IHelper : IUnknown
+	{
+		[helpstring("method evaluate")] HRESULT evaluate([in]  GameState gs,	[in]  LevelType level, [in]  int ply, [in]  int timelimit, [out] int *quality, [out] HelperPerformanceData *data);
+		[helpstring("method split")] HRESULT split([in]  GameState gs, [in]  LevelType level, [in]  int maxSize, [in, out] int *actualSize, [in, out, size_is(maxSize), length_is(*actualSize)] Move *moves);
+		[helpstring("method getQuickMove")] HRESULT getQuickMove([in]  GameState gs,	[in]  LevelType level, [in]  int maxSize, [in, out] int *actualSize, [in, out, size_is(maxSize), length_is(*actualSize)] Move *move, [out] int *gameOver);
+	};
+
+[
+	uuid(481B9E31-E37B-11D3-91CA-004095100085),
+	version(1.0),
+	helpstring("Helper 1.0 Type Library")
+]
+library HELPERLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+
+	[
+		uuid(E729EB35-6A87-498F-B115-57C99B551044),
+		helpstring("Helper Class")
+	]
+	coclass Helper
+	{
+		[default] interface IHelper;
+	};
+};

@@ -1,0 +1,55 @@
+D C O M   O V E R H E A D   A N A L Y S I S :
+
+___________________________________
+TERMINOLOGY:
+
+M - total game ply
+N - ply of each work unit
+B - branching factor
+Let X = M - N
+
+Ob - overhead on binding
+Os - overhead on sending split request and getting results back
+Oe - overhead on sending evaluation request and getting results back
+O - total overhead
+
+O = [overhead on all splittings] + [overhead on all evaluations]
+	[Ob + (B0 + B1 + ... + BX-1) * Os ] + [BX * (Ob + Oe)]
+	
+___________________________________
+CASE 1:	
+	Assume following values (see Benchmarking Conditions below):
+	M = 6
+	N = 5
+	X = M - N = 1
+	B = 40 (average branching factor in chess)
+	Ob = 5 msec 
+	Oe = 5 msec
+	Os = 5 msec
+
+	O = [Ob + (1) * Os ] + [40 * (Ob + Oe)] = 410 msec
+	
+___________________________________
+CASE 2:	
+	Assume following values (see Benchmarking Conditions below):
+	M = 6
+	N = 4
+	X = M - N = 2
+	B = 40 (average branching factor in chess)
+	Ob = 5 msec 
+	Oe = 5 msec
+	Os = 5 msec
+
+	O = [Ob + (1 + 40) * Os ] + [1600 * (Ob + Oe)] = 16210 msec = 16.21 sec
+
+__________________________________
+Benchmarking Conditions:
+	
+	Two PC computers on a 10-based LAN were used for estimating 
+	following values:
+	
+	Ob = 5 msec
+	Oe = 5 msec (sending 100 bytes of data and receiving 100 
+					  bytes of data back)
+	Os = 5 msec (sending 100 bytes of data and receiving 4000 
+				          bytes of data back)

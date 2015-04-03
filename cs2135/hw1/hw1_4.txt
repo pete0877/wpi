@@ -1,0 +1,21 @@
+
+;No value
+
+2 error> (load "hw1_4")
+
+;Loading "hw1_4.scm" -- done
+;Value: duple
+
+2 error> (duple 2 3)
+
+;Value 2: (3 3)
+
+2 error> (duple 4 '(a b))
+
+;Value 3: ((a b) (a b) (a b) (a b))
+
+2 error> (duple 0 '(sdf))
+
+;Value: ()
+
+2 error> (transcript-off)

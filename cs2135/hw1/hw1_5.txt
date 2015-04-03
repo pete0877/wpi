@@ -1,0 +1,21 @@
+
+;No value
+
+2 error> (load "hw1_5")
+
+;Loading "hw1_5.scm" -- done
+;Value: list-index
+
+2 error> (list-index 'a '(b c a d))
+
+;Value: 2
+
+2 error> (list-index 'a '(d b c))
+
+;Value: -1
+
+2 error> (list-index 'a '())
+
+;Value: -1
+
+2 error> (transcript-off)

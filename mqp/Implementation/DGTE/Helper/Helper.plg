@@ -1,0 +1,145 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Helper - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating command line "midl.exe /nologo /D "_DEBUG" /tlb "Debug/Helper.tlb" /h "Helper_i.h" /iid "Helper_i.c" /Oicf /win32 "E:\MQP\Implementation\DGTE\Helper\Helper.idl""
+Creating command line "rc.exe /l 0x409 /fo"Debug/Helper.res" /d "_DEBUG" /d "_AFXDLL" "E:\MQP\Implementation\DGTE\Helper\Helper.rc"" 
+Creating temporary file "C:\TEMP\RSP30D.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /I "..\Include\\" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/Helper.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\MQP\Implementation\DGTE\Helper\AboutDlg.cpp"
+"E:\MQP\Implementation\DGTE\Helper\Helper.cpp"
+"E:\MQP\Implementation\DGTE\Helper\HelperModule.cpp"
+"E:\MQP\Implementation\DGTE\Helper\HelperObj.cpp"
+"E:\MQP\Implementation\DGTE\Helper\HyperLink.cpp"
+"E:\MQP\Implementation\DGTE\Helper\Plugin.cpp"
+"E:\MQP\Implementation\DGTE\Helper\PluginProperties.cpp"
+"E:\MQP\Implementation\DGTE\Helper\Properties.cpp"
+"E:\MQP\Implementation\DGTE\Helper\PropertyPages.cpp"
+"E:\MQP\Implementation\DGTE\Helper\Splash.cpp"
+"E:\MQP\Implementation\DGTE\Helper\StatusDlg.cpp"
+"E:\MQP\Implementation\DGTE\Helper\StatusWnd.cpp"
+"E:\MQP\Implementation\DGTE\Helper\SystemTray.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSP30D.tmp" 
+Creating temporary file "C:\TEMP\RSP30E.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /I "..\Include\\" /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/Helper.pch" /Yc"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
+"E:\MQP\Implementation\DGTE\Helper\StdAfx.cpp"
+]
+Creating command line "cl.exe @C:\TEMP\RSP30E.tmp" 
+Creating temporary file "C:\TEMP\RSP30F.tmp" with contents
+[
+/nologo /subsystem:windows /incremental:yes /pdb:"Debug/Helper.pdb" /debug /machine:I386 /out:"Debug/Helper.exe" /pdbtype:sept 
+.\Debug\AboutDlg.obj
+.\Debug\Helper.obj
+.\Debug\HelperModule.obj
+.\Debug\HelperObj.obj
+.\Debug\HyperLink.obj
+.\Debug\Plugin.obj
+.\Debug\PluginProperties.obj
+.\Debug\Properties.obj
+.\Debug\PropertyPages.obj
+.\Debug\Splash.obj
+.\Debug\StatusDlg.obj
+.\Debug\StatusWnd.obj
+.\Debug\StdAfx.obj
+.\Debug\SystemTray.obj
+.\Debug\Helper.res
+]
+Creating command line "link.exe @C:\TEMP\RSP30F.tmp"
+Creating temporary file "C:\TEMP\RSP310.bat" with contents
+[
+@echo off
+nmake -f "Helper"ps.mk
+regsvr32 /s /c "Helper"ps.dll
+echo Server Proxy/Stub registration done!
+".\Debug\Helper.exe" /RegServer
+echo regsvr32 exec. time > ".\Debug\regsvr32.trg"
+echo Server registration done!
+]
+Creating command line "C:\TEMP\RSP310.bat"
+Creating Type Library...
+Processing E:\MQP\Implementation\DGTE\Helper\Helper.idl
+Helper.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\oaidl.idl
+oaidl.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\objidl.idl
+objidl.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\unknwn.idl
+unknwn.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\wtypes.idl
+wtypes.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\ocidl.idl
+ocidl.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\oleidl.idl
+oleidl.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\servprov.idl
+servprov.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\urlmon.idl
+urlmon.idl
+Processing D:\Microsoft Visual Studio\VC98\INCLUDE\msxml.idl
+msxml.idl
+Processing ..\Include\Types.idl
+Types.idl
+Compiling resources...
+Compiling...
+StdAfx.cpp
+Compiling...
+AboutDlg.cpp
+Helper.cpp
+HelperModule.cpp
+HelperObj.cpp
+HyperLink.cpp
+Plugin.cpp
+PluginProperties.cpp
+Properties.cpp
+PropertyPages.cpp
+Splash.cpp
+StatusDlg.cpp
+StatusWnd.cpp
+SystemTray.cpp
+Generating Code...
+Linking...
+<h3>Output Window</h3>
+Performing registration
+
+Microsoft (R) Program Maintenance Utility   Version 6.00.8168.0
+Copyright (C) Microsoft Corp 1988-1998. All rights reserved.
+
+ cl /c /Ox /DWIN32 /D_WIN32_WINNT=0x0400 /DREGISTER_PROXY_DLL  dlldata.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+
+dlldata.c
+ cl /c /Ox /DWIN32 /D_WIN32_WINNT=0x0400 /DREGISTER_PROXY_DLL  Helper_p.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+
+Helper_p.c
+ cl /c /Ox /DWIN32 /D_WIN32_WINNT=0x0400 /DREGISTER_PROXY_DLL  Helper_i.c
+Microsoft (R) 32-bit C/C++ Optimizing Compiler Version 12.00.8168 for 80x86
+Copyright (C) Microsoft Corp 1984-1998. All rights reserved.
+
+Helper_i.c
+ link /dll /out:Helperps.dll /def:Helperps.def /entry:DllMain dlldata.obj Helper_p.obj Helper_i.obj  kernel32.lib rpcndr.lib rpcns4.lib rpcrt4.lib oleaut32.lib uuid.lib
+Microsoft (R) Incremental Linker Version 6.00.8168
+Copyright (C) Microsoft Corp 1992-1998. All rights reserved.
+
+   Creating library Helperps.lib and object Helperps.exp
+RegSvr32: DllRegisterServer in Helperps.dll succeeded.
+
+Server Proxy/Stub registration done!
+Server registration done!
+
+
+
+<h3>Results</h3>
+Helper.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>

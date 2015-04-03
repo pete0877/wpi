@@ -1,0 +1,95 @@
+Author:                         Peter Golaszewski
+Date:                           10/18/96
+Version:                        N/A
+Project ID:                     Homework Assigment #4
+CS Class:                       CS 1005
+Programming Language:           C (Unix)
+OS/Hardware dependencies:       This is Portable Program
+
+Problem Description:            
+	To write a program that counts and stores unique words from the
+	source file and places then in two dimentional table. Each word
+	shoudl be stored only once and program should count how many 
+	times the word occured in the text. It also shoudl print the 
+	words in reverse order.
+
+Overall Design:                 
+   System structure        
+        Reads a string of words and other characters, and then prints out 
+	table with the words that occured in the text file.
+ 
+   Data representation  
+	Inout string consists of words and charactes, but all other chara-
+	cters are separeted from the words bu at least one space. 
+
+   Algorithms              
+	Program should search for individual words in the input file
+	and not recognize any other than alphabetic characters. It 
+	also prints the words after they have been sorted and reversed.
+	Program in addition prints length of each word and number of
+	times it occured in the input string. 
+
+
+Program Assumptions  and Restrictions:         
+	Program requires text.dat to consist of alphanumerical characters
+	Inout can't consista of  more then 200 legal words.
+Interfaces: 
+	Program prompts for string input unless <text.dat is specified
+	after the input data is entered, it displays two dimentional 
+	table of words, and info about the word.
+
+Implementation Details:
+    Data
+	Prgram uses one and two dimmentional arrays to store strings.
+	It also uses integer variables to perform count operatioans 
+
+    Variables Representation 
+        s[21],               a temp word variable 
+        table[200][21];      the table of words   
+        ns[200];             array of occurences  
+        n;                   count variable         
+
+    Algorithm               
+
+	Program uses following functions :
+
+	get_word() reads in the next word from the input file. 
+
+	convert_word() converts a word such that it has only 
+		lower case letters. 
+
+	lookup() checks up whether the word is already in the 
+		table. Returns 1 if the word is found and 0 otherwise. 
+
+	insert_word() inserts a word in the table in the given 
+		position (i.e., line). 
+
+	print_table() prints the words in the table. 
+
+	sort () sorts list of words
+
+	Program loops until the end of file have been reached. on each
+	loop it reads a word, it checks if it is the end of file mark, 
+	then converts it to low case, then checks if the word already
+	exists and inserts it if not. At the end it prints the table
+	of words in sorted and reversed order.
+
+How to build the program:       gcc hw4.c -o hw4
+          Then run it by:       hw4 <text.dat
+				or just hw4
+
+Program Source:                 Attached
+
+Additional Files:               hw4.script (Attached)
+
+Results:                        N/A
+
+Test Procedures:                Program was tested on sample problem
+				input file (text.dat)
+Test Data:                      (see hw1.script)
+
+Performance Evaluation:         
+				Program's speed depends mostly on the 
+				numbers of words in the input text.
+
+References:                     None

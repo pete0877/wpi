@@ -1,0 +1,38 @@
+MQP Status Report
+Date: 02/01/00
+_______________________________________________________________________
+Things completed since the last meeting:
+
+1.	Modified Server to use a separate thread per helper for handling DCOM calls
+
+2.	Enabled intermittent time-outs on helper to support testing effects of variable number of helpers on performance
+
+3.	Partially completed GNU Chess based Plug-in. Plug-in is functional, but not complete.
+
+4.	Updated existing client to work with GNU Chess Plug-in.
+
+5.	Tested effects of multiple CPUs using Prime Number Plug-in by measuring speed-up and turn-around time.
+
+
+_______________________________________________________________________
+Things to do before the next meeting:
+
+1.	Test server using two-thread per helper implementation.
+
+2.	Clean up Chess Plug-in: check for end of game and get timing to work properly.
+
+3.	Get performance data from chess plug-in.
+
+4.	Add code to Chess client to detect illegal moves and end of game.
+
+5.	Test server using two-thread per helper implementation.
+
+6.	Fix DCOM user name issue.
+
+7.	Modify the distribution algorithm to allow for un-even tree splitting.
+
+8.	Complete the implementation of certain smaller server classes.
+
+
+
+

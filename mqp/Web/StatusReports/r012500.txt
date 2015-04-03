@@ -1,0 +1,46 @@
+MQP Status Report
+Date: 1/25/00
+__________________________________________________________________________
+Things done since the last meeting:
+
+1. Further implementation and testing of the server
+(e.g. distribution algorithm was seperated from 
+the rest of the system architecture to allow for
+easier algorithm maintenance; logging of the system
+events was improved and embeded into the Document/View 
+framework)
+
+2. More research was done on the basis for ditributed 
+game-tree method comparison.
+
+3. We put down a plan as to what will be done in order
+to test the performance of our system compared to 
+other systems / programs.
+
+4. Instead of debugging the Stanback software component, 
+we decided to go with the new version of GNU Chess. (v5.0)
+Initial efforts were made in direction of understanding 
+dependencies and services provided by the GNU component)
+
+5. Got access to the Wine Lab (the ID cards work, but we 
+didn't get our usernames and passwords yet, which disables 
+us from testing our system in the lab) We installed DCom and
+the Visual Studio on few of the machines. 
+
+
+__________________________________________________________________________
+Things to do before the next meeting:
+
+1. Get the system to run in the WINE lab using up to 10 PCs
+
+2. Get the GNU Chess to work within our standard plugin.
+
+3. Resolve some DCom security and timeout issues.
+
+4. Implement multi-level tree splitting on the server.
+
+5. Start on integrating the chess-GUI component within 
+our game client framework.
+
+
+

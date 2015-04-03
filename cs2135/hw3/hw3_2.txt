@@ -1,0 +1,72 @@
+
+;No value
+
+1 ]=> (load "hw3_2.scm")
+
+;Loading "hw3_2.scm" -- done
+;Value: apply-ff
+
+1 ]=> (pp create-empty-ff)
+
+(named-lambda (create-empty-ff)
+  ())
+;No value
+
+1 ]=> (pp extend-ff)
+
+(named-lambda (extend-ff slst vlst ff)
+  (cons (cons slst (list->vector vlst)) ff))
+;No value
+
+1 ]=> (pp apply-ff)
+
+(named-lambda (apply-ff ff s)
+  (if (null? ff)
+      (error "Apply-FF: Invalid finite function!")
+      (let ((result (ribassoc s (caar ff) (cdar ff) 'not_found)))
+        (if (eq? result 'not_found)
+            (apply-ff (cdr ff) s)
+            result))))
+;No value
+
+1 ]=> (define ff1 (extend-ff '(d x y) '(6 7 8) (create-empty-ff)))
+
+;Value: ff1
+
+1 ]=> (define ff2 (extend-ff '(a b c) '(1 2 3) ff1)
+)
+
+;Value: ff2
+
+1 ]=> (apply ff2 'd)
+
+;apply: Improper argument list d
+;To continue, call RESTART with an option number:
+; (RESTART 1) => Return to read-eval-print level 1.
+
+
+2 error> (apply-ff ff2 'd)
+
+;Value: 6
+
+2 error> ff2
+
+;Value 1: (((a b c) . #(1 2 3)) ((d x y) . #(6 7 8)))
+
+2 error> (define ff3 (extend-ff '(d e) '(4 5) ff2))
+
+;Value: ff3
+
+2 error> (apply-ff ff3 'd)
+
+;Value: 4
+
+2 error> (apply-ff ff3 'a)
+
+;Value: 1
+
+2 error> ff3
+
+;Value 2: (((d e) . #(4 5)) ((a b c) . #(1 2 3)) ((d x y) . #(6 7 8)))
+
+2 error> (transcript-off)

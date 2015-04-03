@@ -1,0 +1,9 @@
+#! /bin/tcsh -f
+
+/bin/rm -f $1.tdat      # -f forces deletion without asking questions
+foreach i (20 500 1000 5000)
+# get the user time from the time command
+# store the third field in the line containing user
+set UTIME=`/bin/time ./lab7 $1 $i |& grep user | awk '{print $3}'`
+echo $i $UTIME >> $1.tdat
+end

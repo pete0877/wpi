@@ -1,0 +1,2127 @@
+
+(object Petal
+    version    	42
+    _written   	"Microsoft Visual Modeler 2.0.8139"
+    charSet    	0)
+
+(object Design "Logical View"
+    is_unit    	TRUE
+    is_loaded  	TRUE
+    defaults   	(object defaults
+	rightMargin 	0.250000
+	leftMargin 	0.250000
+	topMargin  	0.250000
+	bottomMargin 	0.500000
+	pageOverlap 	0.250000
+	clipIconLabels 	TRUE
+	autoResize 	TRUE
+	snapToGrid 	TRUE
+	gridX      	16
+	gridY      	16
+	defaultFont 	(object Font
+	    size       	9
+	    face       	"Tahoma"
+	    bold       	FALSE
+	    italics    	FALSE
+	    underline  	FALSE
+	    strike     	FALSE
+	    color      	0
+	    default_color 	TRUE)
+	showMessageNum 	3
+	showClassOfObject 	TRUE
+	notation   	"Unified")
+    root_usecase_package 	(object Class_Category "Use Case View"
+	quid       	"3821D58E001C"
+	exportControl 	"Public"
+	global     	TRUE
+	logical_models 	(list unit_reference_list)
+	logical_presentations 	(list unit_reference_list
+	    (object UseCaseDiagram "Main"
+		quid       	"3821D58E0039"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    root_category 	(object Class_Category "Logical View"
+	quid       	"3821D58E001B"
+	exportControl 	"Public"
+	global     	TRUE
+	subsystem  	"Component View"
+	quidu      	"3821D58E001D"
+	logical_models 	(list unit_reference_list
+	    (object Association "$UNNAMED$0"
+		quid       	"3821D8C903A8"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$1"
+			quid       	"3821D8CA01FB"
+			supplier   	"Logical View::Data Services::GameWrapper"
+			quidu      	"3821D6BD0246"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$2"
+			quid       	"3821D8CA0205"
+			supplier   	"Logical View::User Services::Helper"
+			quidu      	"3821D76B0106"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$3"
+		quid       	"3821DCC0018B"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$4"
+			quid       	"3821DCC10359"
+			supplier   	"Logical View::User Services::Helper"
+			quidu      	"3821D76B0106"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$5"
+			quid       	"3821DCC10363"
+			supplier   	"Logical View::Data Services::tagMove"
+			quidu      	"3821DAC602D8")))
+	    (object Association "$UNNAMED$6"
+		quid       	"3821DCC60374"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$7"
+			quid       	"3821DCC70221"
+			supplier   	"Logical View::User Services::Helper"
+			quidu      	"3821D76B0106"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$8"
+			quid       	"3821DCC7022B"
+			supplier   	"Logical View::Data Services::tagMove"
+			quidu      	"3821DAC602D8"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$9"
+		quid       	"3821DCCB0399"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$10"
+			quid       	"3821DCCC01B0"
+			supplier   	"Logical View::User Services::Helper"
+			quidu      	"3821D76B0106"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$11"
+			quid       	"3821DCCC01BA"
+			supplier   	"Logical View::Data Services::tagBoard"
+			quidu      	"3821DA4301CB"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$12"
+		quid       	"3821DCCE0380"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$13"
+			quid       	"3821DCCF010A"
+			supplier   	"Logical View::User Services::Helper"
+			quidu      	"3821D76B0106"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$14"
+			quid       	"3821DCCF011E"
+			supplier   	"Logical View::Data Services::tagLevelType"
+			quidu      	"3821DB0F0387"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$15"
+		quid       	"3821DCD10207"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$16"
+			quid       	"3821DCD201D7"
+			supplier   	"Logical View::User Services::Helper"
+			quidu      	"3821D76B0106"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$17"
+			quid       	"3821DCD201EB"
+			supplier   	"Logical View::Data Services::tagHelperPerformanceData"
+			quidu      	"3821DBCD01B3"
+			is_navigable 	TRUE)))
+	    (object Association "$UNNAMED$18"
+		quid       	"3821DCD402FC"
+		roles      	(list role_list
+		    (object Role "$UNNAMED$19"
+			quid       	"3821DCD5027B"
+			supplier   	"Logical View::User Services::Helper"
+			quidu      	"3821D76B0106"
+			is_navigable 	TRUE)
+		    (object Role "$UNNAMED$20"
+			quid       	"3821DCD50285"
+			supplier   	"Logical View::Data Services::tagGameTypeData"
+			quidu      	"3821DB4602A0"
+			is_navigable 	TRUE)))
+	    (object Class_Category "User Services"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"VisualBasic"
+			name       	"TierPackage"
+			value      	"User Services"))
+		quid       	"3821D58E0021"
+		documentation 	"User services provide the visual interface for presenting information and gathering data in an application. The user services connect the user with the application and request the business and/or data services needed by the user to execute business tasks."
+		visible_categories 	(list visibility_relationship_list
+		    (object Visibility_Relationship
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"VisualBasic"
+				name       	"TierPackage"
+				value      	"Business Services"))
+			quid       	"3821D58E0027"
+			supplier   	"Logical View::Business Services"
+			quidu      	"3821D58E0023")
+		    (object Visibility_Relationship
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"VisualBasic"
+				name       	"TierPackage"
+				value      	"Data Services"))
+			quid       	"3821D58E0028"
+			supplier   	"Logical View::Data Services"
+			quidu      	"3821D58E0025"))
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class "IHelper"
+			quid       	"3821D5A2000E"
+			stereotype 	"Interface"
+			operations 	(list Operations
+			    (object Operation "evaluate"
+				quid       	"3821D5C701FC"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "split"
+				quid       	"3821D5DE02BE"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "getQuickMove"
+				quid       	"3821D5E4019A"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)))
+		    (object Class "Helper"
+			quid       	"3821D76B0106"
+			used_nodes 	(list uses_relationship_list
+			    (object Uses_Relationship
+				quid       	"3821D7BD0349"
+				supplier   	"Logical View::User Services::IHelper"
+				quidu      	"3821D5A2000E")
+			    (object Uses_Relationship
+				quid       	"3821D8A70291"
+				supplier   	"Logical View::User Services::IHelper"
+				quidu      	"3821D5A2000E")
+			    (object Uses_Relationship
+				quid       	"3821D9250152"
+				supplier   	"Logical View::Business Services::IRegisterHelper"
+				quidu      	"3821D6390250"))
+			operations 	(list Operations
+			    (object Operation "evaluate"
+				quid       	"3821D7DD011E"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "split"
+				quid       	"3821D7E20265"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "getQuickMove"
+				quid       	"3821D7E60135"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "registerHelper"
+				quid       	"3821D92B01FA"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "unregisterHelper"
+				quid       	"3821D9320024"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "isRegistered"
+				quid       	"3821D9380131"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0))))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Package Overview"
+			quid       	"3821D58E0022"
+			title      	"Package Overview"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ClassView "Class" "Logical View::User Services::IHelper" @1
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(272, 144)
+				label      	(object ItemLabel
+				    Parent_View 	@1
+				    location   	(123, 48)
+				    nlines     	1
+				    max_width  	298
+				    justify    	0
+				    label      	"IHelper")
+				stereotype 	(object ItemLabel
+				    Parent_View 	@1
+				    location   	(123, 4)
+				    anchor     	10
+				    nlines     	1
+				    max_width  	298
+				    justify    	0
+				    label      	"<<Interface>>")
+				icon       	"Interface"
+				icon_style 	"Label"
+				quidu      	"3821D5A2000E"
+				width      	316
+				height     	302
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::User Services::Helper" @2
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(720, 128)
+				label      	(object ItemLabel
+				    Parent_View 	@2
+				    location   	(639, 83)
+				    nlines     	1
+				    max_width  	162
+				    justify    	0
+				    label      	"Helper")
+				icon_style 	"Icon"
+				quidu      	"3821D76B0106"
+				compartment 	(object Compartment
+				    Parent_View 	@2
+				    location   	(639, 137)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	7
+				    max_width  	30)
+				height     	112
+				annotation 	8
+				autoResize 	TRUE)
+			    (object UsesView "" @3
+				stereotype 	TRUE
+				quidu      	"3821D7BD0349"
+				client     	@2
+				supplier   	@1
+				line_style 	0)
+			    (object UsesView "" @4
+				stereotype 	TRUE
+				quidu      	"3821D8A70291"
+				client     	@2
+				supplier   	@1
+				line_style 	0)))))
+	    (object Class_Category "Business Services"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"VisualBasic"
+			name       	"TierPackage"
+			value      	"Business Services"))
+		quid       	"3821D58E0023"
+		documentation 	"Business services respond to requests from the user (or other business services) in order to execute a business task. They accomplish this by requesting the data services needed and applying formal procedures and business rules to the relevant data. This protocol insulates the user from direct interaction with the database. Because business rules tend to change more frequently than the specific business tasks they support, they are ideal candidates for encapsulating in components that are physically separate from the application logic itself."
+		visible_categories 	(list visibility_relationship_list
+		    (object Visibility_Relationship
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"VisualBasic"
+				name       	"TierPackage"
+				value      	"User Services"))
+			quid       	"3821D58E0029"
+			supplier   	"Logical View::User Services"
+			quidu      	"3821D58E0021")
+		    (object Visibility_Relationship
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"VisualBasic"
+				name       	"TierPackage"
+				value      	"Data Services"))
+			quid       	"3821D58E002A"
+			supplier   	"Logical View::Data Services"
+			quidu      	"3821D58E0025"))
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class "IRegisterHelper"
+			quid       	"3821D6390250"
+			stereotype 	"Interface"
+			operations 	(list Operations
+			    (object Operation "registerHelper"
+				quid       	"3821D6610045"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "unregisterHelper"
+				quid       	"3821D66A01A7"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "isRegistered"
+				quid       	"3821D67300F5"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0))))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Package Overview"
+			quid       	"3821D58E0024"
+			title      	"Package Overview"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ClassView "Class" "Logical View::Business Services::IRegisterHelper" @5
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(272, 128)
+				label      	(object ItemLabel
+				    Parent_View 	@5
+				    location   	(127, 102)
+				    nlines     	1
+				    max_width  	290
+				    justify    	0
+				    label      	"IRegisterHelper")
+				stereotype 	(object ItemLabel
+				    Parent_View 	@5
+				    location   	(127, 58)
+				    anchor     	10
+				    nlines     	1
+				    max_width  	290
+				    justify    	0
+				    label      	"<<Interface>>")
+				icon       	"Interface"
+				icon_style 	"Label"
+				quidu      	"3821D6390250"
+				width      	308
+				height     	162
+				annotation 	8
+				autoResize 	TRUE)))))
+	    (object Class_Category "Data Services"
+		attributes 	(list Attribute_Set
+		    (object Attribute
+			tool       	"VisualBasic"
+			name       	"TierPackage"
+			value      	"Data Services"))
+		quid       	"3821D58E0025"
+		documentation 	"Data services maintain, access, and update data. They also manage and satisfy requests to manipulate data that are initiated by business services. Separating data services allows the data structure and access mechanisms to be maintained, modified, or, if necessary, even re-architected without affecting business or user services."
+		visible_categories 	(list visibility_relationship_list
+		    (object Visibility_Relationship
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"VisualBasic"
+				name       	"TierPackage"
+				value      	"User Services"))
+			quid       	"3821D58E002B"
+			supplier   	"Logical View::User Services"
+			quidu      	"3821D58E0021")
+		    (object Visibility_Relationship
+			attributes 	(list Attribute_Set
+			    (object Attribute
+				tool       	"VisualBasic"
+				name       	"TierPackage"
+				value      	"Data Services"))
+			quid       	"3821D58E002C"
+			supplier   	"Logical View::Business Services"
+			quidu      	"3821D58E0023"))
+		exportControl 	"Public"
+		logical_models 	(list unit_reference_list
+		    (object Class "GameWrapper"
+			quid       	"3821D6BD0246"
+			operations 	(list Operations
+			    (object Operation "evaluate"
+				quid       	"3821D6DF01C3"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "split"
+				quid       	"3821D6E302C3"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)
+			    (object Operation "getQuickMove"
+				quid       	"3821D6E70247"
+				concurrency 	"Sequential"
+				opExportControl 	"Public"
+				uid        	0)))
+		    (object Class "tagBoard"
+			quid       	"3821DA4301CB"
+			stereotype 	"Structure"
+			class_attributes 	(list class_attribute_list
+			    (object ClassAttribute "board"
+				quid       	"3821DA5C02A3"
+				type       	"char*")))
+		    (object Class "tagMove"
+			quid       	"3821DAC602D8"
+			stereotype 	"Structure"
+			class_attributes 	(list class_attribute_list
+			    (object ClassAttribute "move"
+				quid       	"3821DAD40129"
+				type       	"char*")
+			    (object ClassAttribute "quality"
+				quid       	"3821DAEC0106"
+				type       	"int")))
+		    (object Class "tagLevelType"
+			quid       	"3821DB0F0387"
+			stereotype 	"Structure"
+			class_attributes 	(list class_attribute_list
+			    (object ClassAttribute "MAXIMIZING"
+				quid       	"3821DB27004C"
+				type       	"1")
+			    (object ClassAttribute "MINIMIZING"
+				quid       	"3821DB3A0284"
+				type       	"2")))
+		    (object Class "tagGameTypeData"
+			quid       	"3821DB4602A0"
+			stereotype 	"Structure"
+			class_attributes 	(list class_attribute_list
+			    (object ClassAttribute "gameName"
+				quid       	"3821DB54012D"
+				type       	"char*")
+			    (object ClassAttribute "gameVersion"
+				quid       	"3821DB5F0314"
+				type       	"char*")
+			    (object ClassAttribute "description"
+				quid       	"3821DB6C0236"
+				type       	"char*")
+			    (object ClassAttribute "copyright"
+				quid       	"3821DB78011B"
+				type       	"char*")
+			    (object ClassAttribute "company"
+				quid       	"3821DB89015C"
+				type       	"char*")
+			    (object ClassAttribute "avgAlphaBetaGain"
+				quid       	"3821DB9502DF"
+				type       	"float")
+			    (object ClassAttribute "avgBranchingFactor"
+				quid       	"3821DBA90360"
+				type       	"float")))
+		    (object Class "tagHelperPerformanceData"
+			quid       	"3821DBCD01B3"
+			stereotype 	"Structure"
+			class_attributes 	(list class_attribute_list
+			    (object ClassAttribute "alphaBetaGain"
+				quid       	"3821DBEB031F"
+				type       	"float")
+			    (object ClassAttribute "branchingFactor"
+				quid       	"3821DBFB003D"
+				type       	"float")
+			    (object ClassAttribute "evaluationTime"
+				quid       	"3821DC0401EF"
+				type       	"float")
+			    (object ClassAttribute "pctCompleted"
+				quid       	"3821DC10001F"
+				type       	"float")
+			    (object ClassAttribute "splitTime"
+				quid       	"3821DC1D0209"
+				type       	"float"))))
+		logical_presentations 	(list unit_reference_list
+		    (object ClassDiagram "Package Overview"
+			quid       	"3821D58E0026"
+			title      	"Package Overview"
+			zoom       	100
+			max_height 	28350
+			max_width  	21600
+			origin_x   	0
+			origin_y   	0
+			items      	(list diagram_item_list
+			    (object ClassView "Class" "Logical View::Data Services::GameWrapper" @6
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(272, 128)
+				label      	(object ItemLabel
+				    Parent_View 	@6
+				    location   	(132, 83)
+				    nlines     	1
+				    max_width  	280
+				    justify    	0
+				    label      	"GameWrapper")
+				icon_style 	"Icon"
+				quidu      	"3821D6BD0246"
+				width      	298
+				height     	112
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::Data Services::tagBoard" @7
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(720, 128)
+				label      	(object ItemLabel
+				    Parent_View 	@7
+				    location   	(627, 127)
+				    nlines     	1
+				    max_width  	186
+				    justify    	0
+				    label      	"tagBoard")
+				stereotype 	(object ItemLabel
+				    Parent_View 	@7
+				    location   	(627, 83)
+				    anchor     	10
+				    nlines     	1
+				    max_width  	186
+				    justify    	0
+				    label      	"<<Structure>>")
+				icon_style 	"Icon"
+				quidu      	"3821DA4301CB"
+				compartment 	(object Compartment
+				    Parent_View 	@7
+				    location   	(627, 181)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	2
+				    max_width  	30)
+				width      	204
+				height     	112
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::Data Services::tagMove" @8
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(272, 480)
+				label      	(object ItemLabel
+				    Parent_View 	@8
+				    location   	(121, 428)
+				    nlines     	1
+				    max_width  	302
+				    justify    	0
+				    label      	"tagMove")
+				stereotype 	(object ItemLabel
+				    Parent_View 	@8
+				    location   	(121, 384)
+				    anchor     	10
+				    nlines     	1
+				    max_width  	300
+				    justify    	0
+				    label      	"<<Structure>>")
+				icon_style 	"Icon"
+				quidu      	"3821DAC602D8"
+				compartment 	(object Compartment
+				    Parent_View 	@8
+				    location   	(121, 482)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	3
+				    max_width  	143)
+				width      	320
+				height     	214
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::Data Services::tagLevelType" @9
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(720, 480)
+				label      	(object ItemLabel
+				    Parent_View 	@9
+				    location   	(589, 479)
+				    nlines     	1
+				    max_width  	262
+				    justify    	0
+				    label      	"tagLevelType")
+				stereotype 	(object ItemLabel
+				    Parent_View 	@9
+				    location   	(589, 435)
+				    anchor     	10
+				    nlines     	1
+				    max_width  	262
+				    justify    	0
+				    label      	"<<Structure>>")
+				icon_style 	"Icon"
+				quidu      	"3821DB0F0387"
+				compartment 	(object Compartment
+				    Parent_View 	@9
+				    location   	(589, 533)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	3
+				    max_width  	289)
+				width      	280
+				height     	112
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::Data Services::tagGameTypeData" @10
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(720, 752)
+				label      	(object ItemLabel
+				    Parent_View 	@10
+				    location   	(543, 751)
+				    nlines     	1
+				    max_width  	354
+				    justify    	0
+				    label      	"tagGameTypeData")
+				stereotype 	(object ItemLabel
+				    Parent_View 	@10
+				    location   	(543, 707)
+				    anchor     	10
+				    nlines     	1
+				    max_width  	354
+				    justify    	0
+				    label      	"<<Structure>>")
+				icon_style 	"Icon"
+				quidu      	"3821DB4602A0"
+				compartment 	(object Compartment
+				    Parent_View 	@10
+				    location   	(543, 805)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	8
+				    max_width  	432)
+				width      	372
+				height     	112
+				annotation 	8
+				autoResize 	TRUE)
+			    (object ClassView "Class" "Logical View::Data Services::tagHelperPerformanceData" @11
+				ShowCompartmentStereotypes 	TRUE
+				IncludeAttribute 	TRUE
+				IncludeOperation 	TRUE
+				location   	(272, 848)
+				label      	(object ItemLabel
+				    Parent_View 	@11
+				    location   	(26, 847)
+				    nlines     	1
+				    max_width  	492
+				    justify    	0
+				    label      	"tagHelperPerformanceData")
+				stereotype 	(object ItemLabel
+				    Parent_View 	@11
+				    location   	(26, 803)
+				    anchor     	10
+				    nlines     	1
+				    max_width  	492
+				    justify    	0
+				    label      	"<<Structure>>")
+				icon_style 	"Icon"
+				quidu      	"3821DBCD01B3"
+				compartment 	(object Compartment
+				    Parent_View 	@11
+				    location   	(26, 901)
+				    icon_style 	"Icon"
+				    anchor     	2
+				    nlines     	6
+				    max_width  	30)
+				width      	510
+				height     	112
+				annotation 	8
+				autoResize 	TRUE))))))
+	logical_presentations 	(list unit_reference_list
+	    (object Tier_Diagram "Three-Tiered Service Model"
+		quid       	"3821D58E002D"
+		title      	"Three-Tiered Service Model"
+		documentation 	"A three-tiered architectural approach separates the various components of a client/server system into three tiers of services. The user services, business and other middle tier services, and data services are the logical tiers that collaborate in an application"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object TierView "User Services" @12
+			label      	(object ItemLabel
+			    Parent_View 	@12
+			    location   	(6, 6)
+			    nlines     	2
+			    max_width  	-12
+			    justify    	0
+			    label      	"User Services")
+			icon_style 	"Icon"
+			hidden     	TRUE
+			quidu      	"3821D58E0021"
+			width      	300
+			height     	180)
+		    (object TierView "Business Services" @13
+			location   	(600, 0)
+			label      	(object ItemLabel
+			    Parent_View 	@13
+			    location   	(606, 6)
+			    nlines     	2
+			    max_width  	-12
+			    justify    	0
+			    label      	"Business Services")
+			icon_style 	"Icon"
+			hidden     	TRUE
+			quidu      	"3821D58E0023"
+			width      	300
+			height     	180)
+		    (object TierView "Data Services" @14
+			location   	(1200, 0)
+			label      	(object ItemLabel
+			    Parent_View 	@14
+			    location   	(1206, 6)
+			    nlines     	2
+			    max_width  	-12
+			    justify    	0
+			    label      	"Data Services")
+			icon_style 	"Icon"
+			hidden     	TRUE
+			quidu      	"3821D58E0025"
+			width      	300
+			height     	180)
+		    (object ClassView "Class" "Logical View::User Services::IHelper" @15
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(272, 192)
+			label      	(object ItemLabel
+			    Parent_View 	@15
+			    location   	(108, 100)
+			    nlines     	1
+			    max_width  	328
+			    justify    	0
+			    label      	"IHelper")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@15
+			    location   	(108, 52)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	328
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			quidu      	"3821D5A2000E"
+			compartment 	(object Compartment
+			    Parent_View 	@15
+			    location   	(108, 154)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	4
+			    max_width  	334)
+			width      	346
+			height     	304
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Business Services::IRegisterHelper" @16
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(864, 176)
+			label      	(object ItemLabel
+			    Parent_View 	@16
+			    location   	(682, 84)
+			    nlines     	1
+			    max_width  	364
+			    justify    	0
+			    label      	"IRegisterHelper")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@16
+			    location   	(682, 36)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	364
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			quidu      	"3821D6390250"
+			compartment 	(object Compartment
+			    Parent_View 	@16
+			    location   	(682, 138)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	4
+			    max_width  	371)
+			width      	382
+			height     	304
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::GameWrapper" @17
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1483, 1520)
+			label      	(object ItemLabel
+			    Parent_View 	@17
+			    location   	(1319, 1404)
+			    nlines     	1
+			    max_width  	328
+			    justify    	0
+			    label      	"GameWrapper")
+			icon_style 	"Icon"
+			quidu      	"3821D6BD0246"
+			compartment 	(object Compartment
+			    Parent_View 	@17
+			    location   	(1319, 1458)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	4
+			    max_width  	325)
+			width      	346
+			height     	254
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagMove" @18
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1888, 144)
+			label      	(object ItemLabel
+			    Parent_View 	@18
+			    location   	(1749, 70)
+			    nlines     	1
+			    max_width  	278
+			    justify    	0
+			    label      	"tagMove")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@18
+			    location   	(1749, 26)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	275
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DAC602D8"
+			compartment 	(object Compartment
+			    Parent_View 	@18
+			    location   	(1749, 124)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	3
+			    max_width  	275)
+			width      	296
+			height     	258
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagBoard" @19
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1456, 128)
+			label      	(object ItemLabel
+			    Parent_View 	@19
+			    location   	(1316, 75)
+			    nlines     	1
+			    max_width  	280
+			    justify    	0
+			    label      	"tagBoard")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@19
+			    location   	(1316, 31)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	280
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DA4301CB"
+			compartment 	(object Compartment
+			    Parent_View 	@19
+			    location   	(1316, 129)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	2
+			    max_width  	278)
+			width      	298
+			height     	216
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagLevelType" @20
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1472, 416)
+			label      	(object ItemLabel
+			    Parent_View 	@20
+			    location   	(1310, 342)
+			    nlines     	1
+			    max_width  	324
+			    justify    	0
+			    label      	"tagLevelType")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@20
+			    location   	(1310, 298)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	324
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DB0F0387"
+			compartment 	(object Compartment
+			    Parent_View 	@20
+			    location   	(1310, 396)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	3
+			    max_width  	322)
+			width      	342
+			height     	258
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagHelperPerformanceData" @21
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1552, 1008)
+			label      	(object ItemLabel
+			    Parent_View 	@21
+			    location   	(1306, 868)
+			    nlines     	1
+			    max_width  	492
+			    justify    	0
+			    label      	"tagHelperPerformanceData")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@21
+			    location   	(1306, 824)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	492
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DBCD01B3"
+			compartment 	(object Compartment
+			    Parent_View 	@21
+			    location   	(1306, 922)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	6
+			    max_width  	435)
+			width      	510
+			height     	390
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::User Services::Helper" @22
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(272, 768)
+			label      	(object ItemLabel
+			    Parent_View 	@22
+			    location   	(90, 587)
+			    nlines     	1
+			    max_width  	364
+			    justify    	0
+			    label      	"Helper")
+			icon_style 	"Icon"
+			quidu      	"3821D76B0106"
+			compartment 	(object Compartment
+			    Parent_View 	@22
+			    location   	(90, 641)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	7
+			    max_width  	371)
+			width      	382
+			height     	386
+			annotation 	8
+			autoResize 	TRUE)
+		    (object UsesView "" @23
+			stereotype 	TRUE
+			quidu      	"3821D7BD0349"
+			client     	@22
+			supplier   	@15
+			line_style 	0)
+		    (object UsesView "" @24
+			stereotype 	TRUE
+			quidu      	"3821D8A70291"
+			client     	@22
+			supplier   	@15
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$0" @25
+			location   	(886, 1149)
+			stereotype 	TRUE
+			quidu      	"3821D8C903A8"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$2" @26
+				Parent_View 	@25
+				location   	(-554, 1005)
+				label      	(object SegLabel @27
+				    Parent_View 	@26
+				    location   	(570, 905)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				quidu      	"3821D8CA0205"
+				client     	@25
+				supplier   	@22
+				line_style 	0)
+			    (object RoleView "$UNNAMED$1" @28
+				Parent_View 	@25
+				location   	(-554, 1005)
+				label      	(object SegLabel @29
+				    Parent_View 	@28
+				    location   	(1245, 1324)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				quidu      	"3821D8CA01FB"
+				client     	@25
+				supplier   	@17
+				line_style 	0)))
+		    (object UsesView "" @30
+			stereotype 	TRUE
+			quidu      	"3821D9250152"
+			client     	@22
+			supplier   	@16
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$3" @31
+			location   	(1101, 446)
+			stereotype 	TRUE
+			quidu      	"3821DCC0018B"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$5" @32
+				Parent_View 	@31
+				location   	(829, -322)
+				label      	(object SegLabel @33
+				    Parent_View 	@32
+				    location   	(1596, 212)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				quidu      	"3821DCC10363"
+				client     	@31
+				supplier   	@18
+				line_style 	0)
+			    (object RoleView "$UNNAMED$4" @34
+				Parent_View 	@31
+				location   	(829, -322)
+				label      	(object SegLabel @35
+				    Parent_View 	@34
+				    location   	(578, 605)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				quidu      	"3821DCC10359"
+				client     	@31
+				supplier   	@22
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$6" @36
+			location   	(1101, 446)
+			stereotype 	TRUE
+			quidu      	"3821DCC60374"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$8" @37
+				Parent_View 	@36
+				location   	(829, -322)
+				label      	(object SegLabel @38
+				    Parent_View 	@37
+				    location   	(1596, 212)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				quidu      	"3821DCC7022B"
+				client     	@36
+				supplier   	@18
+				line_style 	0)
+			    (object RoleView "$UNNAMED$7" @39
+				Parent_View 	@36
+				location   	(829, -322)
+				label      	(object SegLabel @40
+				    Parent_View 	@39
+				    location   	(578, 605)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				quidu      	"3821DCC70221"
+				client     	@36
+				supplier   	@22
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$9" @41
+			location   	(884, 436)
+			stereotype 	TRUE
+			quidu      	"3821DCCB0399"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$11" @42
+				Parent_View 	@41
+				location   	(612, -332)
+				label      	(object SegLabel @43
+				    Parent_View 	@42
+				    location   	(1203, 217)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				quidu      	"3821DCCC01BA"
+				client     	@41
+				supplier   	@19
+				line_style 	0)
+			    (object RoleView "$UNNAMED$10" @44
+				Parent_View 	@41
+				location   	(612, -332)
+				label      	(object SegLabel @45
+				    Parent_View 	@44
+				    location   	(528, 582)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				quidu      	"3821DCCC01B0"
+				client     	@41
+				supplier   	@22
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$12" @46
+			location   	(881, 588)
+			stereotype 	TRUE
+			quidu      	"3821DCCE0380"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$14" @47
+				Parent_View 	@46
+				location   	(609, -180)
+				label      	(object SegLabel @48
+				    Parent_View 	@47
+				    location   	(1206, 450)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				quidu      	"3821DCCF011E"
+				client     	@46
+				supplier   	@20
+				line_style 	0)
+			    (object RoleView "$UNNAMED$13" @49
+				Parent_View 	@46
+				location   	(609, -180)
+				label      	(object SegLabel @50
+				    Parent_View 	@49
+				    location   	(535, 648)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				quidu      	"3821DCCF010A"
+				client     	@46
+				supplier   	@22
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$15" @51
+			location   	(879, 881)
+			stereotype 	TRUE
+			quidu      	"3821DCD10207"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$17" @52
+				Parent_View 	@51
+				location   	(607, 113)
+				label      	(object SegLabel @53
+				    Parent_View 	@52
+				    location   	(1219, 903)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				quidu      	"3821DCD201EB"
+				client     	@51
+				supplier   	@21
+				line_style 	0)
+			    (object RoleView "$UNNAMED$16" @54
+				Parent_View 	@51
+				location   	(607, 113)
+				label      	(object SegLabel @55
+				    Parent_View 	@54
+				    location   	(555, 779)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				quidu      	"3821DCD201D7"
+				client     	@51
+				supplier   	@22
+				line_style 	0)))
+		    (object ClassView "Class" "Logical View::Data Services::tagGameTypeData" @56
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1968, 528)
+			label      	(object ItemLabel
+			    Parent_View 	@56
+			    location   	(1720, 344)
+			    nlines     	1
+			    max_width  	496
+			    justify    	0
+			    label      	"tagGameTypeData")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@56
+			    location   	(1720, 300)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	496
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DB4602A0"
+			compartment 	(object Compartment
+			    Parent_View 	@56
+			    location   	(1720, 398)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	8
+			    max_width  	494)
+			width      	514
+			height     	478
+			annotation 	8
+			autoResize 	TRUE)
+		    (object AssociationViewNew "$UNNAMED$18" @57
+			location   	(1086, 651)
+			stereotype 	TRUE
+			quidu      	"3821DCD402FC"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$20" @58
+				Parent_View 	@57
+				location   	(814, -117)
+				label      	(object SegLabel @59
+				    Parent_View 	@58
+				    location   	(1580, 540)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	0)
+				stereotype 	TRUE
+				quidu      	"3821DCD50285"
+				client     	@57
+				supplier   	@56
+				line_style 	0)
+			    (object RoleView "$UNNAMED$19" @60
+				Parent_View 	@57
+				location   	(814, -117)
+				label      	(object SegLabel @61
+				    Parent_View 	@60
+				    location   	(584, 681)
+				    hidden     	TRUE
+				    anchor     	1
+				    anchor_loc 	1
+				    nlines     	1
+				    max_width  	450
+				    justify    	0
+				    label      	""
+				    pctDist    	0.800000
+				    height     	42
+				    orientation 	1)
+				stereotype 	TRUE
+				quidu      	"3821DCD5027B"
+				client     	@57
+				supplier   	@22
+				line_style 	0)))))
+	    (object ClassDiagram "Class Diagram"
+		quid       	"3821D84303C3"
+		title      	"Class Diagram"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list
+		    (object ClassView "Class" "Logical View::User Services::IHelper" @62
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1024, 320)
+			label      	(object ItemLabel
+			    Parent_View 	@62
+			    location   	(860, 202)
+			    nlines     	1
+			    max_width  	328
+			    justify    	0
+			    label      	"IHelper")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@62
+			    location   	(860, 158)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	328
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			quidu      	"3821D5A2000E"
+			compartment 	(object Compartment
+			    Parent_View 	@62
+			    location   	(860, 300)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	4
+			    max_width  	334)
+			width      	346
+			height     	346
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Business Services::IRegisterHelper" @63
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1440, 320)
+			label      	(object ItemLabel
+			    Parent_View 	@63
+			    location   	(1258, 202)
+			    nlines     	1
+			    max_width  	364
+			    justify    	0
+			    label      	"IRegisterHelper")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@63
+			    location   	(1258, 158)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	364
+			    justify    	0
+			    label      	"<<Interface>>")
+			icon       	"Interface"
+			icon_style 	"Label"
+			quidu      	"3821D6390250"
+			compartment 	(object Compartment
+			    Parent_View 	@63
+			    location   	(1258, 300)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	4
+			    max_width  	371)
+			width      	382
+			height     	346
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::GameWrapper" @64
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1952, 944)
+			label      	(object ItemLabel
+			    Parent_View 	@64
+			    location   	(1788, 807)
+			    nlines     	1
+			    max_width  	328
+			    justify    	0
+			    label      	"GameWrapper")
+			icon_style 	"Icon"
+			quidu      	"3821D6BD0246"
+			compartment 	(object Compartment
+			    Parent_View 	@64
+			    location   	(1788, 905)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	4
+			    max_width  	334)
+			width      	346
+			height     	296
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagMove" @65
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(320, 1616)
+			label      	(object ItemLabel
+			    Parent_View 	@65
+			    location   	(175, 1520)
+			    nlines     	1
+			    max_width  	290
+			    justify    	0
+			    label      	"tagMove")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@65
+			    location   	(175, 1476)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	290
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DAC602D8"
+			compartment 	(object Compartment
+			    Parent_View 	@65
+			    location   	(175, 1618)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	3
+			    max_width  	275)
+			width      	308
+			height     	302
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagBoard" @66
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(672, 1600)
+			label      	(object ItemLabel
+			    Parent_View 	@66
+			    location   	(527, 1526)
+			    nlines     	1
+			    max_width  	290
+			    justify    	0
+			    label      	"tagBoard")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@66
+			    location   	(527, 1482)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	290
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DA4301CB"
+			compartment 	(object Compartment
+			    Parent_View 	@66
+			    location   	(527, 1624)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	2
+			    max_width  	278)
+			width      	308
+			height     	258
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagLevelType" @67
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1056, 1616)
+			label      	(object ItemLabel
+			    Parent_View 	@67
+			    location   	(894, 1520)
+			    nlines     	1
+			    max_width  	324
+			    justify    	0
+			    label      	"tagLevelType")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@67
+			    location   	(894, 1476)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	324
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DB0F0387"
+			compartment 	(object Compartment
+			    Parent_View 	@67
+			    location   	(894, 1618)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	3
+			    max_width  	322)
+			width      	342
+			height     	302
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagHelperPerformanceData" @68
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1536, 1680)
+			label      	(object ItemLabel
+			    Parent_View 	@68
+			    location   	(1290, 1518)
+			    nlines     	1
+			    max_width  	492
+			    justify    	0
+			    label      	"tagHelperPerformanceData")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@68
+			    location   	(1290, 1474)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	492
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DBCD01B3"
+			compartment 	(object Compartment
+			    Parent_View 	@68
+			    location   	(1290, 1616)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	6
+			    max_width  	434)
+			width      	510
+			height     	434
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::Data Services::tagGameTypeData" @69
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(2112, 1728)
+			label      	(object ItemLabel
+			    Parent_View 	@69
+			    location   	(1864, 1522)
+			    nlines     	1
+			    max_width  	496
+			    justify    	0
+			    label      	"tagGameTypeData")
+			stereotype 	(object ItemLabel
+			    Parent_View 	@69
+			    location   	(1864, 1478)
+			    anchor     	10
+			    nlines     	1
+			    max_width  	496
+			    justify    	0
+			    label      	"<<Structure>>")
+			icon_style 	"Icon"
+			quidu      	"3821DB4602A0"
+			compartment 	(object Compartment
+			    Parent_View 	@69
+			    location   	(1864, 1620)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	8
+			    max_width  	494)
+			width      	514
+			height     	522
+			annotation 	8
+			autoResize 	TRUE)
+		    (object ClassView "Class" "Logical View::User Services::Helper" @70
+			ShowCompartmentStereotypes 	TRUE
+			IncludeAttribute 	TRUE
+			IncludeOperation 	TRUE
+			location   	(1216, 944)
+			label      	(object ItemLabel
+			    Parent_View 	@70
+			    location   	(1034, 741)
+			    nlines     	1
+			    max_width  	364
+			    justify    	0
+			    label      	"Helper")
+			icon_style 	"Icon"
+			quidu      	"3821D76B0106"
+			compartment 	(object Compartment
+			    Parent_View 	@70
+			    location   	(1034, 839)
+			    icon_style 	"Icon"
+			    anchor     	2
+			    nlines     	7
+			    max_width  	371)
+			width      	382
+			height     	428
+			annotation 	8
+			autoResize 	TRUE)
+		    (object UsesView "" @71
+			stereotype 	TRUE
+			quidu      	"3821D8A70291"
+			client     	@70
+			supplier   	@62
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$0" @72
+			location   	(1592, 944)
+			stereotype 	TRUE
+			quidu      	"3821D8C903A8"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$1" @73
+				Parent_View 	@72
+				location   	(1240, 80)
+				stereotype 	TRUE
+				quidu      	"3821D8CA01FB"
+				client     	@72
+				supplier   	@64
+				line_style 	0)
+			    (object RoleView "$UNNAMED$2" @74
+				Parent_View 	@72
+				location   	(1240, 80)
+				stereotype 	TRUE
+				quidu      	"3821D8CA0205"
+				client     	@72
+				supplier   	@70
+				line_style 	0)))
+		    (object UsesView "" @75
+			stereotype 	TRUE
+			quidu      	"3821D9250152"
+			client     	@70
+			supplier   	@63
+			line_style 	0)
+		    (object AssociationViewNew "$UNNAMED$6" @76
+			location   	(749, 1293)
+			stereotype 	TRUE
+			quidu      	"3821DCC60374"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$7" @77
+				Parent_View 	@76
+				location   	(429, -323)
+				stereotype 	TRUE
+				quidu      	"3821DCC70221"
+				client     	@76
+				supplier   	@70
+				line_style 	0)
+			    (object RoleView "$UNNAMED$8" @78
+				Parent_View 	@76
+				location   	(429, -323)
+				stereotype 	TRUE
+				quidu      	"3821DCC7022B"
+				client     	@76
+				supplier   	@65
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$9" @79
+			location   	(907, 1314)
+			stereotype 	TRUE
+			quidu      	"3821DCCB0399"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$10" @80
+				Parent_View 	@79
+				location   	(235, -286)
+				stereotype 	TRUE
+				quidu      	"3821DCCC01B0"
+				client     	@79
+				supplier   	@70
+				line_style 	0)
+			    (object RoleView "$UNNAMED$11" @81
+				Parent_View 	@79
+				location   	(235, -286)
+				stereotype 	TRUE
+				quidu      	"3821DCCC01BA"
+				client     	@79
+				supplier   	@66
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$12" @82
+			location   	(1127, 1311)
+			stereotype 	TRUE
+			quidu      	"3821DCCE0380"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$13" @83
+				Parent_View 	@82
+				location   	(71, -305)
+				stereotype 	TRUE
+				quidu      	"3821DCCF010A"
+				client     	@82
+				supplier   	@70
+				line_style 	0)
+			    (object RoleView "$UNNAMED$14" @84
+				Parent_View 	@82
+				location   	(71, -305)
+				stereotype 	TRUE
+				quidu      	"3821DCCF011E"
+				client     	@82
+				supplier   	@67
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$15" @85
+			location   	(1374, 1310)
+			stereotype 	TRUE
+			quidu      	"3821DCD10207"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$16" @86
+				Parent_View 	@85
+				location   	(-162, -370)
+				stereotype 	TRUE
+				quidu      	"3821DCD201D7"
+				client     	@85
+				supplier   	@70
+				line_style 	0)
+			    (object RoleView "$UNNAMED$17" @87
+				Parent_View 	@85
+				location   	(-162, -370)
+				stereotype 	TRUE
+				quidu      	"3821DCD201EB"
+				client     	@85
+				supplier   	@68
+				line_style 	0)))
+		    (object AssociationViewNew "$UNNAMED$18" @88
+			location   	(1630, 1306)
+			stereotype 	TRUE
+			quidu      	"3821DCD402FC"
+			roleview_list 	(list RoleViews
+			    (object RoleView "$UNNAMED$19" @89
+				Parent_View 	@88
+				location   	(-482, -422)
+				stereotype 	TRUE
+				quidu      	"3821DCD5027B"
+				client     	@88
+				supplier   	@70
+				line_style 	0)
+			    (object RoleView "$UNNAMED$20" @90
+				Parent_View 	@88
+				location   	(-482, -422)
+				stereotype 	TRUE
+				quidu      	"3821DCD50285"
+				client     	@88
+				supplier   	@69
+				line_style 	0)))))))
+    root_subsystem 	(object SubSystem "Component View"
+	quid       	"3821D58E001D"
+	physical_models 	(list unit_reference_list)
+	physical_presentations 	(list unit_reference_list
+	    (object Module_Diagram "Main"
+		quid       	"3821D58E0038"
+		title      	"Main"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    process_structure 	(object Processes
+	quid       	"3821D58E001E"
+	ProcsNDevs 	(list
+	    (object Process_Diagram "Deployment View"
+		quid       	"3821D58E0020"
+		title      	"Deployment View"
+		zoom       	100
+		max_height 	28350
+		max_width  	21600
+		origin_x   	0
+		origin_y   	0
+		items      	(list diagram_item_list))))
+    properties 	(object Properties
+	attributes 	(list Attribute_Set
+	    (object Attribute
+		tool       	"Repository"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"SourceSafe"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"TypeLibImporter"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"VC++"
+		name       	"propertyId"
+		value      	"809135966")
+	    (object Attribute
+		tool       	"VC++"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"VC++"
+			name       	"Generate"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"VC++"
+			name       	"HeaderFile"
+			value      	"AUTO GENERATE")))
+	    (object Attribute
+		tool       	"VC++"
+		name       	"default__Operation"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"VC++"
+			name       	"OperationIsConst"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"VC++"
+			name       	"OperationKindSet"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"VC++"
+				name       	"Non-virtual"
+				value      	200)
+			    (object Attribute
+				tool       	"VC++"
+				name       	"Abstract"
+				value      	201)
+			    (object Attribute
+				tool       	"VC++"
+				name       	"Virtual"
+				value      	202)))
+		    (object Attribute
+			tool       	"VC++"
+			name       	"OperationKind"
+			value      	("OperationKindSet" 200))))
+	    (object Attribute
+		tool       	"VC++"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"VJ++"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"propertyId"
+		value      	"783606378")
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"default__Class"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"CreatableSet"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"Private"
+				value      	221)
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"PublicNotCreatable"
+				value      	213)
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"SingleUse"
+				value      	214)
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"GlobalSingleUse"
+				value      	215)
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"MultiUse"
+				value      	219)
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"GlobalMultiUse"
+				value      	220)))
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"OptionBase"
+			value      	"0")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"OptionExplicit"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"OptionCompare"
+			value      	("CompareSet" 202))
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"Creatable"
+			value      	("CreatableSet" 221))
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateInitialization"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateTermination"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"CollectionClass"
+			value      	"Collection")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"CompareSet"
+			value      	(list Attribute_Set
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"None"
+				value      	202)
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"Binary"
+				value      	203)
+			    (object Attribute
+				tool       	"Visual Basic"
+				name       	"Text"
+				value      	204)))))
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"default__Operation"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"OperationName"
+			value      	"$operation")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"LibraryName"
+			value      	"")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"AliasName"
+			value      	"")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"IsStatic"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"EntryCode"
+			value      	(value Text ""))
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"ExitCode"
+			value      	(value Text ""))))
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"default__Attribute"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"IsConst"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"New"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"WithEvents"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"Subscript"
+			value      	"")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"NameIfUnlabeled"
+			value      	"the$supplier")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateDataMember"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"DataMemberName"
+			value      	"$relationship")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateGetOperation"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateSetOperation"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateLetOperation"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"default__Role"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"New"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"WithEvents"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"Subscript"
+			value      	"")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"NameIfUnlabeled"
+			value      	"the$supplier")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateDataMember"
+			value      	TRUE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"DataMemberName"
+			value      	"$relationship")
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateGetOperation"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateSetOperation"
+			value      	FALSE)
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"GenerateLetOperation"
+			value      	FALSE)))
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"default__Inherit"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"ImplementsDelegation"
+			value      	TRUE)))
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"default__Module-Spec"
+		value      	(list Attribute_Set
+		    (object Attribute
+			tool       	"Visual Basic"
+			name       	"ProjectFile"
+			value      	"")))
+	    (object Attribute
+		tool       	"Visual Basic"
+		name       	"HiddenTool"
+		value      	FALSE)
+	    (object Attribute
+		tool       	"VisualStudio"
+		name       	"HiddenTool"
+		value      	FALSE))
+	quid       	"3821D58E001F"))

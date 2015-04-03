@@ -1,0 +1,35 @@
+MQP Status Report
+Date: 11/18/99
+__________________________________________________________________________
+Things completed since the last meeting:
+
+1. Pseudo code for main server classes,
+
+2. Pseudo code for main helper classes,
+
+3. Object Interaction graph for the server classes,
+
+3. Defined DCom Interfaces,
+
+4. Corrected the Proposal document,
+
+5. Implemented helper DCom framework using ATL,
+
+6. Defined Client/Server protocol (game encoding types),
+
+7. Decided to implement simple Java client to talk to the server,
+
+8. Decided to drop the idea of time contracting,
+
+9. Updated project web site (http://www.wpi.edu/~peterg/MQP).
+
+__________________________________________________________________________
+Things to do before the next meeting:
+
+1. Client design (Java),
+
+2. Continue implementation of the helper,
+
+3. Start the implementation of the server.
+
+

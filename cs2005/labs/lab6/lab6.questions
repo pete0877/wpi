@@ -1,0 +1,18 @@
+Lab 6 questions
+--------------
+
+1.  After you add the line "square( length/2, level-1 )" so that it is the 
+    last command in your square() function,  what gets drawn?  Explain why.
+
+Smaller square in the left bottom corner. Due to recursion
+
+
+2.  After you move the line "square( length/2, level-1 )" so that it is
+    after the "forward" command in the square() function, what gets drawn?
+    Explain why.
+
+More squares gets drawn ( from each corner )
+
+3.  What does the "level" parameter control?
+
+tree hight

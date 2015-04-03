@@ -1,0 +1,26 @@
+(defun printTree (tree) ( printTree_HELPER tree 0 ))
+
+
+(defun printlist1 (tree sp) 
+      (spaces sp)
+      (write-char "(")       
+      (printlist2 tree (+ sp 3)) 
+      (write-char ")")       
+)
+
+(defun printlist2 (tree sp)    
+      (printtree_helper tree sp)
+      (if (eq (cdr tree) '()) 0
+      (printlist2 (cdr tree) sp)
+))
+
+(defun printtree_helper (tree sp) (
+   if (listp tree) 
+     (printlist1 tree sp)        
+     (print tree)                                      
+))
+
+
+
+(write-char "(")
+(write 'd)

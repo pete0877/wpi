@@ -1,0 +1,106 @@
+
+;No value
+
+1 ]=> (load "hw3_3")
+
+;Loading "hw3_3.scm" -- done
+;Value: cartesian
+
+1 ]=> (empty-set? '())
+
+;Value: #t
+
+1 ]=> (empty-set? '(a b c)
+)
+
+;Value: ()
+
+1 ]=> (set? '(a b c))
+
+;Value: #t
+
+1 ]=> (set? '(a b c a a b))
+
+;Value: ()
+
+1 ]=> (subset? '(a b c) '(e d c b a))
+
+;Value: #t
+
+1 ]=> (subset? '(e d c b a) '(a b c))
+
+;Value: ()
+
+1 ]=> (set-equal? '(a b c) '(c b a))
+
+;Value: #t
+
+1 ]=> (set-equal? '(a b c) '(a b c d))
+
+;Value: ()
+
+1 ]=> (contains? 'a '(a b c d))
+
+;Value: #t
+
+1 ]=> (contains? 'a '(b c d e f))
+
+;Value: ()
+
+1 ]=> ( cardinality '(a b c))
+
+;Value: 3
+
+1 ]=>  ( cardinality '())
+
+;Value: 0
+
+1 ]=> (addto 'a '(b c))
+
+;Value 1: (a b c)
+
+1 ]=> (addto 'a '(a b c))
+
+;Value 2: (a b c)
+
+1 ]=> (list->set '(a b c d e e d c b a))
+
+;Value 3: (e d c b a)
+
+1 ]=> (list->set '(a b c))
+
+;Value 4: (a b c)
+
+1 ]=> (intersect '(a b c d) '(c d e f))
+
+;Value 5: (c d)
+
+1 ]=> (intersect '() '(a b c d))
+
+;Value: ()
+
+1 ]=> (intersect '(a b c) '(d e f))
+
+;Value: ()
+
+1 ]=> (set-diff '(a b c d) '(c d e f))
+
+;Value 6: (a b)
+
+1 ]=> (set-diff '(a b c) '(d e f))
+
+;Value 7: (a b c)
+
+1 ]=> (union '(a b c d) '(b c d e))
+
+;Value 8: (a b c d e)
+
+1 ]=> (union '() '(a b c))
+
+;Value 9: (a b c)
+
+1 ]=> (cartesian '(a b) '(c d a b))
+
+;Value 10: ((a c) (a d) (a a) (a b) (b c) (b d) (b a) (b b))
+
+1 ]=> (transcript-off)

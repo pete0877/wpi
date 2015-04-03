@@ -1,0 +1,161 @@
+Script started on Wed Nov 20 22:51:16 1996
+%./maze
+##########
+#  #  #  #
+#     #  #
+#  #    #
+# # # ##>#
+# # #  # #
+# # < #  #
+#  ###  #
+##  #    #
+ # #  #  #
+#       #
+#########
+Maze contains 12 rows, 10 columns, start:(6,4), goal:(4,8)
+
+What policy to use? (type ? for help) fix
+
+Path was found of length 35 with 3 wrong points visited.
+(Total of 41 moves, algorythm efficiency: 0.85)
+##########
+#ML#HG#  #
+#NKJIF#  #
+#O.#.E  #
+#P# #D##c#
+#Q# #C #b#
+#R# AB#`a#
+#ST###^_#
+##U.#\]  #
+ #V#Z[#  #
+# WXY   #
+#########
+%./maze
+##########
+#  #  #  #
+#     #  #
+#  #    #
+# # # ##>#
+# # #  # #
+# # < #  #
+#  ###  #
+##  #    #
+ # #  #  #
+#       #
+#########
+Maze contains 12 rows, 10 columns, start:(6,4), goal:(4,8)
+
+What policy to use? (type ? for help) dir
+
+Path was found of length 33 with 4 wrong points visited.
+(Total of 41 moves, algorythm efficiency: 0.80)
+##########
+#  #HG#  #
+#LKJIF#  #
+#M #.E  #
+#N#.#D##a#
+#O#.#C #`#
+#P#.AB#^_#
+#QR### ]#
+##S #  \ #
+ #T#  #[ #
+# UVWXYZ#
+#########
+%/[K./maze
+##########
+#  #  #  #
+#     #  #
+#  #    #
+# # # ##>#
+# # #  # #
+# # < #  #
+#  ###  #
+##  #    #
+ # #  #  #
+#       #
+#########
+Maze contains 12 rows, 10 columns, start:(6,4), goal:(4,8)
+
+What policy to use? (type ? for help) goal
+
+Path was found of length 33 with 9 wrong points visited. 
+(Total of51 moves, algorithm efficiency: 0.65)
+##########
+#  #HG#..#
+# KJIF#..#
+#ML#.E..#
+#N# #D##a#
+#O# #C.#`#
+#P# AB#^_#
+#QR###\]#
+##S.#Z[  #
+ #T#XY#  #
+# UVW   #
+#########
+%./amz[K[K[Kmaze
+##########
+#  #  #  #
+#     #  #
+#  #    #
+# # # ##>#
+# # #  # #
+# # < #  #
+#  ###  #
+##  #    #
+ # #  #  #
+#       #
+#########
+Maze contains 12 rows, 10 columns, start:(6,4), goal:(4,8)
+
+What policy to use? (type ? for help) gdir
+
+Path was found of length 33 with 4 wrong points visited.
+(Total of 41 moves, algorythm efficiency: 0.80)
+##########
+#..#HG#  #
+#LKJIF#  #
+#M.#.E  #
+#N# #D##a#
+#O# #C #`#
+#P# AB#^_#
+#QR### ]#
+##S #  \ #
+ #T#  #[ #
+# UVWXYZ#
+#########
+%./best[K[K[K[Kmaze
+##########
+#  #  #  #
+#     #  #
+#  #    #
+# # # ##>#
+# # #  # #
+# # < #  #
+#  ###  #
+##  #    #
+ # #  #  #
+#       #
+#########
+Maze contains 12 rows, 10 columns, start:(6,4), goal:(4,8)
+
+What policy to use? (type ? for help) / best
+
+Path was found of length 31:
+##########
+#  #  #  #
+# IHGF#  #
+#KJ# E  #
+#L# #D##_#
+#M# #C #^#
+#N# AB#\]#
+#OP###Z[#
+##Q #XY  #
+ #R#VW#  #
+# STU   #
+#########
+%exit
+exit
+
+script done on Wed Nov 20 22:52:26 1996
+
+script done on Wed Nov 20 22:52:26 1996

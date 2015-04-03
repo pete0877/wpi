@@ -1,0 +1,82 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+// File Name:	Helper.idl
+// Description:	IHelper interface.
+// Date:		11/15/99
+// Author:		sjastrzebski
+//
+// Copyright © 1999 Worcester Polytechnic Institute, All Rights Reserved.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+typedef struct tagGameState 
+{
+	[string] char *gamestate;
+} GameState;
+
+typedef struct tagMove
+{
+	GameState gamestate;
+	[string] char *move;
+	int quality;
+	int status;
+} Move;
+
+typedef enum tagLevelType
+{
+	MAXIMAXING = 1,
+	MINIMAZING = 2
+} LevelType;
+
+typedef struct tagGameTypeData
+{
+	[string] char *gameName;
+	[string] char *gameVersion;
+	[string] char *gameDescription;
+	[string] char *companyName;
+	[string] char *legalCopyright;
+	[string] char *legalTrademarks;
+} GameTypeData;
+
+typedef struct tagHelperPerformanceData
+{
+	float alphaBetaGain;
+	float branchingFactor;
+	float evaluationTime;
+	float pctCompleted;
+	float splitTime;
+	float totalWorkTime;
+} HelperPerformanceData;
+
+[
+	object,
+	uuid(C3F69A0C-23EF-47C6-A2CD-DC4CA64CCA22),
+
+	helpstring("IHelper Interface"),
+	pointer_default(unique)
+]
+interface IHelper : IUnknown
+{
+	[helpstring("method evaluate")] HRESULT evaluate([in] GameState gs, [in] LevelType level, [in] int ply, [in] long timelimit, [out] int *quality, [out] HelperPerformanceData *data);
+	[helpstring("method getQuickMove")] HRESULT getQuickMove([in] GameState gs, [out] Move *move, [out] int *gameOver);
+	[helpstring("method split")] HRESULT split([in] GameState gs, [in] LevelType level, [in, out] int *movecount, [in, out, size_is(*movecount)] Move *moves);
+};
+[
+	uuid(E8659191-1A0F-4A86-86BC-FBF92FA6F47E),
+	version(1.0),
+	helpstring("Helper 1.0 Type Library")
+]
+library HelperLib
+{
+	importlib("stdole32.tlb");
+	importlib("stdole2.tlb");
+	[
+		uuid(E729EB35-6A87-498F-B115-57C99B551044),
+		helpstring("Helper Class")
+	]
+	coclass Helper
+	{
+		[default] interface IHelper;
+	};
+};

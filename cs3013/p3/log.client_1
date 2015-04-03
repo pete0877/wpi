@@ -1,0 +1,15 @@
+Script started on Mon Feb 16 00:48:55 1998
+%hey wpi.wpi.edu
+
+Trying to connect to server wpi.wpi.edu at port 6929...Looking up wpi.wpi.edu...
+Found it.  Setting port connection to 6929...
+Done. Opening socket...
+Open. Trying connection to server...
+Connection established!
+
+  peterg has logged IN on ernie.WPI.EDU.
+  peterg has logged IN on wpi.WPI.EDU.
+Hey Client goes bye bye.%exit
+exit
+
+script done on Mon Feb 16 00:51:03 1998

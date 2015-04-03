@@ -1,0 +1,17 @@
+
+;No value
+
+1 ]=> (load "hw2_1")
+
+;Loading "hw2_1.scm" -- done
+;Value: ribassoc
+
+1 ]=> (ribassoc 'a '(b c a s) '#(q w e r) -1)
+
+;Value: e
+
+1 ]=> (ribassoc 'a '(1 2 3 4) '#(z c x v) -1)
+
+;Value: -1
+
+1 ]=> (transcript-off)

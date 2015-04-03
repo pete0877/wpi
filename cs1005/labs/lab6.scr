@@ -1,0 +1,11 @@
+Script started on Wed Oct  9 16:28:30 1996
+> gcc lab6.c -o lab6
+> lab6
+
+
+Please enter a string:are we having fun yet ? ...Yes   yes
+With volwels capitalized: ArE wE hAvIng fUn yEt ? ...yEs
+
+> exit
+
+script done on Wed Oct  9 16:29:25 1996

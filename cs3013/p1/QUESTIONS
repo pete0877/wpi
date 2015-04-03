@@ -1,0 +1,60 @@
+Peter Golaszewski
+Sebastian Jastrzebski
+
+CS 3013 C98, project 1 questions:
+
+--------------------------------------------------------------------
+
+You should observe how your tiny shell works compared to a 
+full-fledged Unix shell, such as tcsh or bash. What are some of 
+the process features the Unix shell has that your tiny shell does not? 
+
+My shell has only one built-in command, where as Unix shell provides
+wider variaty of such command, which limits IO time, and increases
+shell efficiency. Unix shell also allows to run precesses in 
+"background mode" usign "&" symbol. My shell does not provide
+such features.
+
+--------------------------------------------------------------------
+
+Could you modify your shell so that it had a mean process that
+worked the opposite of kind? In other words, instead of making 
+the process have a worse priority, it had a better priority. 
+Why or why not?
+
+The default value of priority is 10. Function nice can change it
+to range from 1 to 19, but only root access allows shell to 
+set negative values in nice(). So it is possible to adjust the 
+priority, but only to some extend.
+
+--------------------------------------------------------------------
+
+Try running just the count program and then exiting your shell. Does 
+running the count program with kind seem to make any difference in 
+the statistics printed out? Why or why not?
+
+I don't seem to have access to "count" program:
+> Enter Command: count
+> Not found! 
+But from what I tried to do with other commands such as "ls -la",
+it is easy to predict that small programs such "ls" executed in 
+small directory is not being affected by priority chance. However
+when "ls -la" is ran in a big directory listing (eg. "/usr9"), the
+performance is being seriouslly affected. The reason for that is that
+long programs don't fit in one slice time, and so they are being pushed
+to lower-priority queues.
+
+--------------------------------------------------------------------
+
+Shells typically allow processes to be run in "background" mode 
+using the '&' character. In background mode, the shell does not 
+wait for the current process to complete but instead prompts the
+user for the next command. Briefly describe changes you would make
+to your code to support the '&' character.
+
+I would take out wait() function from my execute() function. This way
+Tshell would not wait for the child processes to finish, and prompt for
+next command. This howether might require keeping track of more then 
+one process IDs.
+
+--------------------------------------------------------------------

@@ -1,0 +1,25 @@
+
+;No value
+
+2 error> (load "hw2_3")
+
+;Loading "hw2_3.scm" -- done
+;Value: flatten
+
+2 error> (pp flatten)
+
+(named-lambda (flatten lst)
+  (cond ((null? lst) ())
+        ((list? (car lst)) (append (flatten (car lst)) (flatten (cdr lst))))
+        (else (cons (car lst) (flatten (cdr lst))))))
+;No value
+
+2 error> (flatten '(a b (c d (e r) d)))
+
+;Value 2: (a b c d e r d)
+
+2 error> (flatten '())
+
+;Value: ()
+
+2 error> (transcript-off)

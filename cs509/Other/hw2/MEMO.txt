@@ -1,0 +1,16 @@
+RELEASE MEMO:
+
+Program was developed and tested under JDK Version 1.2 Beta4.
+Before building or compiling the program, make sure that the
+Java compiler (javac) and the Applet Viewer (appetviewer) are
+in your system search path.
+
+To build the program, type: 
+	build.bat
+	
+To run the program, type:
+	run.bat
+	
+__________________________
+Peter Golaszewski
+Email: peterg@wpi.edu

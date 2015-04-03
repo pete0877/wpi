@@ -1,0 +1,206 @@
+/* Decompiled by Mocha from Renderer.class */
+
+package renderer;
+
+import java.awt.*;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
+import java.io.PrintStream;
+import java.io.Serializable;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.Enumeration;
+import java.util.Vector;
+
+public synchronized class Renderer extends Panel implements RendererInterface, AdjustmentListener
+{
+    protected Graphics brr20;
+    protected Image brr21;
+    protected int brr22;
+    protected int brr23;
+    protected Scrollbar brr24;
+    protected int brr25;
+    protected int brr26;
+    protected String brr27;
+    protected Parser brr28;
+    protected Vector brr29;
+    Font brr30;
+
+    public Renderer(int i, int j)
+    {
+        brr21 = null;
+        brr22 = 200;
+        brr23 = 90;
+        brr24 = null;
+        brr25 = 16;
+        brr26 = 0;
+        brr27 = null;
+        brr28 = null;
+        brr29 = new Vector();
+        brr30 = new Font("Helvetica", 0, 14);
+        brr23 = j;
+        brr22 = i;
+        setSize(brr22, brr23);
+        setLayout(null);
+        brr24 = new Scrollbar(1);
+        brr24.setBounds(brr22 - brr25, 0, brr25, brr23);
+        add(brr24);
+        brr24.addAdjustmentListener(this);
+    }
+
+    public void addRendererListener(RendererListener rendererListener)
+    {
+        brr29.addElement(rendererListener);
+    }
+
+    public void adjustmentValueChanged(AdjustmentEvent adjustmentEvent)
+    {
+        brr26 = adjustmentEvent.getValue();
+        repaint();
+    }
+
+    public Dimension getPreferredSize()
+    {
+        return new Dimension(brr22, brr23);
+    }
+
+    public Serializable getState()
+    {
+        Vector vector = new Vector();
+        vector.addElement(new Integer(brr22));
+        vector.addElement(new Integer(brr23));
+        vector.addElement(new Integer(brr24.getValue()));
+        vector.addElement(new String(brr27));
+        return vector;
+    }
+
+    private int brr18(String string, FontMetrics fontMetrics)
+    {
+        if (string == null)
+            return 0;
+        if (fontMetrics == null)
+            return 0;
+        else
+            return fontMetrics.stringWidth(string);
+    }
+
+    public final void paint(Graphics g)
+    {
+        if (g == null)
+            return;
+        if (brr21 == null)
+            return;
+        g.setColor(Color.black);
+        g.drawImage(brr21, 0, -brr26, this);
+        g.drawRect(0, 0, brr22 - brr25 - 1, brr23 - 1);
+    }
+
+    public void removeRendererListener(RendererListener rendererListener)
+    {
+        brr29.removeElement(rendererListener);
+    }
+
+    public void render(String string1)
+    {
+        brr28 = new Parser(string1);
+        brr27 = string1;
+        brr28.parse();
+        brr21 = createImage(brr22, 2000);
+        if (brr21 == null)
+            return;
+        brr20 = brr21.getGraphics();
+        brr20.setColor(Color.white);
+        brr20.fillRect(0, 0, brr22 - brr25, brr23);
+        brr20.setColor(Color.black);
+        brr20.setFont(brr30);
+        FontMetrics fontMetrics = brr20.getFontMetrics();
+        int i1 = fontMetrics.getHeight();
+        boolean flag = false;
+        int j = i1;
+        int k = 2;
+        for (Enumeration enumeration = brr28.getTokens(); enumeration.hasMoreElements(); )
+        {
+            Token token = (Token)enumeration.nextElement();
+            if (token instanceof TextToken)
+            {
+                int i2 = brr18(token.getValue(), brr20.getFontMetrics());
+                brr20.drawString(token.getValue(), k, j);
+                k += i2;
+                if (k > 2 + brr22)
+                {
+                    k = 2;
+                    j += i1;
+                }
+            }
+            if (token instanceof GIFToken)
+            {
+                Image image;
+                String string2 = ((GIFToken)token).getImageString();
+                System.err.println(new StringBuffer("Show picture: ").append(string2).toString());
+                try
+                {
+                    URL uRL = new URL(string2);
+                    image = Toolkit.getDefaultToolkit().getImage(uRL);
+                }
+                catch (MalformedURLException e1)
+                {
+                    image = Toolkit.getDefaultToolkit().getImage(string2);
+                }
+                MediaTracker mediaTracker = new MediaTracker(this);
+                mediaTracker.addImage(image, 0);
+                try
+                {
+                    mediaTracker.waitForID(0);
+                }
+                catch (InterruptedException e2)
+                {
+                    System.err.println("Unable to load image");
+                }
+                brr20.drawImage(image, k, j, getParent());
+                k += image.getWidth(getParent());
+                if (k > 2 + brr22)
+                    k = 2;
+                j += image.getHeight(getParent());
+            }
+            else
+                brr19(token.getAttributes());
+        }
+        brr24.setValues(0, brr23, 0, j + i1);
+    }
+
+    public void restoreState(Serializable serializable)
+    {
+        if (!(serializable instanceof Vector))
+            return;
+        try
+        {
+            Vector vector = (Vector)serializable;
+            brr22 = ((Integer)vector.elementAt(0)).intValue();
+            brr23 = ((Integer)vector.elementAt(1)).intValue();
+            int i = ((Integer)vector.elementAt(2)).intValue();
+            brr24.setValue(i);
+            String string = (String)vector.elementAt(3);
+            render(string);
+            repaint();
+        }
+        catch (Exception e)
+        {
+            System.err.println(new StringBuffer("Unable to restore renderer state:").append(e.getMessage()).toString());
+        }
+    }
+
+    private void brr19(Attributes attributes)
+    {
+        String string = brr30.getName();
+        int i = brr30.getStyle();
+        int j = brr30.getSize();
+        if (attributes.isBold())
+            i |= 1;
+        if (attributes.isItalics())
+            i |= 2;
+        if (attributes.getFace() != null)
+            string = attributes.getFace();
+        brr30 = new Font(string, i, j);
+        brr20.setFont(brr30);
+    }
+}

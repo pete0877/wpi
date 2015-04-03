@@ -1,0 +1,6 @@
+#! /bin/tcsh -f
+
+/bin/rm -f $1.dat      # -f forces deletion without asking questions
+foreach i (20 500 1000 5000)
+./lab7 $1 $i >> $1.dat
+end

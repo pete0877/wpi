@@ -1,0 +1,108 @@
+// CSL     : CSL description for TableBean
+// Author  : George T. Heineman
+//         : heineman@cs.wpi.edu;
+//         : http://www.cs.wpi.edu/~heineman
+// Version : 1.0
+
+/*
+
+*/
+
+import csl.activeInterface;
+
+component type TableBean : JavaBean {
+
+  port con : Constructor {
+    public TableBean TableBean ();
+    public TableBean TableBean (int, int);
+  }
+
+  port Content {
+    public void setTableValue (int, int, String);
+    public String getTableValue (int, int);
+    public void clearTableValue ();
+  }
+
+  port Presentation {
+    public synchronized void paint (java.awt.Graphics);
+    protected synchronized void redraw (java.awt.Graphics, int, int);
+
+    port Rows {
+      port Height {
+        public int getRowHeight();
+        public void setRowHeight(int);
+      }
+      port Number {
+        public int getNumRows();
+        public void setNumRows(int);
+      }
+    }
+
+    port Columns {
+      port Width {
+        public int getColumnWidth ();
+        public void setColumnWidth (int);
+      }
+      port Number {
+        public int getNumColumns();
+	public void setNumColumns(int);
+      }
+    }
+
+    port Foreground {
+      public java.awt.Color getForeground();
+      public void setForeground (java.awt.Color);
+    }
+
+    port Background {
+      public java.awt.Color getBackground();
+      public void setBackground (java.awt.Color);
+    }
+
+    port Font {
+      public java.awt.Font getFont ();
+      public void setFont (java.awt.Font);
+    }
+
+    public java.awt.Dimension getPreferredSize();
+    private void sizeToFit();
+  }
+
+  port adapt : Adaptable;
+
+  port SelectedRegion {
+    public gui.TableRegion getSelectedRegion();
+    public void setSelectedRegion (gui.TableRegion);
+    public void setSelectedRegion (gui.TableElement,gui.TableElement);
+    private void clip (gui.TableElement);
+    private void deselect();
+    private void redrawRegion (int, int, int, int);
+    private void redrawRegion (gui.TableElement, gui.TableElement);
+    private void setMinimum (gui.TableElement);
+    private void setMinimum (int, int);
+    private void maintainRegion ();
+    private boolean inInvertedRegion (int, int);
+  }
+
+  port MouseListener {
+    private gui.TableElement convertMouseEvent (java.awt.event.MouseEvent);
+    public void mouseClicked (java.awt.event.MouseEvent);
+    public void mousePressed (java.awt.event.MouseEvent);
+    public void mouseReleased (java.awt.event.MouseEvent);
+    public void mouseEntered (java.awt.event.MouseEvent);
+    public void mouseExited (java.awt.event.MouseEvent);
+    public void mouseDragged (java.awt.event.MouseEvent);
+    public void mouseMoved (java.awt.event.MouseEvent);
+  }
+
+  port EventRegistration {
+    public synchronized void addTableListener (gui.TableListener);
+    public synchronized void removeTableListener (gui.TableListener);
+    private void fireAction (gui.TableEventObject);
+  }
+
+  port PropertyChange {
+    public void addPropertyChangeListener (java.beans.PropertyChangeListener);
+    public void removePropertyChangeListener (java.beans.PropertyChangeListener);
+  }
+}

@@ -1,0 +1,154 @@
+// CSL     : CSL description for Scrollbar
+// Author  : George T. Heineman
+//         : heineman@cs.wpi.edu;
+//         : http://www.cs.wpi.edu/~heineman
+// Version : 1.0
+
+// CSL description for the gui components packages as part of the
+// Spreadsheet Application
+//
+//
+
+/*
+
+  Normally, the user changes the value of the scroll bar by making a
+  gesture with the mouse.  For example, the user can drag the scroll bar's
+  bubble up and down, or click in the scroll bar's unit increment or block
+  increment areas.  Keyboard gestures can also be mapped to the scroll bar.
+  By convention, the Page Up and Page Down keys are equivalent to clicking
+  in the scroll bar's block increment and block decrement areas.
+
+  When the user changes the value of the scroll bar, the scroll bar
+  receives an instance of AdjustmentEvent.  The scroll bar processes this
+  event, passing it along to any registered listeners.
+
+  Any object that wishes to be notified of changes to the scroll bar's
+  value should implement AdjustmentListener, an interface defined in the
+  package java.awt.event.  Listeners can be added and removed dynamically
+  by calling the methods addAdjustmentListener and
+  removeAdjustmentListener.
+
+  The AdjustmentEvent class defines five types of adjustment event, listed
+  here:
+
+       AdjustmentEvent.TRACK is sent out when the user drags the scroll
+          bar's bubble.
+
+       AdjustmentEvent.UNIT_INCREMENT is sent out when the user clicks in
+          the left arrow of a horizontal scroll bar, or the top arrow of a
+          vertical scroll bar, or makes the equivalent gesture from the
+          keyboard.
+
+       AdjustmentEvent.UNIT_DECREMENT is sent out when the user clicks in
+          the right arrow of a horizontal scroll bar, or the bottom arrow
+          of a vertical scroll bar, or makes the equivalent gesture from
+          the keyboard.
+
+       AdjustmentEvent.BLOCK_INCREMENT is sent out when the user clicks in
+          the track, to the left of the bubble on a horizontal scroll bar,
+          or above the bubble on a vertical scroll bar.  By convention, the
+          Page Up key is equivalent, if the user is using a keyboard that
+          defines a Page Up key.
+
+       AdjustmentEvent.BLOCK_DECREMENT is sent out when the user clicks in
+          the track, to the right of the bubble on a horizontal scroll bar,
+          or below the bubble on a vertical scroll bar.  By convention, the
+          Page Down key is equivalent, if the user is using a keyboard that
+          defines a Page Down key.
+
+  In all events, the value of the scrollbar is stored and can be retrieved
+  through the getValue() method on the AdjustmentEvent object.
+
+  In summary, the event stream coming out of a Scrollbar component is a
+  series of AdjustmentEvent objects.
+
+*/
+
+package gui;
+
+import csl.javaBeans;
+
+component type Scrollbar : JavaBean {
+
+  // The essential properties as defined by the Adjustable Interface.  We
+  // have further subdivided into static and dynamic properties.
+  // 
+  // Note that the setValues(int,int,int,int) method safely changes all
+  // values in one single method call.
+  // --------------------------------------------------------------------
+  port Adjustable {
+    port StaticProperties {
+       public synchronized void setValues(int,int,int,int);
+
+       port Orientation {
+         public int  getOrientation();	
+         public synchronized void setOrientation(int);
+       }
+  
+       port LineIncrement {
+         public synchronized void setLineIncrement(int);     
+         public int  getLineIncrement();
+       }
+  
+       port UnitIncrement {
+         public synchronized void setUnitIncrement(int);     
+         public int  getUnitIncrement();
+       }
+  
+       port PageIncrement {
+         public synchronized void setPageIncrement(int);     
+         public int  getPageIncrement();
+       }
+  
+       port BlockIncrement {
+         public synchronized void setBlockIncrement(int);     
+         public int  getBlockIncrement();
+       }
+  
+       port MinimumValue {
+         public synchronized void setMinimum(int);     
+         public int  getMinimum();
+       }
+  
+       port MaximumValue {
+         public synchronized void setMaximum(int);     
+         public int  getMaximum();
+       }
+  
+       port VisibleAmount {
+         public synchronized void setVisibleAmount(int);     
+         public int getVisibleAmount();
+         public int getVisible();   // DEPRECATED
+       }
+    }
+  
+    port DynamicProperties {
+      public int getValue();
+      public synchronized void setValue(int);
+    }
+  }
+
+  port Event {
+    public synchronized void addAdjustmentListener(java.awt.event.AdjustmentListener);
+    public synchronized void removeAdjustmentListener(java.awt.event.AdjustmentListener);
+    protected void processEvent(java.awt.AWTEvent);
+    protected void processAdjustmentEvent(java.awt.event.AdjustmentEvent);
+  }
+
+  port Serializable {
+    private void writeObject(java.io.ObjectOutputStream);
+    private void readObject(java.io.ObjectInputStream);
+  }
+
+  port Miscellaneous {
+     public void addNotify();
+     boolean eventEnabled(java.awt.AWTEvent);
+     protected java.lang.String paramString();
+  }
+
+  port con : Constructor {
+    public Scrollbar Scrollbar ();
+    public Scrollbar Scrollbar (int);
+    public Scrollbar Scrollbar (int, int, int, int);  
+  }
+}

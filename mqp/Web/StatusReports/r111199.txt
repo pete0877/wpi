@@ -1,0 +1,18 @@
+MQP Status Report
+Date: 11/11/99
+__________________________________________________________________________
+Things completed since the last meeting:
+
+1. In the server model, the responsibility of registering helpers was moved from the Engine class to a separate HelperRegistry class.
+
+2. Did more research on specifics of ATL
+
+3. Ported Stanback chess program from Unix to Windows.
+
+__________________________________________________________________________
+Things to do before the next meeting:
+
+1. Develop CRC diagram.
+
+2. Continue Object-Oriented Design - Use cases and interaction graphs.
+

@@ -1,0 +1,21 @@
+Authors:                         Peter Golaszewski
+				 Sebastian Jastrzebski
+Date:                           2/15/98
+Project ID:                     Project 3
+CS Class:                       CS3013
+Programming Language:           C
+OS/Hardware dependencies:       None
+
+Problem Description:            
+
+To write distributed version of the hey program from project 2 with a
+server and client. The server runs on one computer host and processes 
+various hey commands sent by clients running on remote computer hosts. 
+We used Unix sockets as the means of inter-process communication (IPC) 
+between the server and the client.
+
+How to build the program:       make
+How to run the program:         
+	(login to <host>)
+	hey_server    
+        hey <host>

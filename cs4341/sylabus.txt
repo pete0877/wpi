@@ -1,0 +1,126 @@
+CS4341 Project2 DUE Thursday 12/3 at 2:00 p.m.
+
+THIS PROJECT MAY BE DONE IN GROUPS OF 2.
+All group composition should be finalized by the end of class on Tuesday 11/17. 
+If possible, come to class on Tuesday with a preferred partner already chosen. 
+Partners should have used the same language (Scheme or LISP) for project 1.
+
+In project 2, you will need to predict a rating for a rater R on an item I by learning and using a decision tree. You must
+implement a function
+
+(predictRatingsT rater# itemID)
+
+This involves-
+
+learning a decision tree to predict whether a rater with certain characteristics will like or notLike item I
+
+- the learning should be based on a set of examples of rater 
+characteristics of those raters who have rated the item I
+
+- each example should have a list of values for the attributes of that 
+rater as well as the conclusion of that rater about item I
+
+THERE SHOULD ONLY BE TWO POSSIBLE CONCLUSIONS: like, notLike
+YOU SHOULD 
+CONVERT RATINGS OF 4 and 5 -> like
+CONVERT RATINGS OF 1, 2, and 3 -> notLike
+
+To obtain data about the raters again a survey will be posted on the web.
+The survey should be completed by Friday, 11/20, by 1:00 p.m.
+
+Please read the entire survey before starting to complete it.
+IF YOU DO NOT FEEL COMFORTABLE ABOUT ANSWERING ANY QUESTION, DO NOT COMPLETE
+THE SURVEY. Any survey which does not pick one of the available answers for each question will not be able to be used,
+since that would necessitate significantly complicating your code for learning and using the decision tree.
+
+The format for generated data from this survey will be as follows:
+
+( 
+(numOfRaters numOfQuestions (Q1ID Q2ID ... QNID))
+(
+% Q1 Q2 Q3 ... QN
+(rater# ( Good 3 Yes ... 7 ))
+(rater# ( Fair 0 No ... 4 ))
+% ...
+(rater# ( Good 6 Yes ... 1 ))
+)
+)
+
+For example:
+
+( 
+(4 3 (COOK SMOKE VISIT))
+(
+% COOK SMOKE VISIT
+(414 ( Good Yes 6 ))
+(222 ( Fair No 0 ))
+(654 ( Good No 3 ))
+(123 ( Fair No 3 ))
+)
+)
+The suggested structure of the during learning is as follows:
+
+node/tree structure
+(conclusion branchattr childrenL exampleL remainingattrL)
+
+after learning this would result in
+non-leaf node - (NIL branchattr childrenL NIL NIL)
+leaf node - (conclusion NIL NIL NIL NIL)
+
+You probably want to convert this to the following form without NILs after learning before you printTree or use it to classify.
+non-leaf node - (branchattr childrenL)
+leaf node - (conclusion) or just conclusion
+
+childrenL structure
+((val1 node) (val2 node) ... (valN node))
+
+exampleL structure
+EITHER
+((attr1 attr2 ... attrN) (example1 example2 ... exampleN))
+with example structure
+((attr1val attr2val ... attrNval) conclusion)
+OR
+(example1 example2 ... exampleN)
+with example structure
+(((attr1 val) (attr2 val) ... (attrN val)) conclusion)
+
+remainingattrL structure
+(
+(attr1 (attr1val1 attr1val2 ...attr1valN))
+(attr2 (attr2val1 attr2val2 ...attr2valN))
+...
+(attrN (attrNval1 attrNval2 ...attrNvalN))
+) 
+
+Required Functions:
+
+(predictRatingsT rater# itemID) -> like OR notLike OR unknown
+
+(assembleExampleL itemID) -> exampleL
+(makeInitialNode exampleL remainingAttrL) -> node
+
+(learnTree node) -> tree
+
+(allSameClass exampleL)
+(splitnode node) -> node
+chooses and sets attr of node
+partitions exampleL based on chosen attr to create childrenL
+where each childnode has its own exampleL 
+and each childnode has its own remainingAttrL
+which is identical to the parent's remainingAttrL
+except that the chosen attr has been removed
+
+(chooseAttr exampleL remainingAttrL) -> attr
+(partition attr exampleL) -> childrenL
+
+(printTree tree)
+
+(classify tree attributeValuesForRater) -> like OR notLike OR unknown
+
+The structure of the node/tree and the required functions have been provided to help you decompose the problem to make it
+easier both to solve and to distribute among the two group members. Agreeing on the structure for nodes described above will
+allow the two group members to work independently. One reasonable distribution of responsibilities would be for one member
+to work on printTree, classify, assembleExampleL, and makeInitialNode, while the second member would work on
+learnTree with its help functions, including allSameClass, splitnode, chooseAttr, partition. (I would advise initially using a
+chooseAttr that just chooses the first attribute in the remainingAttrL in order to get learnTree running, later modifying chooseAttr
+to use the attribute maximally reduces the disorder.) The first member could also implement the top-level predictRatingsT.

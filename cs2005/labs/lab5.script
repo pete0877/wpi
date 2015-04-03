@@ -1,0 +1,19 @@
+Script started on Wed Dec  4 11:33:41 1996
+%mesh
+foo          Foo, Bart 0
+111.00
+bar          Bar, Brenda 2
+  67.00
+larry        Hacker, Larry 3
+ 81.00
+curly        Neal, Curly 2
+ 79.00
+moe          Allen, Moe 2
+ 118.00
+batman       Wayne, John 4
+ 110.00
+%grep ^uzma passwd | sed -e 's/:/ /g'
+uzma vtKnv4kDnCOv2 5253 5253 Uzma Fathima Ali /usr2/uzma /sh/tcsh
+%exit
+
+script done on Wed Dec  4 11:34:37 1996

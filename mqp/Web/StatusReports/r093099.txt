@@ -1,0 +1,21 @@
+MQP Status Report
+Date: 9/30/99
+______________________________________________________________________________
+Done since last meeting:
+
+1. Decide on strategy for dividing work into distribution units
+
+2. Measure overhead of sample DCOM object
+
+3. Research more on multi-computer distributed game tree algorithms
+______________________________________________________________________________
+To Do for next week:
+
+1. Start writing the Introduction, Background sections 
+   of the project proposal.
+
+2. Update and complete the requirements document.
+
+
+
+

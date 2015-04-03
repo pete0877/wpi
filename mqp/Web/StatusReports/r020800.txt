@@ -1,0 +1,37 @@
+MQP Status Report
+Date: 02/08/00
+_______________________________________________________________________
+Things completed since the last meeting:
+
+SERVER:
+1. Completed server code review
+2. Fixed some loging problems and addded more features
+3. Inserted (although disabled for now) DCOM security code
+4. Started coding the final distribution algorithm
+5. Started design of the visual log viewer
+
+HELPER:
+1. MFC application-level code fixes
+2. Traybar now shows the status of the helper
+3. Completed the implementation of the slow-down factor
+4. Inserted (although disabled for now) DCOM security code
+5. Traced and fixed some Win98 problems
+6. Updated helper's COM interface to allow for game-over discovery
+
+PLUG-INS:
+	CHESS:
+		1. Performance data gathering
+		2. Implemented timeout
+		3. Improved log file
+		4. Game-over detections
+	PRIMES:
+		1. Implemented large number checker
+	
+		
+_______________________________________________________________________
+Things to do before the next meeting:
+
+1. Implement DCOM security
+2. Complete the chess plugin (or get close to it)
+3. Finish server's distribution method
+4. Start insertion of the GUI component into the chess client

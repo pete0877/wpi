@@ -1,0 +1,45 @@
+MQP Status Report
+Date: 02/15/00
+
+
+_______________________________________________________________________
+Things completed since the last meeting:
+
+1. Created new distribution methodology to allow for time-limits and 
+	ply-limits at the same time
+
+2. Adjusted all interfaces and interfaces-supporting code to account for 
+	the methodology change
+
+3. Implemented the new distribution algorithm on the server
+
+4. Implemented server's tree-distribution view mode
+
+5. Implemented statistical tool to gather information required for analysis
+
+6. Adjusted the helper and the chess-plugin to be able to handle multi-threading
+
+7. Fixed some board-evaluation problems experienced with the chess plugin
+	
+8. Updated the load-control mechanisms in the helper software	
+	
+9. Wrote a short description on the problem mapping of prime number checker
+	vs. the Alpha-Beta algorithm.
+	
+_______________________________________________________________________
+Things to do before the next meeting:
+
+1. Complete server, helper, and chess plugin implementations
+
+2. Prepare short presentation in the lab
+
+3. Start extensive black-box testing of the whole system
+
+4. Implement client agent that will allow us to connect two 
+	instances of our system together and have them play against
+
+5. Create the Project Report outline and divide writing of these 
+	parts between us
+	
+6. Update the project web-site to include the most up to-date 
+	information about the project

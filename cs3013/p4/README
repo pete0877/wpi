@@ -1,0 +1,26 @@
+Authors:                         
+		Sebastian Jastrzebski (sebby@)
+		Peter Golaszewski     (peterg@)
+
+Date:                           2/26/98
+Project ID:                     Project 4
+CS Class:                       CS3013
+Programming Language:           C
+OS/Hardware dependencies:       None
+
+Problem Description:            
+
+There are two parts to this assignment. The first involves modifying
+distributed Hey to use threads. The second part involves some simple 
+performance comparisons between processes and threads. The Performance 
+section describes the comparisons you are to do.
+
+Answers:                        NA
+
+How to build the program:       make
+
+How to run the program:         
+	hey_server    
+        hey <host>
+For Benchmark tesing run:
+	bench

@@ -1,0 +1,25 @@
+Authors:                        Peter Golaszewski
+				Sebastian Jastrzebski
+Date:                           1/18/98
+Project ID:                     Project 1
+CS Class:                       CS3013
+Programming Language:           C++
+OS/Hardware dependencies:       None
+
+Problem Description: 
+
+	This program implements a small shell that is capable 
+of executing external system programs / commands. Tshell has
+also built in "kind" command, which allows user to set lowest 
+CPU priority on ran processes. The only internal command in 
+Tshell is "cd" which works just like "cd" under Unix system
+shell. Tshell also calculates system usage statistics when 
+terminating. These statistics tell the users what is total
+CPU time used by child processes, and what are contex switches
+numbers.
+
+How to build the program:       make
+
+How to run the program:         tshell
+
+How to end the program:         type command "exit"

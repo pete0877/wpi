@@ -1,0 +1,2315 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Tea Compiler Project</TITLE>
+</HEAD>
+<BODY LINK="#0000ff">
+
+<FONT SIZE=5><P>TEA COMPILER PROJECT</P>
+</FONT><FONT SIZE=1>
+<P>&nbsp;</P>
+</FONT><FONT SIZE=3><P>&nbsp;</P>
+<B><P>Author:</B> &#9;Peter Golaszewski</P>
+
+<B><P>Course: </B>&#9;WPI CS 4533 D 99</P>
+
+<B><P>Last Update:</B> &#9;5/19/99</P>
+</FONT><FONT SIZE=1>
+<P>&nbsp;</P>
+</FONT><P>&nbsp;</P>
+<B><FONT SIZE=3><P>&nbsp;</P>
+<P>TABLE OF CONTENTS:</P>
+</B></FONT><FONT SIZE=4>
+</FONT><B><FONT SIZE=3><P>1. Introduction&#9;</B></FONT><A HREF="#_Toc451787153">*</A>
+<B><FONT SIZE=3><P>2. Recent Updates&#9;</B></FONT><A HREF="#_Toc451787154">*</A></P>
+<B><FONT SIZE=3><P>3. Tea’s BNF&#9;</B></FONT><A HREF="#_Toc451787155">*</A></P>
+<B><FONT SIZE=3><P>4. JavaCC Code&#9;</B></FONT><A HREF="#_Toc451787156">*</A></P>
+<B><FONT SIZE=3><P>5. SimpleNode.java – Code Generator&#9;</B></FONT><A HREF="#_Toc451787157">*</A></P>
+<B><FONT SIZE=3><P>6. Sample Tea programs&#9;</B></FONT><A HREF="#_Toc451787158">*</A></P><DIR>
+<DIR>
+
+<FONT SIZE=1><P>Sample_a.tea&#9;</FONT><A HREF="#_Toc451787159">*</A></P>
+<FONT SIZE=1><P>Sample_b.tea&#9;</FONT><A HREF="#_Toc451787160">*</A></P>
+<FONT SIZE=1><P>Sample_c.tea&#9;</FONT><A HREF="#_Toc451787161">*</A></P>
+<FONT SIZE=1><P>Sample_d.tea&#9;</FONT><A HREF="#_Toc451787162">*</A></P></DIR>
+</DIR>
+
+<B><FONT SIZE=3><P>7. Lexical Analysis Output&#9;</B></FONT><A HREF="#_Toc451787163">*</A></P><DIR>
+<DIR>
+
+<FONT SIZE=1><P>sample_a.tea&#9;</FONT><A HREF="#_Toc451787164">*</A></P>
+<FONT SIZE=1><P>sample_b.tea&#9;</FONT><A HREF="#_Toc451787165">*</A></P>
+<FONT SIZE=1><P>sample_c.tea&#9;</FONT><A HREF="#_Toc451787166">*</A></P>
+<FONT SIZE=1><P>sample_d.tea&#9;</FONT><A HREF="#_Toc451787167">*</A></P></DIR>
+</DIR>
+
+<B><FONT SIZE=3><P>8. Parsing Output&#9;</B></FONT><A HREF="#_Toc451787168">*</A></P><DIR>
+<DIR>
+
+<FONT SIZE=1><P>sample_a.tea&#9;</FONT><A HREF="#_Toc451787169">*</A></P>
+<FONT SIZE=1><P>sample_b.tea&#9;</FONT><A HREF="#_Toc451787170">*</A></P>
+<FONT SIZE=1><P>sample_c.tea&#9;</FONT><A HREF="#_Toc451787171">*</A></P>
+<FONT SIZE=1><P>sample_d.tea&#9;</FONT><A HREF="#_Toc451787172">*</A></P></DIR>
+</DIR>
+
+<B><FONT SIZE=3><P>9. AST Output&#9;</B></FONT><A HREF="#_Toc451787173">*</A></P><DIR>
+<DIR>
+
+<FONT SIZE=1><P>sample_a.tea&#9;</FONT><A HREF="#_Toc451787174">*</A></P>
+<FONT SIZE=1><P>sample_b.tea&#9;</FONT><A HREF="#_Toc451787175">*</A></P>
+<FONT SIZE=1><P>sample_c.tea&#9;</FONT><A HREF="#_Toc451787176">*</A></P>
+<FONT SIZE=1><P>sample_d.tea&#9;</FONT><A HREF="#_Toc451787177">*</A></P></DIR>
+</DIR>
+
+<B><FONT SIZE=3><P>10. Code Generation Output&#9;</B></FONT><A HREF="#_Toc451787178">*</A></P><DIR>
+<DIR>
+
+<FONT SIZE=1><P>sample_a.tea&#9;</FONT><A HREF="#_Toc451787179">*</A></P>
+<FONT SIZE=1><P>sample_b.tea&#9;</FONT><A HREF="#_Toc451787180">*</A></P>
+<FONT SIZE=1><P>sample_c.tea&#9;</FONT><A HREF="#_Toc451787181">*</A></P>
+<FONT SIZE=1><P>sample_d.tea&#9;</FONT><A HREF="#_Toc451787182">*</A></P>
+<B><FONT SIZE=4></DIR>
+</DIR>
+</P>
+<P><A NAME="_Toc448394591"><A NAME="_Toc451787153">1. Introduction</A></P>
+</B></FONT><FONT SIZE=3>
+<P>&#9;This project is based on development of an abstract subset of Java called Tea. <EM>Tea </EM>programs consist of simple type definitions followed by executable statements. During various stages of this project we design and create most of the parts and modules that are used in today’s compilers. The tool used for the most part of the project is Sun Microsystems’ Java Compiler Compiler (JavaCC) – available at http://www.suntest.com/JavaCC</P>
+</FONT><B><FONT SIZE=4>
+<P><A NAME="_Toc451787154">2. Recent Updates</A></P>
+</B></FONT><FONT SIZE=3>
+
+<UL>
+<STRONG><LI>Friday, March 26: &#9;</FONT></STRONG><A HREF="PLTprojectgrammar.html"><B><FONT SIZE=3>Grammar </B></FONT></A></LI>
+<FONT SIZE=3><STRONG><LI>Friday, April 2: &#9;</FONT></STRONG><A HREF="PLTprojectlexer.html"><B><FONT SIZE=3>Lexical Analyzer</B></FONT></A></LI>
+<FONT SIZE=3><STRONG><LI>Friday, April 16: &#9;</FONT></STRONG><A HREF="PLTprojectparser.html"><B><FONT SIZE=3>Parser </B></FONT></A></LI>
+<FONT SIZE=3><LI>Friday, April 29: &#9;<B>AST Generator</LI>
+</B><LI>Thursday, May 19: &#9;<B>Simple Code Generator</LI></UL>
+
+</B>
+</FONT><FONT SIZE=1><P>&nbsp;</P>
+<P>&nbsp;</P>
+</FONT><B><FONT SIZE=4><P> </P>
+<P><A NAME="_Toc451787155">3. Tea’s BNF</A></A></P>
+</B></FONT><FONT SIZE=1>
+<I><P>[] = 0 or 1 (regexp = ()?)</P>
+<P>{} = 0 or more (regexp = ()*)</P>
+<P>&lt;&gt; = 1 or more (regexp = ()+)</P>
+</I>
+<P>program -&gt; method_declaration</P>
+<P>method_declaration -&gt; type name "(" ")" "{" statement_block "}"</P>
+<P>type -&gt; "void" | variable_type</P>
+<P>variable_type -&gt; "int"</P>
+
+<P>statement_block -&gt; { statement } </P>
+<P>statement -&gt; simple_statement  ";"  | compound_statement |  "{"  statement_block  "}"  </P>
+
+<P>simple_statement -&gt; declarative_statement | assignment_statement</P>
+<P>declarativestatement -&gt; variable_type assignmentstatement</P>
+<P>                        {"," assignmentstatement}   </P>
+<P>assignment_statement -&gt; name [assignop expression] </P>
+
+<P>expression -&gt; or_expression</P>
+<P>or_expression -&gt; and_expression  { or and_expression }</P>
+<P>and_expression -&gt; relop_expression { and  relop_expression } </P>
+<P>relop_expression -&gt; ltgt_expression { relop ltgt_expression }</P>
+<P>ltgt_expression -&gt; addop_expression { ltgt addop_expression }</P>
+<P>addop_expression -&gt; mulop_expression { addop mulop_expression }</P>
+<P>mulop_expression -&gt; term { mulop term }</P>
+<P>term -&gt; not value | addop value | value</P>
+<P>value -&gt; name | number |   "("  expression  ")"  </P>
+
+<P>assignop -&gt; "=" </P>
+<P>not -&gt; "!"</P>
+<P>or -&gt; "||"</P>
+<P>and -&gt; "&amp;&amp;"</P>
+<P>relop -&gt; "!=" | "=="</P>
+<P>ltgt -&gt; "&gt;" | "&lt;" | "&gt;=" | "&lt;="</P>
+<P>addop -&gt; "+" | "-"</P>
+<P>mulop -&gt; "*" | "/" | "%"</P>
+
+<P>compound_statement -&gt; if_statement | loop_statement</P>
+<P>if_statement -&gt; "if" "(" expression ")" statement [ "else" statement ]</P>
+<P>loop_statement -&gt; while_statement | dowhile_statement | for_statement</P>
+<P>while_statement -&gt; "while" "(" expression ")" statement</P>
+<P>do_whilestatement -&gt; "do" statement "while" "(" expression ")" ";"</P>
+<P>forstatement -&gt; "for" "(" [for_expression] ";" [expression] ";" </P>
+<P>                [for_expression] ")" statement </P>
+<P>for_expression -&gt; declarative_statement | assignment_statement </P>
+<P>                  { "," assignment_statement }</P>
+
+<P>name -&gt; letter { letter | digit | "_" }</P>
+<P>number -&gt; digit { digit }</P>
+<P>letter -&gt; [a-zA-Z]</P>
+<P>digit -&gt; [0-9]</P>
+
+<P>&nbsp;</P>
+</FONT><B><FONT SIZE=4><P><A NAME="_Toc448394592"></P>
+<P><A NAME="_Toc451787156">4. JavaCC Code</A></A></P>
+</B></FONT><FONT SIZE=1><P><A NAME="_Toc448394593"></P>
+<P>options {</P>
+<P>   IGNORE_CASE = false;</P>
+<P>   OPTIMIZE_TOKEN_MANAGER = true;</P>
+<P>   MULTI = false;</P>
+<P>   STATIC = false;</P>
+<P>}</P>
+<P> </P>
+<P>PARSER_BEGIN(tea)</P>
+<P> </P>
+<P>import java.io.*;</P>
+<P> </P>
+<P>public class tea {</P>
+<P>&#9;public static void main(String[] args) throws ParseException, FileNotFoundException  {</P>
+<P>&#9;&#9;if ( args.length &lt; 1 ) {</P>
+<P>&#9;&#9;&#9;System.out.println("Please pass in the filename for a parameter.");</P>
+<P>&#9;&#9;&#9;System.exit(1);</P>
+<P>&#9;&#9;}</P>
+<P> </P>
+<P>&#9;&#9;tea parser = new tea( new FileInputStream(args[0]) );</P>
+<P> </P>
+<P>&#9;&#9;SimpleNode root = parser.program();</P>
+<P>&#9;&#9;root.dump("");</P>
+<P>&#9;&#9;System.out.println("Parse completed.");</P>
+<P>&#9;}</P>
+<P>}</P>
+<P> </P>
+<P>PARSER_END(tea)</P>
+
+<P>SKIP: /* Whitespace */</P>
+<P> { "\t"</P>
+<P> | "\n"</P>
+<P> | "\r"</P>
+<P> | " " }</P>
+<P> </P>
+<P>TOKEN: </P>
+<P> { &lt;VOIDTYPE:      "void"&gt;</P>
+<P> | &lt;DATATYPE:      "int"&gt;   </P>
+<P> | &lt;IF_KEYWORD:    "if"&gt;</P>
+<P> | &lt;ELSE_KEYWORD:  "else"&gt;</P>
+<P> | &lt;DO_KEYWORD:    "do"&gt;</P>
+<P> | &lt;WHILE_KEYWORD: "while"&gt;</P>
+<P> | &lt;FOR_KEYWORD:   "for"&gt;</P>
+<P> | &lt;LBRACE:        "{"&gt;</P>
+<P> | &lt;RBRACE:        "}"&gt;</P>
+<P> | &lt;LPAREN:        "("&gt;</P>
+<P> | &lt;RPAREN:        ")"&gt;</P>
+<P> | &lt;SEMICOLON:     ";"&gt;</P>
+<P> | &lt;ASSIGNOP:      "="&gt;</P>
+<P> | &lt;OR_OP:         "||"&gt;</P>
+<P> | &lt;AND_OP:        "&amp;&amp;"&gt;</P>
+<P> | &lt;EQ_OP:         "=="&gt;</P>
+<P> | &lt;NEQ_OP:        "!="&gt;</P>
+<P> | &lt;LT_OP:         "&lt;"&gt;</P>
+<P> | &lt;LT_EQ_OP:      "&lt;="&gt;</P>
+<P> | &lt;GT_OP:         "&gt;"&gt;</P>
+<P> | &lt;GT_EQ_OP:      "&gt;="&gt;</P>
+<P> | &lt;PLUS_OP:       "+"&gt;</P>
+<P> | &lt;MINUS_OP:      "-"&gt;</P>
+<P> | &lt;MUL_OP:        "*"&gt;</P>
+<P> | &lt;DIV_OP:        "/"&gt;</P>
+<P> | &lt;MOD_OP:        "%"&gt;</P>
+<P> | &lt;LNEG:          "!"&gt; </P>
+<P> | &lt;COMMA:         ","&gt;</P>
+<P> | &lt;NAME:          (["a"-"z"] | ["A"-"Z"]) ( ["a"-"z"] | ["A"-"Z"] | ["0"-"9"] | "_" )*&gt;</P>
+<P> | &lt;NUMBER:        (["0"-"9"])+&gt;</P>
+<P> | &lt;OTHER:         ~[]&gt; }</P>
+
+<P>SimpleNode program() : {}</P>
+<P> { method_declaration() &lt;EOF&gt;  </P>
+<P> {  jjtThis.myname = "program";</P>
+<P> &#9;return jjtThis; } </P>
+<P>}</P>
+<P> </P>
+<P>void method_declaration() : { Token tok1, tok2; }</P>
+<P> { (tok1=&lt;VOIDTYPE&gt; | tok1=&lt;DATATYPE&gt;) tok2=&lt;NAME&gt; &lt;LPAREN&gt; &lt;RPAREN&gt; &lt;LBRACE&gt; statement_block() &lt;RBRACE&gt;</P>
+<P> &#9;{ jjtThis.myname = "method_declaration"; </P>
+<P>      jjtThis.value  = tok1.image;</P>
+<P>&#9;  jjtThis.ovalue  = tok2.image; </P>
+<P>&#9;  jjtThis.line_number = tok1.beginLine; }</P>
+<P> }</P>
+<P> </P>
+<P>void statement_block() #void : {}</P>
+<P> { ( statement() )* }</P>
+<P> </P>
+<P>void statement() #void : {}</P>
+<P> { simple_statement() &lt;SEMICOLON&gt; </P>
+<P> | compound_statement() </P>
+<P> | &lt;LBRACE&gt; statement_block() &lt;RBRACE&gt; }</P>
+
+<P>void simple_statement() #void : {}</P>
+<P> { declarative_statement() </P>
+<P> | assignment_statement() }</P>
+
+<P>void declarative_statement() : { Token tok1; }</P>
+<P> {&#9;tok1=&lt;DATATYPE&gt;</P>
+<P>  &#9;assignment_statement() (&lt;COMMA&gt; assignment_statement())*</P>
+<P>&#9;{ jjtThis.myname = "declarative_statement"; </P>
+<P>&#9;  jjtThis.value  = tok1.image; </P>
+<P>&#9;  jjtThis.line_number = tok1.beginLine; }</P>
+<P> }</P>
+<P>  </P>
+<P>void assignment_statement() : { Token tok1;}</P>
+<P> { tok1=&lt;NAME&gt; (&lt;ASSIGNOP&gt; expression() )?</P>
+<P> &#9;{ jjtThis.myname = "=";</P>
+<P>&#9;  jjtThis.value = tok1.image;</P>
+<P>&#9;  jjtThis.line_number = tok1.beginLine; }</P>
+<P> }</P>
+<P>  </P>
+<P>void expression() #void : { }</P>
+<P> { or_expression() }</P>
+<P> </P>
+<P>void or_expression() : { Token tok1=null;}</P>
+<P> { and_expression() (tok1=&lt;OR_OP&gt; or_expression() #or_expression(&gt;1))* </P>
+<P>    { if (tok1==null) jjtThis.myname = null; </P>
+<P>&#9;  else {</P>
+<P>&#9;&#9;jjtThis.myname = tok1.image;&#9;</P>
+<P>&#9;&#9;jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;  }</P>
+<P>&#9;}</P>
+<P> } </P>
+
+<P>void and_expression() : { Token tok1=null;}</P>
+<P> { relop_expression() (tok1=&lt;AND_OP&gt; and_expression() #and_expression(&gt;1))* </P>
+<P> &#9;{ if (tok1==null) jjtThis.myname = null; </P>
+<P>&#9;  else {</P>
+<P>&#9;&#9;jjtThis.myname = tok1.image;&#9;</P>
+<P>&#9;&#9;jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;  }</P>
+<P>&#9;}</P>
+<P> }</P>
+<P> </P>
+<P>void relop_expression() : { Token tok1=null;}</P>
+<P> { ltgt_expression() ((tok1=&lt;EQ_OP&gt; | tok1=&lt;NEQ_OP&gt;) relop_expression() #relop_expression(&gt;1))* </P>
+<P> &#9;{ if (tok1==null) jjtThis.myname = null; </P>
+<P>&#9;  else {</P>
+<P>&#9;&#9;jjtThis.myname = tok1.image;&#9;</P>
+<P>&#9;&#9;jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;  }</P>
+<P>&#9;} </P>
+<P> }</P>
+<P> </P>
+<P>void ltgt_expression() : { Token tok1=null;}</P>
+<P> { addop_expression() ( (tok1=&lt;LT_OP&gt; | tok1=&lt;LT_EQ_OP&gt; | tok1=&lt;GT_OP&gt; | tok1=&lt;GT_EQ_OP&gt;) ltgt_expression() #ltgt_expression(&gt;1))* </P>
+<P> &#9;{ if (tok1==null) jjtThis.myname = null; </P>
+<P>&#9;  else {</P>
+<P>&#9;  &#9;jjtThis.myname = tok1.image;&#9;</P>
+<P>&#9;  &#9;jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;  }</P>
+<P>&#9;}  </P>
+<P> }</P>
+<P>  </P>
+<P>void addop_expression() : { Token tok1=null;}</P>
+<P> { mulop_expression() ( (tok1=&lt;PLUS_OP&gt; | tok1=&lt;MINUS_OP&gt;) addop_expression() #addop_expression(&gt;1))* </P>
+<P> &#9;{ if (tok1==null) jjtThis.myname = null; </P>
+<P>&#9;  else {</P>
+<P>&#9;  &#9;jjtThis.myname = tok1.image;&#9;</P>
+<P>&#9;  &#9;jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;  }</P>
+<P>&#9;}  </P>
+<P> }</P>
+
+<P>void mulop_expression() : { Token tok1=null;}</P>
+<P> { term() ((tok1=&lt;MUL_OP&gt; | tok1=&lt;DIV_OP&gt; | tok1=&lt;MOD_OP&gt;) mulop_expression() #mulop_expression(&gt;1))* </P>
+<P> &#9;{ if (tok1==null) jjtThis.myname = null; </P>
+<P>&#9;  else {</P>
+<P>&#9;  &#9;jjtThis.myname = tok1.image;&#9;</P>
+<P>&#9;  &#9;jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;  }</P>
+<P>&#9;} </P>
+<P> }</P>
+<P>  </P>
+<P>void term(): { Token tok1;}</P>
+<P> { tok1=&lt;LNEG&gt; value() { jjtThis.myname = tok1.image; jjtThis.line_number = tok1.beginLine; }</P>
+<P> | value() { jjtThis.myname = null; } </P>
+<P> }</P>
+
+<P>void value() : { Token tok1; }</P>
+<P> { &#9;tok1=&lt;NAME&gt; { jjtThis.myname = tok1.image; jjtThis.line_number = tok1.beginLine; }</P>
+<P> |&#9;tok1=&lt;NUMBER&gt; { jjtThis.myname = tok1.image; jjtThis.line_number = tok1.beginLine; } </P>
+<P> | &#9;&lt;LPAREN&gt; expression() &lt;RPAREN&gt; { jjtThis.myname = null; }</P>
+<P> }</P>
+<P>  </P>
+<P>void compound_statement() #void: { }</P>
+<P> { if_statement() | loop_statement() }  </P>
+
+<P>void if_statement() : { Token tok1; }</P>
+<P> { tok1=&lt;IF_KEYWORD&gt; </P>
+<P> &#9;&lt;LPAREN&gt; expression() &lt;RPAREN&gt; statement() </P>
+<P>   (&lt;ELSE_KEYWORD&gt; statement())? &#9;   </P>
+<P>&#9;   { jjtThis.myname = tok1.image; </P>
+<P>&#9;     jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;   }</P>
+<P> }  </P>
+<P> </P>
+<P>void loop_statement() #void: { }</P>
+<P> { while_statement() | do_while_statement() | for_statement() }  </P>
+<P> </P>
+<P>void while_statement() : { Token tok1; }</P>
+<P> { tok1=&lt;WHILE_KEYWORD&gt; &lt;LPAREN&gt; expression() &lt;RPAREN&gt; statement() </P>
+<P> &#9;&#9;{ jjtThis.myname = tok1.image; </P>
+<P>&#9;&#9;  jjtThis.line_number = tok1.beginLine; } </P>
+<P> }  </P>
+<P> </P>
+<P>void do_while_statement() : { Token tok1; }</P>
+<P> { tok1=&lt;DO_KEYWORD&gt; statement()</P>
+<P>   &lt;WHILE_KEYWORD&gt; &lt;LPAREN&gt; expression() &lt;RPAREN&gt; &lt;SEMICOLON&gt;</P>
+<P>&#9;   { jjtThis.myname = tok1.image; </P>
+<P>&#9;     jjtThis.line_number = tok1.beginLine; }</P>
+<P> }  </P>
+<P> </P>
+<P>void for_statement() : { Token tok1; }</P>
+<P> { tok1=&lt;FOR_KEYWORD&gt; &lt;LPAREN&gt;   (for_expression())? &lt;SEMICOLON&gt; (expression())? &lt;SEMICOLON&gt;  (for_expression())? &lt;RPAREN&gt; statement()&#9;</P>
+<P>&#9;&#9;{ jjtThis.myname = tok1.image; </P>
+<P>&#9;&#9;  jjtThis.line_number = tok1.beginLine; </P>
+<P>&#9;&#9;}</P>
+<P> }  </P>
+
+<P>void for_expression() #void:</P>
+<P> { }</P>
+<P> { declarative_statement() | assignment_statement() ( &lt;COMMA&gt; assignment_statement() )* }   </P>
+</FONT><FONT FACE="Courier New" SIZE=1>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Courier New" SIZE=4><P>&nbsp;</P>
+</FONT><FONT SIZE=4><P><A NAME="_Toc451787157">5. SimpleNode.java – Code Generator</A></P>
+</B></FONT><FONT FACE="Courier New" SIZE=1>
+<P>/* Generated By:JJTree: Do not edit this line. SimpleNode.java */</P>
+
+<P>public class SimpleNode implements Node {</P>
+<P>  protected Node parent;</P>
+<P>  protected Node[] children;</P>
+<P>  protected int id;</P>
+<P>  protected tea parser;</P>
+
+<P>  public String myname=null;</P>
+<P>  public String value=null;</P>
+<P>  public String ovalue=null;</P>
+<P>  public int line_number=0;</P>
+<P>  static int labelcount = 0;</P>
+
+<P>  public SimpleNode(int i) {</P>
+<P>    id = i;</P>
+<P>  }</P>
+
+<P>  public SimpleNode(tea p, int i) {</P>
+<P>    this(i);</P>
+<P>    parser = p;</P>
+<P>  }</P>
+
+<P>  public void jjtOpen() {</P>
+<P>  }</P>
+
+<P>  public void jjtClose() {</P>
+<P>  }</P>
+<P>  </P>
+<P>  public void jjtSetParent(Node n) { parent = n; }</P>
+<P>  public Node jjtGetParent() { return parent; }</P>
+
+<P>  public void jjtAddChild(Node n, int i) {</P>
+<P>    if (children == null) {</P>
+<P>      children = new Node[i + 1];</P>
+<P>    } else if (i &gt;= children.length) {</P>
+<P>      Node c[] = new Node[i + 1];</P>
+<P>      System.arraycopy(children, 0, c, 0, children.length);</P>
+<P>      children = c;</P>
+<P>    }</P>
+<P>    children[i] = n;</P>
+<P>  }</P>
+
+<P>  public Node jjtGetChild(int i) {</P>
+<P>    return children[i];</P>
+<P>  }</P>
+
+<P>  public int jjtGetNumChildren() {</P>
+<P>    return (children == null) ? 0 : children.length;</P>
+<P>  }</P>
+<P>  /* Override this method if you want to customize how the node dumps</P>
+<P>     out its children. */</P>
+
+<P>  public void dump(String prefix) { gencode(0); }</P>
+
+<P>  public void gencode(int usetemp) {        </P>
+<P>   String label;</P>
+<P>   String label2;</P>
+<P>   if (myname == null) {</P>
+<P>      /* just a pass through node */</P>
+<P>      SimpleNode n = (SimpleNode)children[0];</P>
+<P>      n.gencode(usetemp);   </P>
+<P>   } else {</P>
+<P>      int omitgen = 0;</P>
+<P>      if (myname == "program") omitgen = 1;</P>
+<P>      if (myname == "method_declaration") omitgen = 1;</P>
+<P>      int currenttemp = usetemp;</P>
+<P>      if ((children == null) &amp;&amp; ( value == null )) {</P>
+<P>         /* just a single value or id ... don't need ()*/</P>
+<P>         System.out.print("\n\n  MOV T[" + usetemp + "], " + myname);</P>
+<P>      } else {   </P>
+<P>         if (( value != null ) &amp;&amp; (omitgen != 1)) {       </P>
+<P>            System.out.print("\n\n  MOV T[" + currenttemp + "], " + value);</P>
+<P>            currenttemp++;</P>
+<P>            if ( ovalue != null ) {</P>
+<P>               System.out.print("\n\n  MOV T[" + currenttemp + "], " + ovalue);</P>
+<P>               currenttemp++;</P>
+<P>            }</P>
+<P>         }</P>
+
+<P>         boolean complex_statement = false;</P>
+<P>         if ((myname == "if") || (myname == "while") || (myname == "for")) complex_statement = true;</P>
+
+<P>&nbsp;</P>
+<P>         if ((complex_statement==false) &amp;&amp; (children != null)) {        </P>
+<P>              for (int i = 0; i &lt; children.length; ++i) {</P>
+<P>            SimpleNode n = (SimpleNode)children[i];</P>
+<P>            if (n != null) { n.gencode(currenttemp++); }</P>
+<P>           }    </P>
+<P>         }</P>
+
+<P>         if (omitgen != 1) {</P>
+<P>            int arg1 = usetemp;</P>
+<P>            int arg2 = usetemp + 1;</P>
+<P>            if (myname == "=") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg2 + "]");                     </P>
+<P>               System.out.print(  "\n  MOV " + value + ", AX");      </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "+") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]");            </P>
+<P>               System.out.print(  "\n  ADD AX, T[" + arg2 + "]");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "-") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]");            </P>
+<P>               System.out.print(  "\n  SUB AX, T[" + arg2 + "]");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "*") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]");            </P>
+<P>               System.out.print(  "\n  MUL T[" + arg2 + "]     ; AX = AX * T[" + arg2 + "]");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "/") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]");            </P>
+<P>               System.out.print(  "\n  DIV T[" + arg2 + "]     ; AX = AX / T[" + arg2 + "]");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "%") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]");            </P>
+<P>               System.out.print(  "\n  MOD T[" + arg2 + "]     ; AX = AX % T[" + arg2 + "]");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "!") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]");            </P>
+<P>               System.out.print(  "\n  NOT AX");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "||") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] || T[" + arg2 + "]   (1 = true, 0 = false)");            </P>
+<P>               System.out.print(  "\n  OR  AX, T[" + arg2 + "]");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "&amp;&amp;") {</P>
+<P>               System.out.print("\n\n  MOV AX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] &amp;&amp; T[" + arg2 + "]   (1 = true, 0 = false)");      </P>
+<P>               System.out.print(  "\n  AND AX, T[" + arg2 + "]");            </P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "==") {</P>
+<P>               System.out.print("\n\n  MOV BX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] == T[" + arg2 + "]   (1 = true, 0 = false)");      </P>
+<P>               System.out.print(  "\n  MOV AX, 1");   </P>
+<P>               System.out.print(  "\n  CMP BX, T[" + arg2 + "]");   </P>
+<P>               label = "L_" + labelcount; labelcount++;</P>
+<P>               System.out.print(  "\n  JE  " + label);</P>
+<P>               System.out.print(  "\n  MOV AX, 0");   </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "!=") {</P>
+<P>               System.out.print("\n\n  MOV BX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] != T[" + arg2 + "]   (1 = true, 0 = false)");      </P>
+<P>               System.out.print(  "\n  MOV AX, 1");   </P>
+<P>               System.out.print(  "\n  CMP BX, T[" + arg2 + "]");   </P>
+<P>               label = "L_" + labelcount; labelcount++;</P>
+<P>               System.out.print(  "\n  JNE " + label);</P>
+<P>               System.out.print(  "\n  MOV AX, 0");   </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "&gt;") {</P>
+<P>               System.out.print("\n\n  MOV BX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] &gt; T[" + arg2 + "]   (1 = true, 0 = false)");      </P>
+<P>               System.out.print(  "\n  MOV AX, 1");   </P>
+<P>               System.out.print(  "\n  CMP BX, T[" + arg2 + "]");   </P>
+<P>               label = "L_" + labelcount; labelcount++;</P>
+<P>               System.out.print(  "\n  JA  " + label);</P>
+<P>               System.out.print(  "\n  MOV AX, 0");   </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "&lt;") {</P>
+<P>               System.out.print("\n\n  MOV BX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] &lt; T[" + arg2 + "]   (1 = true, 0 = false)");      </P>
+<P>               System.out.print(  "\n  MOV AX, 1");   </P>
+<P>               System.out.print(  "\n  CMP BX, T[" + arg2 + "]");   </P>
+<P>               label = "L_" + labelcount; labelcount++;</P>
+<P>               System.out.print(  "\n  JB  " + label);</P>
+<P>               System.out.print(  "\n  MOV AX, 0");   </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "&lt;=") {</P>
+<P>               System.out.print("\n\n  MOV BX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] &lt; T[" + arg2 + "]   (1 = true, 0 = false)");      </P>
+<P>               System.out.print(  "\n  MOV AX, 1");   </P>
+<P>               System.out.print(  "\n  CMP BX, T[" + arg2 + "]");   </P>
+<P>               label = "L_" + labelcount; labelcount++;</P>
+<P>               System.out.print(  "\n  JBE  " + label);</P>
+<P>               System.out.print(  "\n  MOV AX, 0");   </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "&gt;=") {</P>
+<P>               System.out.print("\n\n  MOV BX, T[" + arg1 + "]     ; AX = T[" + arg1 + "] &lt; T[" + arg2 + "]   (1 = true, 0 = false)");      </P>
+<P>               System.out.print(  "\n  MOV AX, 1");   </P>
+<P>               System.out.print(  "\n  CMP BX, T[" + arg2 + "]");   </P>
+<P>               label = "L_" + labelcount; labelcount++;</P>
+<P>               System.out.print(  "\n  JAE  " + label);</P>
+<P>               System.out.print(  "\n  MOV AX, 0");   </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               System.out.print(  "\n  MOV T[" + usetemp + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "if") {</P>
+<P>               SimpleNode n0 = (SimpleNode)children[0];</P>
+<P>               SimpleNode n1 = (SimpleNode)children[1];</P>
+<P>               SimpleNode n2 = null;</P>
+<P>&#9;&#9;&#9;   if (children.length == 3) n2 = (SimpleNode)children[2];</P>
+<P>               label  = "L_" + labelcount; labelcount++;</P>
+<P>               label2 = "L_" + labelcount; labelcount++;</P>
+<P>               int result = usetemp + 1;</P>
+<P>                System.out.print("\n\n                              ; IF statement:");                     </P>
+<P>               n0.gencode(usetemp);               </P>
+<P>               System.out.print(  "\n  MOV AX, T[" + usetemp + "]");               </P>
+<P>               System.out.print(  "\n  JZ  " + label);</P>
+<P>               n1.gencode(usetemp + 1);                </P>
+<P>               System.out.print(  "\n  JMP " + label2);</P>
+<P>               System.out.print(  "\n" + label + ":");               </P>
+<P>               if (children.length == 3) n2.gencode(usetemp + 1); </P>
+<P>               System.out.print(  "\n" + label2 + ":");               </P>
+<P>               System.out.print(  "\n  MOV T[" + result + "], AX");</P>
+<P>            } else</P>
+<P>            if (myname == "while") {</P>
+<P>               SimpleNode n0 = (SimpleNode)children[0];</P>
+<P>               SimpleNode n1 = (SimpleNode)children[1];               </P>
+<P>               label  = "L_" + labelcount; labelcount++;</P>
+<P>               label2 = "L_" + labelcount; labelcount++;               </P>
+<P>               System.out.print("\n\n                              ; WHILE statement:");                     </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               n0.gencode(usetemp);               </P>
+<P>               System.out.print(  "\n  MOV AX, T[" + usetemp + "]");               </P>
+<P>               System.out.print(  "\n  JZ  " + label2);                 </P>
+<P>               n1.gencode(usetemp + 1);                </P>
+<P>               System.out.print(  "\n  JMP " + label);</P>
+<P>               System.out.print(  "\n" + label2 + ":");</P>
+<P>            } else</P>
+<P>            if (myname == "for") {</P>
+<P>               SimpleNode n0 = (SimpleNode)children[0];</P>
+<P>               SimpleNode n1 = (SimpleNode)children[1];               </P>
+<P>               SimpleNode n2 = (SimpleNode)children[2];               </P>
+<P>               SimpleNode n3 = (SimpleNode)children[3];</P>
+<P>               System.out.print("\n\n                              ; FOR statement:");                  </P>
+<P>               n0.gencode(usetemp);</P>
+<P>               label  = "L_" + labelcount; labelcount++;</P>
+<P>               label2 = "L_" + labelcount; labelcount++;                               </P>
+<P>               System.out.print(  "\n" + label + ":");</P>
+<P>               n1.gencode(usetemp);</P>
+<P>               System.out.print(  "\n  MOV AX, T[" + usetemp + "]");               </P>
+<P>               System.out.print(  "\n  JZ  " + label2);                 </P>
+<P>               n3.gencode(usetemp + 1);                </P>
+<P>               n2.gencode(usetemp + 2);</P>
+<P>               System.out.print(  "\n  JMP " + label);</P>
+<P>               System.out.print(  "\n" + label2 + ":");</P>
+<P>            }      </P>
+<P>         }      </P>
+<P>      }</P>
+<P>   }</P>
+<P>  }</P>
+<P>}</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</FONT><B><FONT SIZE=4><P>&nbsp;</P>
+<P><A NAME="_Toc451787158">6. Sample Tea programs</A></A></P>
+</B></FONT><FONT SIZE=1>
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787159">Sample_a.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>void input_a() {</P>
+<P>     a = b3;</P>
+<P>     xyz = a + b + c - p / q;</P>
+<P>     a = xyz * ( p + q );</P>
+<P>     p = a - xyz - p;</P>
+<P>}</P>
+
+</FONT><B><U><P><A NAME="_Toc451787160">Sample_b.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>void input_b() {</P>
+<P>     if ( i &gt; j )</P>
+<P>       i = i + j;</P>
+<P>     else if ( i &lt; j )</P>
+<P>       i = 1;</P>
+<P>}</P>
+
+</FONT><B><U><P><A NAME="_Toc451787161">Sample_c.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>void input_c() {</P>
+<P>     while ( i &lt; j &amp;&amp; j &lt; k ) {</P>
+<P>           k = k + 1;</P>
+<P>           while ( i == j )</P>
+<P>                 i = i + 2;</P>
+<P>     }</P>
+<P>}&#9;</P>
+
+</FONT><B><U><P><A NAME="_Toc451787162">Sample_d.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>int input_d() {</P>
+<P>&#9;my_variable_01 = (5 + 2 / 10) * (3 % 1);</P>
+<P>&#9;my_variable_02 = my_variable_01 + 10;</P>
+<P>&#9;do {</P>
+<P>&#9;&#9;my_variable_02 = my_variable_02 - 1;&#9;&#9;</P>
+<P>&#9;</P>
+<P>&#9;} while (my_variable_02 != my_variable_01);           </P>
+<P>&#9;</P>
+<P>&#9;even = 0;</P>
+<P>&#9;odd  = 0;</P>
+<P>&#9;for (a = 0; a &lt; 10; a = a + 1) {</P>
+<P>&#9;&#9;if ((a % 2) == 0) </P>
+<P>&#9;&#9;&#9;even = even + 1; </P>
+<P>&#9;&#9;else </P>
+<P>&#9;&#9;&#9;odd = odd + 1;&#9;</P>
+<P>&#9;}</P>
+<P>&#9;if (((even &gt;= odd) &amp;&amp; (even &lt;= odd)) || (1 &gt; 0))) {</P>
+<P>&#9;&#9;love_tea = 1;</P>
+<P>&#9;}</P>
+<P>}</P>
+
+<P>&nbsp;</P>
+</FONT><B><FONT SIZE=4><P><A NAME="_Toc448394594"><A NAME="_Toc451787163">7. Lexical Analysis Output</A></A></P>
+</B></FONT><FONT SIZE=1>
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787164">sample_a.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>TYPEDEF: void</P>
+<P>ID: input_a</P>
+<P>LEFT_PAREN: (</P>
+<P>RIGHT_PAREN: )</P>
+<P>LEFT_BRAKET: {</P>
+<P>ID: a</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: b3</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: xyz</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: a</P>
+<P>PLUS_OP: +</P>
+<P>ID: b</P>
+<P>PLUS_OP: +</P>
+<P>ID: c</P>
+<P>MINUS_OP: -</P>
+<P>ID: p</P>
+<P>DIV_OP: /</P>
+<P>ID: q</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: a</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: xyz</P>
+<P>MUL_OP: *</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: p</P>
+<P>PLUS_OP: +</P>
+<P>ID: q</P>
+<P>RIGHT_PAREN: )</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: p</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: a</P>
+<P>MINUS_OP: -</P>
+<P>ID: xyz</P>
+<P>MINUS_OP: -</P>
+<P>ID: p</P>
+<P>SEMI_COLON: ;</P>
+<P>RIGHT_BRAKET: }</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787165">sample_b.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>TYPEDEF: void</P>
+<P>ID: input_b</P>
+<P>LEFT_PAREN: (</P>
+<P>RIGHT_PAREN: )</P>
+<P>LEFT_BRAKET: {</P>
+<P>IF_KEYWORD: if</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: i</P>
+<P>GT_OP: &gt;</P>
+<P>ID: j</P>
+<P>RIGHT_PAREN: )</P>
+<P>ID: i</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: i</P>
+<P>PLUS_OP: +</P>
+<P>ID: j</P>
+<P>SEMI_COLON: ;</P>
+<P>ELSE_KEYWORD: else</P>
+<P>IF_KEYWORD: if</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: i</P>
+<P>LT_OP: &lt;</P>
+<P>ID: j</P>
+<P>RIGHT_PAREN: )</P>
+<P>ID: i</P>
+<P>ASSIGN_OP: =</P>
+<P>NUMBER: 1</P>
+<P>SEMI_COLON: ;</P>
+<P>RIGHT_BRAKET: }</P>
+
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787166">sample_c.tea</A></P>
+</U><FONT SIZE=1><P>&#9;</P>
+</B><P>TYPEDEF: void</P>
+<P>ID: input_c</P>
+<P>LEFT_PAREN: (</P>
+<P>RIGHT_PAREN: )</P>
+<P>LEFT_BRAKET: {</P>
+<P>WHILE_KEYWORD: while</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: i</P>
+<P>LT_OP: &lt;</P>
+<P>ID: j</P>
+<P>AND_OP: &amp;&amp;</P>
+<P>ID: j</P>
+<P>LT_OP: &lt;</P>
+<P>ID: k</P>
+<P>RIGHT_PAREN: )</P>
+<P>LEFT_BRAKET: {</P>
+<P>ID: k</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: k</P>
+<P>PLUS_OP: +</P>
+<P>NUMBER: 1</P>
+<P>SEMI_COLON: ;</P>
+<P>WHILE_KEYWORD: while</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: i</P>
+<P>EQ_OP: ==</P>
+<P>ID: j</P>
+<P>RIGHT_PAREN: )</P>
+<P>ID: i</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: i</P>
+<P>PLUS_OP: +</P>
+<P>NUMBER: 2</P>
+<P>SEMI_COLON: ;</P>
+<P>RIGHT_BRAKET: }</P>
+<P>RIGHT_BRAKET: }</P>
+
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787167">sample_d.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>TYPEDEF: int</P>
+<P>ID: input_d</P>
+<P>LEFT_PAREN: (</P>
+<P>RIGHT_PAREN: )</P>
+<P>LEFT_BRAKET: {</P>
+<P>ID: my_variable_01</P>
+<P>ASSIGN_OP: =</P>
+<P>LEFT_PAREN: (</P>
+<P>MINUS_OP: -</P>
+<P>NUMBER: 5</P>
+<P>PLUS_OP: +</P>
+<P>NUMBER: 2</P>
+<P>DIV_OP: /</P>
+<P>NUMBER: 10</P>
+<P>RIGHT_PAREN: )</P>
+<P>MUL_OP: *</P>
+<P>LEFT_PAREN: (</P>
+<P>NUMBER: 3</P>
+<P>MOD_OP: %</P>
+<P>NUMBER: 1</P>
+<P>RIGHT_PAREN: )</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: my_variable_02</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: my_variable_01</P>
+<P>PLUS_OP: +</P>
+<P>NUMBER: 10</P>
+<P>SEMI_COLON: ;</P>
+<P>DO_KEYWORD: do</P>
+<P>LEFT_BRAKET: {</P>
+<P>ID: my_variable_02</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: my_variable_02</P>
+<P>MINUS_OP: -</P>
+<P>NUMBER: 1</P>
+<P>SEMI_COLON: ;</P>
+<P>RIGHT_BRAKET: }</P>
+<P>WHILE_KEYWORD: while</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: my_variable_02</P>
+<P>NEQ_OP: !=</P>
+<P>ID: my_variable_01</P>
+<P>RIGHT_PAREN: )</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: even</P>
+<P>ASSIGN_OP: =</P>
+<P>NUMBER: 0</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: odd</P>
+<P>ASSIGN_OP: =</P>
+<P>NUMBER: 0</P>
+<P>SEMI_COLON: ;</P>
+<P>FOR_KEYWORD: for</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: a</P>
+<P>ASSIGN_OP: =</P>
+<P>NUMBER: 0</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: a</P>
+<P>LT_OP: &lt;</P>
+<P>NUMBER: 10</P>
+<P>SEMI_COLON: ;</P>
+<P>ID: a</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: a</P>
+<P>PLUS_OP: +</P>
+<P>NUMBER: 1</P>
+<P>RIGHT_PAREN: )</P>
+<P>LEFT_BRAKET: {</P>
+<P>IF_KEYWORD: if</P>
+<P>LEFT_PAREN: (</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: a</P>
+<P>MOD_OP: %</P>
+<P>NUMBER: 2</P>
+<P>RIGHT_PAREN: )</P>
+<P>EQ_OP: ==</P>
+<P>NUMBER: 0</P>
+<P>RIGHT_PAREN: )</P>
+<P>ID: even</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: even</P>
+<P>PLUS_OP: +</P>
+<P>NUMBER: 1</P>
+<P>SEMI_COLON: ;</P>
+<P>ELSE_KEYWORD: else</P>
+<P>ID: odd</P>
+<P>ASSIGN_OP: =</P>
+<P>ID: odd</P>
+<P>PLUS_OP: +</P>
+<P>NUMBER: 1</P>
+<P>SEMI_COLON: ;</P>
+<P>RIGHT_BRAKET: }</P>
+<P>IF_KEYWORD: if</P>
+<P>LEFT_PAREN: (</P>
+<P>LEFT_PAREN: (</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: even</P>
+<P>GT_EQ_OP: &gt;=</P>
+<P>ID: odd</P>
+<P>RIGHT_PAREN: )</P>
+<P>AND_OP: &amp;&amp;</P>
+<P>LEFT_PAREN: (</P>
+<P>ID: even</P>
+<P>LT_EQ_OP: &lt;=</P>
+<P>ID: odd</P>
+<P>RIGHT_PAREN: )</P>
+<P>RIGHT_PAREN: )</P>
+<P>OR_OP: ||</P>
+<P>LEFT_PAREN: (</P>
+<P>NUMBER: 1</P>
+<P>GT_OP: &gt;</P>
+<P>NUMBER: 0</P>
+<P>RIGHT_PAREN: )</P>
+<P>LEFT_BRAKET: {</P>
+<P>ID: love_tea</P>
+<P>ASSIGN_OP: =</P>
+<P>NUMBER: 1</P>
+<P>SEMI_COLON: ;</P>
+<P>RIGHT_BRAKET: }</P>
+<P>RIGHT_BRAKET: }</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+</FONT><B><FONT SIZE=4><P><A NAME="_Toc448394595"><A NAME="_Toc451787168">8. Parsing Output</A></A></P>
+</B></FONT><FONT SIZE=1>
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787169">sample_a.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>program</P>
+<P>method_declaration</P>
+<P>type</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>mulop</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>mulop</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>Parse completed.</P>
+
+<P>&nbsp;</P><DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787170">sample_b.tea</A></P>
+</B></U><FONT SIZE=1></DIR>
+
+<P>program</P>
+<P>method_declaration</P>
+<P>type</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>if_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>if_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>Parse completed.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P><DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787171">sample_c.tea</A></P>
+</B></U><FONT SIZE=1></DIR>
+
+<P>program</P>
+<P>method_declaration</P>
+<P>type</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>loop_statement</P>
+<P>while_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>and</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>loop_statement</P>
+<P>while_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>relop</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>Parse completed.</P>
+
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787172">sample_d.tea</A></P>
+</B></U><FONT SIZE=1>
+<P>program</P>
+<P>method_declaration</P>
+<P>type</P>
+<P>variable_type</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>addop</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>mulop</P>
+<P>term</P>
+<P>value</P>
+<P>mulop</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>mulop</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>loop_statement</P>
+<P>do_whilestatement</P>
+<P>statement</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>relop</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>loop_statement</P>
+<P>for_statement</P>
+<P>for_expression</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>for_expression</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>if_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>mulop</P>
+<P>term</P>
+<P>value</P>
+<P>relop</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>addop</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>compound_statement</P>
+<P>if_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>and</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>or</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>ltgt</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>statement</P>
+<P>statement_block</P>
+<P>statement</P>
+<P>simple_statement</P>
+<P>assignment_statement</P>
+<P>expression</P>
+<P>or_expression</P>
+<P>and_expression</P>
+<P>relop_expression</P>
+<P>ltgt_expression</P>
+<P>addop_expression</P>
+<P>mulop_expression</P>
+<P>term</P>
+<P>value</P>
+<P>Parse completed.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&#9;</P>
+</FONT><B><FONT SIZE=4>
+<P><A NAME="_Toc451787173">9. AST Output</A></P>
+</B></FONT><FONT SIZE=1>
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787174">sample_a.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1><DIR>
+
+<P>program (</P>
+<P>LINE 1:</P>
+
+<P>     method_declaration (</P>
+<P>          void</P>
+<P>          input_a</P>
+<P>LINE 2:</P>
+
+<P>          = (</P>
+<P>               a</P>
+<P>               b3</P>
+<P>          )</P>
+<P>LINE 3:</P>
+
+<P>          = (</P>
+<P>               xyz</P>
+<P>               + (</P>
+<P>                    a</P>
+<P>                    + (</P>
+<P>                         b</P>
+<P>                         - (</P>
+<P>                              c</P>
+<P>                              / (</P>
+<P>                                   p</P>
+<P>                                   q</P>
+<P>                              )</P>
+<P>                         )</P>
+<P>                    )</P>
+<P>               )</P>
+<P>          )</P>
+<P>LINE 4:</P>
+
+<P>          = (</P>
+<P>               a</P>
+<P>               * (</P>
+<P>                    xyz</P>
+<P>                    + (</P>
+<P>                         p</P>
+<P>                         q</P>
+<P>                    )</P>
+<P>               )</P>
+<P>          )</P>
+<P>LINE 5:</P>
+
+<P>          = (</P>
+<P>               p</P>
+<P>               - (</P>
+<P>                    a</P>
+<P>                    - (</P>
+<P>                         xyz</P>
+<P>                         p</P>
+<P>                    )</P>
+<P>               )</P>
+<P>          )</P>
+<P>     )</P>
+<P>)Parse completed.</P>
+
+<P>&nbsp;</P></DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787175">sample_b.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1><DIR>
+
+<P>program (</P>
+<P>LINE 1:</P>
+
+<P>     method_declaration (</P>
+<P>          void</P>
+<P>          input_b</P>
+<P>          if (</P>
+<P>               &gt; (</P>
+<P>                    i</P>
+<P>                    j</P>
+<P>               )</P>
+<P>LINE 3:</P>
+
+<P>               = (</P>
+<P>                    i</P>
+<P>                    + (</P>
+<P>                         i</P>
+<P>                         j</P>
+<P>                    )</P>
+<P>               )</P>
+<P>               if (</P>
+<P>                    &lt; (</P>
+<P>                         i</P>
+<P>                         j</P>
+<P>                    )</P>
+<P>LINE 5:</P>
+
+<P>                    = (</P>
+<P>                         i</P>
+<P>                         1</P>
+<P>                    )</P>
+<P>               )</P>
+<P>          )</P>
+<P>     )</P>
+<P>)Parse completed.</P>
+
+<P>&nbsp;</P></DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787176">sample_c.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1><DIR>
+
+<P>program (</P>
+<P>LINE 1:</P>
+
+<P>     method_declaration (</P>
+<P>          void</P>
+<P>          input_c</P>
+<P>          while (</P>
+<P>               &amp;&amp; (</P>
+<P>                    &lt; (</P>
+<P>                         i</P>
+<P>                         j</P>
+<P>                    )</P>
+<P>                    &lt; (</P>
+<P>                         j</P>
+<P>                         k</P>
+<P>                    )</P>
+<P>               )</P>
+<P>LINE 3:</P>
+
+<P>               = (</P>
+<P>                    k</P>
+<P>                    + (</P>
+<P>                         k</P>
+<P>                         1</P>
+<P>                    )</P>
+<P>               )</P>
+<P>               while (</P>
+<P>                    == (</P>
+<P>                         i</P>
+<P>                         j</P>
+<P>                    )</P>
+<P>LINE 5:</P>
+
+<P>                    = (</P>
+<P>                         i</P>
+<P>                         + (</P>
+<P>                              i</P>
+<P>                              2</P>
+<P>                         )</P>
+<P>                    )</P>
+<P>               )</P>
+<P>          )</P>
+<P>     )</P>
+<P>)Parse completed.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P></DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787177">sample_d.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1><DIR>
+
+<P>program (</P>
+<P>LINE 1:</P>
+
+<P>     method_declaration (</P>
+<P>          int</P>
+<P>          input_d</P>
+<P>LINE 2:</P>
+
+<P>          = (</P>
+<P>               my_variable_01</P>
+<P>               * (</P>
+<P>                    + (</P>
+<P>                         5</P>
+<P>                         / (</P>
+<P>                              2</P>
+<P>                              10</P>
+<P>                         )</P>
+<P>                    )</P>
+<P>                    % (</P>
+<P>                         3</P>
+<P>                         1</P>
+<P>                    )</P>
+<P>               )</P>
+<P>          )</P>
+<P>LINE 3:</P>
+
+<P>          = (</P>
+<P>               my_variable_02</P>
+<P>               + (</P>
+<P>                    my_variable_01</P>
+<P>                    10</P>
+<P>               )</P>
+<P>          )</P>
+<P>          do (</P>
+<P>LINE 5:</P>
+
+<P>               = (</P>
+<P>                    my_variable_02</P>
+<P>                    - (</P>
+<P>                         my_variable_02</P>
+<P>                         1</P>
+<P>                    )</P>
+<P>               )</P>
+<P>               != (</P>
+<P>                    my_variable_02</P>
+<P>                    my_variable_01</P>
+<P>               )</P>
+<P>          )</P>
+<P>LINE 9:</P>
+
+<P>          = (</P>
+<P>               even</P>
+<P>               0</P>
+<P>          )</P>
+<P>LINE 10:</P>
+
+<P>          = (</P>
+<P>               odd</P>
+<P>               0</P>
+<P>          )</P>
+<P>          for (</P>
+<P>               = (</P>
+<P>                    a</P>
+<P>                    0</P>
+<P>               )</P>
+<P>               &lt; (</P>
+<P>                    a</P>
+<P>                    10</P>
+<P>               )</P>
+<P>               = (</P>
+<P>                    a</P>
+<P>                    + (</P>
+<P>                         a</P>
+<P>                         1</P>
+<P>                    )</P>
+<P>               )</P>
+<P>               if (</P>
+<P>                    == (</P>
+<P>                         % (</P>
+<P>                              a</P>
+<P>                              2</P>
+<P>                         )</P>
+<P>                         0</P>
+<P>                    )</P>
+<P>LINE 13:</P>
+
+<P>                    = (</P>
+<P>                         even</P>
+<P>                         + (</P>
+<P>                              even</P>
+<P>                              1</P>
+<P>                         )</P>
+<P>                    )</P>
+<P>LINE 15:</P>
+
+<P>                    = (</P>
+<P>                         odd</P>
+<P>                         + (</P>
+<P>                              odd</P>
+<P>                              1</P>
+<P>                         )</P>
+<P>                    )</P>
+<P>               )</P>
+<P>          )</P>
+<P>          if (</P>
+<P>               || (</P>
+<P>                    &amp;&amp; (</P>
+<P>                         &gt;= (</P>
+<P>                              even</P>
+<P>                              odd</P>
+<P>                         )</P>
+<P>                         &lt;= (</P>
+<P>                              even</P>
+<P>                              odd</P>
+<P>                         )</P>
+<P>                    )</P>
+<P>                    &gt; (</P>
+<P>                         1</P>
+<P>                         0</P>
+<P>                    )</P>
+<P>               )</P>
+<P>LINE 18:</P>
+
+<P>               = (</P>
+<P>                    love_tea</P>
+<P>                    1</P>
+<P>               )</P>
+<P>          )</P>
+<P>     )</P>
+<P>)Parse completed.</P>
+
+<P>&nbsp;</P>
+</FONT><B><FONT FACE="Courier New" SIZE=4><P>&nbsp;</P></DIR>
+
+</FONT><FONT SIZE=4><P><A NAME="_Toc451787178">10. Code Generation Output</A></P>
+</B></FONT><FONT SIZE=1>
+<P>&nbsp;</P>
+</FONT><B><U><P><A NAME="_Toc451787179">sample_a.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1>
+<P>&nbsp;</P><DIR>
+
+<P>F:\CODEGEN&gt;java tea sample_a.tea  </P>
+
+<P>&nbsp;</P>
+<P>  MOV T[0], a</P>
+
+<P>  MOV T[1], b3</P>
+
+<P>  MOV AX, T[1]</P>
+<P>  MOV a, AX</P>
+<P>  MOV T[0], AX</P>
+
+<P>  MOV T[1], xyz</P>
+
+<P>  MOV T[2], a</P>
+
+<P>  MOV T[3], b</P>
+
+<P>  MOV T[4], c</P>
+
+<P>  MOV T[5], p</P>
+
+<P>  MOV T[6], q</P>
+
+<P>  MOV AX, T[5]</P>
+<P>  DIV T[6]     ; AX = AX / T[6]</P>
+<P>  MOV T[5], AX</P>
+
+<P>  MOV AX, T[4]</P>
+<P>  SUB AX, T[5]</P>
+<P>  MOV T[4], AX</P>
+
+<P>  MOV AX, T[3]</P>
+<P>  ADD AX, T[4]</P>
+<P>  MOV T[3], AX</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  ADD AX, T[3]</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  MOV xyz, AX</P>
+<P>  MOV T[1], AX</P>
+
+<P>  MOV T[2], a</P>
+
+<P>  MOV T[3], xyz</P>
+
+<P>  MOV T[4], p</P>
+
+<P>  MOV T[5], q</P>
+
+<P>  MOV AX, T[4]</P>
+<P>  ADD AX, T[5]</P>
+<P>  MOV T[4], AX</P>
+
+<P>  MOV AX, T[3]</P>
+<P>  MUL T[4]     ; AX = AX * T[4]</P>
+<P>  MOV T[3], AX</P>
+
+<P>  MOV AX, T[3]</P>
+<P>  MOV a, AX</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV T[3], p</P>
+
+<P>  MOV T[4], a</P>
+
+<P>  MOV T[5], xyz</P>
+
+<P>  MOV T[6], p</P>
+
+<P>  MOV AX, T[5]</P>
+<P>  SUB AX, T[6]</P>
+<P>  MOV T[5], AX</P>
+
+<P>  MOV AX, T[4]</P>
+<P>  SUB AX, T[5]</P>
+<P>  MOV T[4], AX</P>
+
+<P>  MOV AX, T[4]</P>
+<P>  MOV p, AX</P>
+<P>  MOV T[3], AX</P>
+<P>Code Generation Completed</P>
+
+<P>&nbsp;</P></DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787180">sample_b.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1>
+<P>&nbsp;</P><DIR>
+
+<P>F:\CODEGEN&gt;java tea sample_b.tea  </P>
+
+<P>&nbsp;</P>
+<P>                              ; IF statement:</P>
+
+<P>  MOV T[0], i</P>
+
+<P>  MOV T[1], j</P>
+
+<P>  MOV BX, T[0]     ; AX = T[0] &gt; T[1]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[1]</P>
+<P>  JA  L_2</P>
+<P>  MOV AX, 0</P>
+<P>L_2:</P>
+<P>  MOV T[0], AX</P>
+<P>  MOV AX, T[0]</P>
+<P>  JZ  L_0</P>
+
+<P>  MOV T[1], i</P>
+
+<P>  MOV T[2], i</P>
+
+<P>  MOV T[3], j</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  ADD AX, T[3]</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  MOV i, AX</P>
+<P>  MOV T[1], AX</P>
+<P>  JMP L_1</P>
+<P>L_0:</P>
+
+<P>                              ; IF statement:</P>
+
+<P>  MOV T[1], i</P>
+
+<P>  MOV T[2], j</P>
+
+<P>  MOV BX, T[1]     ; AX = T[1] &lt; T[2]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[2]</P>
+<P>  JB  L_5</P>
+<P>  MOV AX, 0</P>
+<P>L_5:</P>
+<P>  MOV T[1], AX</P>
+<P>  MOV AX, T[1]</P>
+<P>  JZ  L_3</P>
+
+<P>  MOV T[2], i</P>
+
+<P>  MOV T[3], 1</P>
+
+<P>  MOV AX, T[3]</P>
+<P>  MOV i, AX</P>
+<P>  MOV T[2], AX</P>
+<P>  JMP L_4</P>
+<P>L_3:</P>
+<P>L_4:</P>
+<P>  MOV T[2], AX</P>
+<P>L_1:</P>
+<P>  MOV T[1], AX</P>
+<P>Code Generation Completed</P>
+
+<P>&nbsp;</P></DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787181">sample_c.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1>
+<P>&nbsp;</P><DIR>
+
+<P>F:\CODEGEN&gt;java tea sample_c.tea  </P>
+
+<P>&nbsp;</P>
+<P>                              ; WHILE statement:</P>
+<P>L_0:</P>
+
+<P>  MOV T[0], i</P>
+
+<P>  MOV T[1], j</P>
+
+<P>  MOV BX, T[0]     ; AX = T[0] &lt; T[1]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[1]</P>
+<P>  JB  L_2</P>
+<P>  MOV AX, 0</P>
+<P>L_2:</P>
+<P>  MOV T[0], AX</P>
+
+<P>  MOV T[1], j</P>
+
+<P>  MOV T[2], k</P>
+
+<P>  MOV BX, T[1]     ; AX = T[1] &lt; T[2]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[2]</P>
+<P>  JB  L_3</P>
+<P>  MOV AX, 0</P>
+<P>L_3:</P>
+<P>  MOV T[1], AX</P>
+
+<P>  MOV AX, T[0]     ; AX = T[0] &amp;&amp; T[1]   (1 = true, 0 = false)</P>
+<P>  AND AX, T[1]</P>
+<P>  MOV T[0], AX</P>
+<P>  MOV AX, T[0]</P>
+<P>  JZ  L_1</P>
+
+<P>  MOV T[1], k</P>
+
+<P>  MOV T[2], k</P>
+
+<P>  MOV T[3], 1</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  ADD AX, T[3]</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  MOV k, AX</P>
+<P>  MOV T[1], AX</P>
+<P>  JMP L_0</P>
+<P>L_1:</P>
+<P>Code Generation Completed</P>
+
+<P>&nbsp;</P></DIR>
+
+</FONT><B><U><P><A NAME="_Toc451787182">sample_d.tea</A></P>
+</B></U><FONT FACE="Courier New" SIZE=1>
+<P>&nbsp;</P><DIR>
+
+<P>F:\CODEGEN&gt;java tea sample_d.tea  </P>
+
+<P>&nbsp;</P>
+<P>  MOV T[0], my_variable_01</P>
+
+<P>  MOV T[1], 5</P>
+
+<P>  MOV T[2], 2</P>
+
+<P>  MOV T[3], 10</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  DIV T[3]     ; AX = AX / T[3]</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV AX, T[1]</P>
+<P>  ADD AX, T[2]</P>
+<P>  MOV T[1], AX</P>
+
+<P>  MOV T[2], 3</P>
+
+<P>  MOV T[3], 1</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  MOD T[3]     ; AX = AX % T[3]</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV AX, T[1]</P>
+<P>  MUL T[2]     ; AX = AX * T[2]</P>
+<P>  MOV T[1], AX</P>
+
+<P>  MOV AX, T[1]</P>
+<P>  MOV my_variable_01, AX</P>
+<P>  MOV T[0], AX</P>
+
+<P>  MOV T[1], my_variable_02</P>
+
+<P>  MOV T[2], my_variable_01</P>
+
+<P>  MOV T[3], 10</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  ADD AX, T[3]</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV AX, T[2]</P>
+<P>  MOV my_variable_02, AX</P>
+<P>  MOV T[1], AX</P>
+
+<P>  MOV T[2], my_variable_02</P>
+
+<P>  MOV T[3], my_variable_02</P>
+
+<P>  MOV T[4], 1</P>
+
+<P>  MOV AX, T[3]</P>
+<P>  SUB AX, T[4]</P>
+<P>  MOV T[3], AX</P>
+
+<P>  MOV AX, T[3]</P>
+<P>  MOV my_variable_02, AX</P>
+<P>  MOV T[2], AX</P>
+
+<P>  MOV T[3], my_variable_02</P>
+
+<P>  MOV T[4], my_variable_01</P>
+
+<P>  MOV BX, T[3]     ; AX = T[3] != T[4]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[4]</P>
+<P>  JNE L_0</P>
+<P>  MOV AX, 0</P>
+<P>L_0:</P>
+<P>  MOV T[3], AX</P>
+
+<P>  MOV T[3], even</P>
+
+<P>  MOV T[4], 0</P>
+
+<P>  MOV AX, T[4]</P>
+<P>  MOV even, AX</P>
+<P>  MOV T[3], AX</P>
+
+<P>  MOV T[4], odd</P>
+
+<P>  MOV T[5], 0</P>
+
+<P>  MOV AX, T[5]</P>
+<P>  MOV odd, AX</P>
+<P>  MOV T[4], AX</P>
+
+<P>                              ; FOR statement:</P>
+
+<P>  MOV T[5], a</P>
+
+<P>  MOV T[6], 0</P>
+
+<P>  MOV AX, T[6]</P>
+<P>  MOV a, AX</P>
+<P>  MOV T[5], AX</P>
+<P>L_1:</P>
+
+<P>  MOV T[5], a</P>
+
+<P>  MOV T[6], 10</P>
+
+<P>  MOV BX, T[5]     ; AX = T[5] &lt; T[6]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[6]</P>
+<P>  JB  L_3</P>
+<P>  MOV AX, 0</P>
+<P>L_3:</P>
+<P>  MOV T[5], AX</P>
+<P>  MOV AX, T[5]</P>
+<P>  JZ  L_2</P>
+
+<P>                              ; IF statement:</P>
+
+<P>  MOV T[6], a</P>
+
+<P>  MOV T[7], 2</P>
+
+<P>  MOV AX, T[6]</P>
+<P>  MOD T[7]     ; AX = AX % T[7]</P>
+<P>  MOV T[6], AX</P>
+
+<P>  MOV T[7], 0</P>
+
+<P>  MOV BX, T[6]     ; AX = T[6] == T[7]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[7]</P>
+<P>  JE  L_6</P>
+<P>  MOV AX, 0</P>
+<P>L_6:</P>
+<P>  MOV T[6], AX</P>
+<P>  MOV AX, T[6]</P>
+<P>  JZ  L_4</P>
+
+<P>  MOV T[7], even</P>
+
+<P>  MOV T[8], even</P>
+
+<P>  MOV T[9], 1</P>
+
+<P>  MOV AX, T[8]</P>
+<P>  ADD AX, T[9]</P>
+<P>  MOV T[8], AX</P>
+
+<P>  MOV AX, T[8]</P>
+<P>  MOV even, AX</P>
+<P>  MOV T[7], AX</P>
+<P>  JMP L_5</P>
+<P>L_4:</P>
+
+<P>  MOV T[7], odd</P>
+
+<P>  MOV T[8], odd</P>
+
+<P>  MOV T[9], 1</P>
+
+<P>  MOV AX, T[8]</P>
+<P>  ADD AX, T[9]</P>
+<P>  MOV T[8], AX</P>
+
+<P>  MOV AX, T[8]</P>
+<P>  MOV odd, AX</P>
+<P>  MOV T[7], AX</P>
+<P>L_5:</P>
+<P>  MOV T[7], AX</P>
+
+<P>  MOV T[7], a</P>
+
+<P>  MOV T[8], a</P>
+
+<P>  MOV T[9], 1</P>
+
+<P>  MOV AX, T[8]</P>
+<P>  ADD AX, T[9]</P>
+<P>  MOV T[8], AX</P>
+
+<P>  MOV AX, T[8]</P>
+<P>  MOV a, AX</P>
+<P>  MOV T[7], AX</P>
+<P>  JMP L_1</P>
+<P>L_2:</P>
+
+<P>                              ; IF statement:</P>
+
+<P>  MOV T[6], even</P>
+
+<P>  MOV T[7], odd</P>
+
+<P>  MOV BX, T[6]     ; AX = T[6] &lt; T[7]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[7]</P>
+<P>  JAE  L_9</P>
+<P>  MOV AX, 0</P>
+<P>L_9:</P>
+<P>  MOV T[6], AX</P>
+
+<P>  MOV T[7], even</P>
+
+<P>  MOV T[8], odd</P>
+
+<P>  MOV BX, T[7]     ; AX = T[7] &lt; T[8]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[8]</P>
+<P>  JBE  L_10</P>
+<P>  MOV AX, 0</P>
+<P>L_10:</P>
+<P>  MOV T[7], AX</P>
+
+<P>  MOV AX, T[6]     ; AX = T[6] &amp;&amp; T[7]   (1 = true, 0 = false)</P>
+<P>  AND AX, T[7]</P>
+<P>  MOV T[6], AX</P>
+
+<P>  MOV T[7], 1</P>
+
+<P>  MOV T[8], 0</P>
+
+<P>  MOV BX, T[7]     ; AX = T[7] &gt; T[8]   (1 = true, 0 = false)</P>
+<P>  MOV AX, 1</P>
+<P>  CMP BX, T[8]</P>
+<P>  JA  L_11</P>
+<P>  MOV AX, 0</P>
+<P>L_11:</P>
+<P>  MOV T[7], AX</P>
+
+<P>  MOV AX, T[6]     ; AX = T[6] || T[7]   (1 = true, 0 = false)</P>
+<P>  OR  AX, T[7]</P>
+<P>  MOV T[6], AX</P>
+<P>  MOV AX, T[6]</P>
+<P>  JZ  L_7</P>
+
+<P>  MOV T[7], love_tea</P>
+
+<P>  MOV T[8], 1</P>
+
+<P>  MOV AX, T[8]</P>
+<P>  MOV love_tea, AX</P>
+<P>  MOV T[7], AX</P>
+<P>  JMP L_8</P>
+<P>L_7:</P>
+<P>L_8:</P>
+<P>  MOV T[7], AX</P>
+<P>Code Generation Completed</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P></DIR>
+</FONT></BODY>
+</HTML>

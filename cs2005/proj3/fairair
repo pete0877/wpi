@@ -1,0 +1,198 @@
+ 52 Boston          1131  NewYork         1212
+361 NewYork         1245  Boston          1333
+ 28 Boston          1527  NewYork         1614
+305 NewYork         1359  Boston          1443
+273 Boston          1719  SanFrancisco    1948
+121 SanFrancisco     710  Boston          1523
+275 Boston           822  LosAngeles      1115
+ 96 LosAngeles      1504  Boston          2326
+668 Boston           938  WashingtonDC    1058
+572 WashingtonDC     943  Boston          1055
+573 Boston          1806  WashingtonDC    1920
+550 WashingtonDC    1809  Boston          1929
+639 NewYork          738  Cleveland        855
+764 Cleveland       1759  NewYork         1910
+ 19 NewYork          843  SanFrancisco    1041
+372 SanFrancisco    1139  NewYork         1906
+ 70 NewYork         1836  SanFrancisco    2036
+356 SanFrancisco    1620  NewYork         2342
+574 NewYork         1159  LosAngeles      1351
+482 LosAngeles      1059  NewYork         1846
+328 NewYork         1339  LosAngeles      1546
+827 LosAngeles      1501  NewYork         2307
+ 88 NewYork          949  Dallas          1125
+714 Dallas           952  NewYork         1309
+448 NewYork         1347  Dallas          1523
+429 Dallas          1334  NewYork         1702
+854 NewYork         1220  Miami           1417
+241 Miami            758  NewYork          950
+593 NewYork         1630  Miami           1835
+479 Miami           1328  NewYork         1529
+939 NewYork         1151  WashingtonDC    1238
+296 WashingtonDC     719  NewYork          805
+621 NewYork         1807  WashingtonDC    1851
+629 WashingtonDC    1345  NewYork         1433
+386 NewYork          715  Seattle          914
+746 Seattle         1108  NewYork         1916
+359 NewYork         1557  Seattle         1819
+384 Seattle         1512  NewYork         2308
+940 NewYork          831  Phoenix         1051
+716 Phoenix         1235  NewYork         1857
+274 NewYork         1804  Phoenix         2057
+110 Phoenix         1702  NewYork         2351
+ 27 NewYork         1131  Houston         1301
+860 Houston         1052  NewYork         1408
+695 NewYork         1356  Houston         1527
+559 Houston         1731  NewYork         2054
+522 NewYork         1118  Minneapolis     1312
+467 Minneapolis     1250  NewYork         1632
+907 NewYork         1328  Minneapolis     1513
+649 Minneapolis     1450  NewYork         1853
+562 NewYork         1120  Detroit         1314
+478 Detroit          802  NewYork         1001
+ 35 NewYork         1327  Detroit         1534
+476 Detroit         1303  NewYork         1501
+604 NewYork          805  Atlanta          929
+405 Atlanta          909  NewYork         1034
+931 NewYork         1506  Atlanta         1628
+669 Atlanta         1420  NewYork         1557
+115 NewYork         1120  Philadelphia    1147
+557 Philadelphia     714  NewYork          742
+180 NewYork         1335  Philadelphia    1406
+307 Philadelphia    1552  NewYork         1619
+154 SanFrancisco     950  LosAngeles      1100
+727 LosAngeles       837  SanFrancisco     958
+696 SanFrancisco    1835  LosAngeles      1946
+ 79 LosAngeles      1840  SanFrancisco    1947
+638 SanFrancisco     914  Seattle         1055
+373 Seattle          752  SanFrancisco     938
+ 49 SanFrancisco    1302  Seattle         1448
+526 Seattle         1723  SanFrancisco    1909
+392 SanFrancisco    1232  Denver          1535
+486 Denver          1230  SanFrancisco    1320
+504 SanFrancisco    1530  Denver          1828
+763 Denver          1336  SanFrancisco    1445
+446 SanFrancisco     710  Phoenix          938
+657 Phoenix         1204  SanFrancisco    1231
+210 SanFrancisco    1714  Phoenix         1945
+204 Phoenix         1635  SanFrancisco    1656
+107 LosAngeles      1614  Miami           2359
+240 Miami            823  LosAngeles      1011
+949 LosAngeles       835  WashingtonDC    1615
+106 WashingtonDC    1140  LosAngeles      1304
+560 LosAngeles      1559  WashingtonDC    2345
+833 WashingtonDC    1425  LosAngeles      1546
+947 LosAngeles      1214  Seattle         1434
+694 Seattle          907  LosAngeles      1134
+408 LosAngeles      1853  Seattle         2126
+659 Seattle         1703  LosAngeles      1946
+748 LosAngeles       806  Denver          1056
+101 Denver          1233  LosAngeles      1342
+141 LosAngeles      1850  Denver          2156
+923 Denver          1310  LosAngeles      1402
+702 LosAngeles       716  Phoenix          910
+251 Phoenix         1048  LosAngeles      1049
+ 80 LosAngeles      1355  Phoenix         1550
+151 Phoenix         1451  LosAngeles      1455
+ 18 LosAngeles      1124  Houston         1507
+733 Houston         1547  LosAngeles      1541
+402 LosAngeles      1100  Minneapolis     1613
+932 Minneapolis     1605  LosAngeles      1714
+611 KansasCity       753  Dallas           913
+ 84 Dallas          1240  KansasCity      1349
+518 KansasCity      1352  Dallas          1511
+978 Dallas          1850  KansasCity      2004
+108 KansasCity       927  Minneapolis     1038
+186 Minneapolis     1229  KansasCity      1346
+ 68 KansasCity      1454  Minneapolis     1611
+327 Minneapolis     1449  KansasCity      1605
+946 Dallas          1609  WashingtonDC    1932
+561 WashingtonDC    1701  Dallas          1826
+711 Dallas          1253  Phoenix         1343
+540 Phoenix          835  Dallas          1145
+987 Dallas          1311  Phoenix         1407
+457 Phoenix         1640  Dallas          1928
+ 97 Dallas           816  Houston          920
+471 Houston          841  Dallas           935
+473 Dallas          1811  Houston         1911
+980 Houston         1748  Dallas          1845
+981 Dallas          1617  Minneapolis     1818
+438 Minneapolis      728  Dallas           930
+196 Dallas           815  Atlanta         1109
+350 Atlanta         1235  Dallas          1338
+511 Dallas          1657  Atlanta         1954
+637 Atlanta         1720  Dallas          1822
+884 Miami           1728  WashingtonDC    1916
+531 WashingtonDC     757  Miami            943
+919 Miami           1233  Atlanta         1338
+703 Atlanta          947  Miami           1052
+515 Miami           1625  Atlanta         1741
+819 Atlanta         1710  Miami           1826
+758 WashingtonDC    1454  Atlanta         1551
+211 Atlanta         1342  WashingtonDC    1437
+948 WashingtonDC    1155  Philadelphia    1225
+437 Philadelphia    1024  WashingtonDC    1052
+ 72 WashingtonDC    1819  Philadelphia    1850
+ 43 Philadelphia    1336  WashingtonDC    1406
+845 Denver          1214  Phoenix         1335
+ 69 Phoenix          819  Denver           940
+985 Denver          1534  Phoenix         1659
+362 Phoenix         1457  Denver          1623
+569 Houston         1234  NewOrleans      1217
+651 NewOrleans       959  Houston         1144
+858 Houston         1627  NewOrleans      1610
+840 NewOrleans      1447  Houston         1631
+225 Houston         1035  Atlanta         1245
+455 Atlanta          737  Houston          757
+ 38 Houston         1556  Atlanta         1815
+521 Atlanta         1734  Houston         1746
+761 Minneapolis      721  Detroit          924
+676 Detroit         1219  Minneapolis     1219
+413 Minneapolis     1327  Detroit         1525
+203 Detroit         1502  Minneapolis     1504
+143 NewOrleans       938  Atlanta         1236
+ 30 Atlanta          947  NewOrleans       852
+549 NewOrleans      1349  Atlanta         1646
+795 Atlanta         1703  NewOrleans      1602
+347 Boston          1106  Chicago         1134
+708 Chicago         1019  Boston          1242
+277 Boston          1303  Chicago         1325
+809 Chicago         1452  Boston          1720
+543 NewYork          839  Chicago          909
+380 Chicago          752  NewYork         1019
+615 NewYork         1802  Chicago         1840
+556 Chicago         1311  NewYork         1548
+364 Cleveland        718  Chicago          723
+230 Chicago          736  Cleveland        934
+ 83 Cleveland       1811  Chicago         1811
+591 Chicago         1812  Cleveland       2012
+927 SanFrancisco    1016  Chicago         1519
+334 Chicago         1100  SanFrancisco    1151
+166 LosAngeles      1004  Chicago         1525
+917 Chicago         1142  LosAngeles      1307
+612 LosAngeles      1336  Chicago         1849
+385 Chicago         1736  LosAngeles      1854
+855 KansasCity      1237  Chicago         1351
+120 Chicago          848  KansasCity       956
+930 KansasCity      1411  Chicago         1518
+167 Chicago         1548  KansasCity      1701
+578 Dallas           827  Chicago         1018
+971 Chicago          747  Dallas           946
+ 16 Dallas          1816  Chicago         2007
+226 Chicago         1535  Dallas          1741
+311 WashingtonDC     948  Chicago         1102
+  1 Chicago          713  WashingtonDC    1036
+810 WashingtonDC    1848  Chicago         2003
+383 Chicago         1531  WashingtonDC    1833
+414 Denver           946  Chicago         1246
+730 Chicago          848  Denver           957
+655 Denver          1340  Chicago         1641
+616 Chicago         1544  Denver          1648
+994 Minneapolis     1226  Chicago         1333
+164 Chicago         1001  Minneapolis     1118
+ 29 Minneapolis     1505  Chicago         1621
+509 Chicago         1649  Minneapolis     1810
+ 71 Detroit          752  Chicago          748
+179 Chicago          955  Detroit         1150
+630 Detroit         1313  Chicago         1314
+302 Chicago         1521  Detroit         1724

@@ -1,0 +1,281 @@
+______________________________________________________________________________
+J. Schaeffer
+Distributed game-tree searching
+Journal of Parallel and Distributed Computing, 6(1), pp. 90-114, February 1989.
+
+"alpha beta searching program; chess program;
+Controllers; distributed processing; game-tree
+searching; parallel; parallel algorithms; ParaPhoenix;
+Scouts; search problems; Searchers; table management;
+Table Managers"
+
+______________________________________________________________________________
+P. Ciancarini
+A Comparison of Parallel Search Algorithms Based on Tree Splitting
+Technical Report, University of Bologna (Italy). 
+Department of Computer Science., Number BOLOGNA#UBLCS-94-14, p. 18, May 1994.
+
+"We have used a distributed programming environment to
+compare a number of parallel search algorithms in the
+domain of chess. The environment runs on a network of
+workstations; it is based on Linda for coordination of
+the search and on GNUChess for chess knowledge. In
+order to make a practical comparison, we have built
+several parallel programs using different search
+algorithms. We have formalized and classified the
+concept of parallel search algorithms based game tree
+splitting. The algorithms have been classified in two
+main classes: static and dynamic. We show that on a
+workstation network static algorithms are more
+efficient than dynamic ones. Our results confirm and
+broaden older works by Marsland, Campbell, Schaeffer,
+and others."
+
+______________________________________________________________________________
+P. Ciancarini
+Distributed Searches: a Basis for Comparison
+Journal of the International Computer Chess Association, 
+17(4), pp. 194-206, 1994.
+
+______________________________________________________________________________
+R. Feldmann and P. Mysliwietz and B. Monien
+A Fully Distributed Chess Program
+Advances in Computer Chess 6, pp. 1-27, Ellis Horwood, Chichester, 1991. 
+
+______________________________________________________________________________
+R. Feldmann and P. Mysliwiet and B. Monien and O. Vornberger
+Distributed Game-Tree Search
+Journal of the International Computer Chess Association, 12(2), pp. 65-73, 1989.
+
+______________________________________________________________________________
+J. Schaeffer
+Experiments in distributed game-tree searching
+Technical Report, University of Alberta, January 1987.
+
+______________________________________________________________________________
+H. J. Messerschmidt
+Parallel Programming for Chess Endgame Database
+Software---Practice and Experience, 10(6), pp. 475-487, June 1980.
+
+______________________________________________________________________________
+Rainer Feldmann and Peter Mysliwietz and Burkhard Monien
+Game Tree Search on a Massively Parallel System
+Advances in Computer Chess 7, pp. 203-218, University of Limburg, 1994.
+
+______________________________________________________________________________
+Monroe M. Newborn
+A Parallel Search Chess Program
+Proceedings of the ACM National Conference, pp. 272-277, 1985.
+
+______________________________________________________________________________
+Fred Popowich and T. Anthony Marsland
+Parabelle: Experiences With a Parallel Chess Program
+Technical Report, University of Alberta, Department of Computer Science, Number TR 83-07, August 1983.
+
+______________________________________________________________________________
+Monroe Newborn
+Unsynchronized iteratively deepening parallel alpha-beta search
+IEEE PAMI, September 1988, 10(5), pp. 687-694, 1988. 
+
+______________________________________________________________________________
+S. Akl and D. Barnard and R. Doran
+Design, Analysis, and Implementation of a Parallel Tree Search Algorithm
+IEEE Transactions on Pattern Analysis and Machine Intelligence, 4(2), pp. 192-203, 1982.
+
+______________________________________________________________________________
+H. Bal and R. vanRenesse
+A summary of parallel Alpha-Beta search results
+Journal of the International Computer Chess Association, pp. 146-149, September 1986. 
+
+______________________________________________________________________________
+P. Ciancarini
+A Comparison of Parallel Search Algorithms based on Tree Splitting
+Technical Report, Dipartimento di Scienze dell'Informazione Università di Bologna, Italy",
+Number UBLCS 94-14, May 1994. 
+
+______________________________________________________________________________
+C. Joerg and B. Kuszmaul
+Massively Parallel Chess
+Third DIMACS Parallel Implementation Challenge Workshop, October 1994.
+
+______________________________________________________________________________
+B. Kuszmaul
+The StarTech Massively Parallel Chess Program
+Journal of the International Computer Chess Association, 18(1), pp. 3-19, January 1995.
+
+______________________________________________________________________________
+H. Messerschmidt
+Parallel Programming for a Chess Endgame Database
+Software: Practice and Experience, Vol. 10, pp. 475-487, 1980.
+
+______________________________________________________________________________
+C. J. Tan
+Deep Blue: Computer Chess and Massively Parallel Systems
+Conference proceedings of the 1995 International Conference on Supercomputing, 
+Barcelona, Spain, July 3--7, 1995, 
+CONFERENCE PROCEEDINGS OF THE INTERNATIONAL CONFERENCE ON SUPERCOMPUTING 1995; 
+9th, pp. 237-239, ACM Press, 1995.
+
+______________________________________________________________________________
+Lewis Stiller
+Group Graphs and Computational Symmetry on Massively Parallel Architecture
+The Journal of Supercomputing, Vol. 5, Number 2-3, pp. 99-117, October 1991
+
+"algebraic structure; Cayley graphs; chess endgames;
+CM-2; computational symmetry; distributed memory
+architecture; games of skill; graph theory; group
+theory; interconnection networks; irregular chess
+rules; labeled group action graph; massively parallel
+architecture; mathematics computing; multiprocessor
+interconnection networks; noncommutative
+crystallographic group; parallel architectures;
+parallel programming; regular data sets; routing
+schedules; scheduling; search problems; search space;
+space requirements; time requirements"
+
+
+______________________________________________________________________________
+P. Ciancarini. 
+Experiments in Distributing and Coordinating Knowledge. 
+Technical Report, University of Bologna (Italy). 
+Department of Computer Science., Number BOLOGNA#UBLCS-94-13, p. 14, May 1994. 
+
+"We have built a distributed chess program running over
+a network of workstations. The program consists of
+several independent {"}advising{"} processes each using
+different chess knowledge to evaluate the position;
+each evaluator offers its advice to a coordinating
+process, that uses a selection policy to choose the
+move. We have built the advisors redistributing the
+knowledge included in a strong sequential program. We
+have made experiments with several different knowledge
+distributions and move selection policies. Some
+programs we built are sensibly stronger than the
+sequential program from which we started using seven
+workstations only."
+
+______________________________________________________________________________
+Owen L. Astrachan.
+METEOR: Exploring Model Elimination Theorem Proving
+Technical Report, Department of Computer Science, 
+Duke University, Number Technical report DUKE-TR--1992--22, 1992.
+
+"In this paper we describe the theorem prover {\small
+\sl METEOR} which is a high-performance Model
+Elimination prover running in sequential, parallel and
+distributed computing environments. {\small \sl METEOR}
+has a very high inference rate, but as is the case with
+better chess-playing programs speed alone is not
+sufficient when exploring large search spaces;
+intelligent search is necessary. We describe
+modifications to traditional iterative deepening search
+mechanisms whose implementation in {\small \sl METEOR}
+result in performance improvements of several orders of
+magnitude and that have permitted the discovery of
+proofs unobtainable by top-down Model Elimination
+provers."
+
+______________________________________________________________________________
+R. D. Blumofe and C. F. Joerg and B. C. Kuszmaul and C. E. Leiserson and 
+K. H. Randall and Y. C. E. Zhou and K. H. Randall and Y. Zhou
+Cilk: an efficient multithreaded runtime system
+ACM SIGPLAN Notices, 30(8), pp. 207-216, August 1995.
+
+"Cilk (pronounced `silk') is a C-based runtime system
+for multithreaded parallel programming. In this paper,
+we document the efficiency of the Cilk work-stealing
+scheduler, both empirically and analytically. We show
+that on real and synthetic applications, the `work' and
+`critical path' of a Cilk computation can be used to
+accurately model performance. Consequently, a Cilk
+programmer can focus on reducing the work and critical
+path of his computation, insulated from load balancing
+and other runtime scheduling issues. We also prove that
+for the class of `fully strict' (well-structured)
+programs, the Cilk scheduler achieves space, time, and
+communication bounds all within a constant factor of
+optimal. The Cilk runtime system currently runs on the
+Connection Machine CM5 massively parallel processor
+(MPP), the Intel Paragon MPP, the Silicon Graphics
+Power Challenge symmetric multiprocessor (SMP), and the
+MIT Phish network of workstations. Applications written
+in Cilk include protein folding, graphic rendering,
+backtrack searching, and the *Socrates chess program,
+which won third prize in the 1994 ACM International
+Computer Chess Championship."
+
+______________________________________________________________________________
+L. Stiller
+Group graphs and computational symmetry on massively parallel architecture
+Proceedings, Supercomputing '90: November 12--16 1990, New York Hilton at 
+Rockefeller Center, New York, New York",, pp. 344-353, 
+IEEE Computer Society Press, 1990.
+
+"chess endgames; computational geometry; computational
+symmetry; games of skill; graph theory; group graphs;
+group theory; invariances; massively parallel
+architecture; noncommutative crystallographic group;
+parallel architectures"
+
+______________________________________________________________________________
+R. M. Hyatt and H. L. Nelson
+Chess and supercomputers: details about optimizing Cray Blitz
+Proceedings, Supercomputing '90: November 12--16 1990, 
+New York Hilton at Rockefeller Center, New York, New York",
+pp. 354-363, IEEE Computer Society Press, 1990.
+
+"algorithmic changes; architectural features; chess;
+Cray Blitz; Cray computers; games of skill; parallel
+architectures; programming"
+
+______________________________________________________________________________
+IEEE (ed.)
+Proceedings, Supercomputing '90: November 12--16 1990, 
+New York Hilton at Rockefeller Center, New York, New York",
+Proceedings, Supercomputing '90: November 12--16 1990, 
+New York Hilton at Rockefeller Center, New York, New York",
+pp. xxv + 982, IEEE Computer Society Press, 1990.
+
+"biological applications; computer applications;
+computer chess; innovative architectures; linear
+algebra algorithms; memory; networking computing;
+parallel languages; parallel processing; particle
+transport; partitioning; performance evaluation;
+performance visualizations; pipeline processing;
+program analysis; program restructuring; scheduling;
+supercomputers --- congresses; vector algorithms"
+
+______________________________________________________________________________
+Robert D. Blumofe and Christopher F. Joerg and Bradley C. Kuszmaul and 
+Charles E. Leiserson and Keith H. Randall and Yuli Zhou 
+Cilk: An Efficient Multithreaded Runtime System
+Proc. 5th ACM SIGPLAN Symposium on Principles and Practice of Parallel 
+Programming, PPoPP'95, pp. 207-216, July 1995.
+
+______________________________________________________________________________
+E. W. Felten and S. W. Otto
+A Highly Parallel Chess Program
+Proceedings of the International Conference on Fifth Generation Computer Systems. 
+Volume 3, pp. 1001-1009, Springer Verlag, November 28- dec 2 1988 
+
+______________________________________________________________________________
+T. A. Marsland and M. Campbell
+Parallel Search of Strongly Ordered Game Trees
+ACM Computing Surveys, 14(4), pp. 533-551, December 1982.
+
+"Over the past decade major enhancements to the
+alpha-beta algorithm have been developed by people
+building game-playing programs, and many of these
+methods are surveyed and compared here. Contemporary
+methods for searching chess game trees in parallel,
+using an arbitrary number of independent processors are
+studied. To make efficient use of these processors, one
+must have a clear understanding of the basic properties
+of the trees actually transversed when alpha-beta
+cutoffs occur. This paper provides such insights and
+concludes with a brief description of the author's
+refinement to a standard parallel search algorithm for
+this problem. 33 refs."
+
+______________________________________________________________________________
+

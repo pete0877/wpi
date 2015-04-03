@@ -1,0 +1,13 @@
+
+;No value
+
+1 ]=> (load "hw1_2")
+
+;Loading "hw1_2.scm" -- done
+;Value: occure
+
+1 ]=> (occure 'the '(This is the working thing with the))
+
+;Value: 2
+
+1 ]=> (transcript-off)

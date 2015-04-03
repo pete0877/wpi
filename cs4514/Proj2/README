@@ -1,0 +1,28 @@
+Authors:
+  Peter Golaszewski (peterg@wpi.edu)
+  Sebastian Jastrzebski (sebby@wpi.edu)
+
+How to compile the project:
+  type 'make'
+
+How to prepare the server and client for testing:
+  type 'chmod 755 testsetup'
+  type 'testsetup'
+     (this will create directories where the server and the client
+     can sit safely, without steping on eachother files)
+  open one terminal in the 'test/srv' directory and run the server
+     'server 2 3'
+  open anoter terminal in the 'test' directory and run the client
+     'client 1 4 get sourcefile destfile localhost'
+  when the client and server are done, you will have /test/destfile
+  downloaded.
+
+  NOTE: In the test case above, you need to open both terminals on the 
+  same machine. Read the Design Report for more details on the command
+  syntax.
+
+Special options:
+  * CRC-32 in DLL
+  * two way communication (get / put) - see Design Report for syntax
+  * In addition to dropping frames we also fransfer frames, but sometimes
+    with CRC errors.

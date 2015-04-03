@@ -1,0 +1,23 @@
+HKCR
+{
+	TestServer.HelperRegistrar.1 = s 'HelperRegistrar Class'
+	{
+		CLSID = s '{F721574E-DC47-44B9-954E-84D31170C388}'
+	}
+	TestServer.HelperRegistrar = s 'HelperRegistrar Class'
+	{
+		CLSID = s '{F721574E-DC47-44B9-954E-84D31170C388}'
+		CurVer = s 'TestServer.HelperRegistrar.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {64D8D703-1178-46B1-BD04-1678EE7E2E6F} = s 'HelperRegistrar Class'
+		{
+			ProgID = s 'TestServer.HelperRegistrar.1'
+			VersionIndependentProgID = s 'TestServer.HelperRegistrar'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{9C3FD29F-331E-4565-9AD4-BA197A3966C3}'
+			'TypeLib' = s '{36D891FF-FA62-4811-BD9D-6913B0436E85}'
+		}
+	}
+}

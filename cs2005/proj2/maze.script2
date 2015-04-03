@@ -1,0 +1,205 @@
+Script started on Wed Nov 20 23:09:19 1996
+%./maze
+##########
+#        #
+#  #> # #####
+#  #  #     ###
+#  #     ##   #
+#  # ##########
+#  ###   #
+## # # # #
+#<       #
+########## 
+Maze contains 10 rows, 15 columns, start:(8,1), goal:(2,4)
+
+What policy to use? (type ? for help) ?
+This program implements a set of maze traversal
+algorithms that are built by using stacks.  A grid 
+was used as the model.  In it, movement from any point 
+is allowed from one of the for directions(north, south, 
+east, west).  This program reads in a maze and prints 
+it out, then asks the user to select from the 
+following traversal algorithms: 
+
+ Fixed Order(fix)-uses a fixed order in how it tries the four
+neighboring direction.  North, East, South, West is the order of 
+priority. (Type FIX to run this method).
+
+Type A and press Enter ...a
+
+ Maintain Direction(dir)-gives first priority to maintainingthe
+direction being traveled when the point is entered. 
+(Type DIR to run this method).
+
+ Towards Goal(goal)-this algorithm always knows the  location of the 
+goal, but has to find the path to reach it.  It gives first
+priority to the veritical or horizontal direction that is closest 
+to the vertical or horizontal direction that is closest to the
+straight line direction from the current point to the goal.
+Second priority is given to the direction second closest tothe 
+straightline direction and third priority is opposite thesecond 
+direction and the fourth priority is opposite the firstdirection. 
+(Type GOAL to run this method).
+
+Type A and press Enter ...a
+
+ Towards Goal Maintaining Direction(gdir)-combines theprevious two 
+algorithms and gives first priority to maintaining thedirection 
+being traveled when the point is entered.  The remainingdirection 
+(of the three) that is closest to the straight-line directionfrom 
+the current point to the goal.  The third direction is thenext 
+closest to the straight-line direction and the remainingdirection 
+is the last neighbor direction to try. 
+(Type GDIR to run this method).
+
+ Best(best)-this method find the shortest path between thestart 
+point and the end point. This algorythm uses fix methoddescribed 
+above. It loops until it finds the all possible solutions.
+(Type BEST to run this method).
+
+ type ABOUT to view the software information page 
+Type A and press Enter ...a
+
+
+What policy to use? (type ? for help) about
+
+
+ 			Maze Program, v1.0 
+
+   Written for project #2 in CS2005@WPI (1996) by :
+
+  CRAZY ELEPHANTS : 
+ Uzma Fathima Ali <uzma@WPI.EDU> 
+ Nicholas Ja Tortorelli <vogar@WPI.EDU> 
+ Park Hays <phays@WPI.EDU>   
+ Peter Golaszewski <peterg@WPI.EDU> 
+ Robert Scaramangos <robertsc@WPI.EDU> 
+
+
+What policy to use? (type ? for help) fix
+
+Path was found of length 24 with 7 wrong points visited.
+(Total of 38 moves, algorythm efficiency: 0.63)
+##########
+# IJKLMN.#
+# H#XW#O#####
+# G# V#PQ...###
+# F# UTSR##...#
+# E# ##########
+# D###   #
+##C# # # #
+#AB      #
+########## 
+%./maze
+##########
+#        #
+#  #> # #####
+#  #  #     ###
+#  #     ##   #
+#  # ##########
+#  ###   #
+## # # # #
+#<       #
+########## 
+Maze contains 10 rows, 15 columns, start:(8,1), goal:(2,4)
+
+What policy to use? (type ? for help) dir
+
+Path was found of length 22 with 29 wrong points visited.
+(Total of 80 moves, algorythm efficiency: 0.28)
+##########
+#.IJKLMN.#
+#.H#V #O#####
+#.G#U #P....###
+#.F#TSRQ.##...#
+#.E#.##########
+#.D###...#
+##C#.#.#.#
+#AB......#
+########## 
+%./maze
+##########
+#        #
+#  #> # #####
+#  #  #     ###
+#  #     ##   #
+#  # ##########
+#  ###   #
+## # # # #
+#<       #
+########## 
+Maze contains 10 rows, 15 columns, start:(8,1), goal:(2,4)
+
+What policy to use? (type ? for help) goal
+
+Path was found of length 12 with 0 wrong points visited. 
+(Total of12 moves, algorithm efficiency: 1.00)
+##########
+# IJK    #
+# H#L # #####
+# G#  #     ###
+# F#     ##   #
+# E# ##########
+# D###   #
+##C# # # #
+#AB      #
+########## 
+%./maze
+##########
+#        #
+#  #> # #####
+#  #  #     ###
+#  #     ##   #
+#  # ##########
+#  ###   #
+## # # # #
+#<       #
+########## 
+Maze contains 10 rows, 15 columns, start:(8,1), goal:(2,4)
+
+What policy to use? (type ? for help) gdir
+
+Path was found of length 22 with 21 wrong points visited.
+(Total of 64 moves, algorythm efficiency: 0.34)
+##########
+# IJKLMN.#
+# H#V #O#####
+# G#U #P....###
+# F#TSRQ.##...#
+# E# ##########
+# D###...#
+##C#.#.#.#
+#AB......#
+########## 
+%./maze
+##########
+#        #
+#  #> # #####
+#  #  #     ###
+#  #     ##   #
+#  # ##########
+#  ###   #
+## # # # #
+#<       #
+########## 
+Maze contains 10 rows, 15 columns, start:(8,1), goal:(2,4)
+
+What policy to use? (type ? for help) best
+
+Path was found of length 12:
+##########
+# IJK    #
+# H#L # #####
+# G#  #     ###
+# F#     ##   #
+# E# ##########
+# D###   #
+##C# # # #
+#AB      #
+########## 
+%exit
+exit
+
+script done on Wed Nov 20 23:10:05 1996
+
+script done on Wed Nov 20 23:10:05 1996

@@ -1,0 +1,165 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>1</TITLE>
+</HEAD>
+<BODY>
+
+<B><P>Problem 1 (a):</P>
+</B>
+<P>Block 1:</P>
+<OL>
+
+<LI>I = 2</LI>
+
+<P>Block 2:</P>
+<LI>if I &gt; X goto (7)</LI>
+
+<P>Block 3:</P>
+<LI>Fact = Fact * I</LI>
+<LI>I = I + 1</LI>
+<LI>Dumb = 5</LI>
+<LI>goto (2)</LI>
+
+<P>Block 4:</P>
+<LI>Factorial = Fact</LI>
+<LI>return</LI></OL>
+
+
+<B><P>Problem 1 (b):</P>
+</B><P></P>
+<P>Block 1: </P>
+<P></P>
+<P></P>
+<P><HR WIDTH="18%" SIZE=1>Block 2: </P>
+<P><HR WIDTH="8%" SIZE=1></P>
+<P></P>
+
+<P>Block 3: </P>
+
+<P><HR WIDTH="8%" SIZE=1></P>
+
+<P></P>
+<P><HR WIDTH="18%" SIZE=1>Block 4: </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<B><P>&nbsp;</P>
+<P>Problem 1 (c): </B>(8086 Assembly using only AX)</P>
+
+<FONT FACE="Courier New"><P>Mov&#9;AX, 2</P>
+<P>Mov&#9;I,AX</P>
+<P>L1:</P>
+<P>Mov&#9;AX,X</P>
+<P>Cmp&#9;I,AX</P>
+<P>Ja&#9;L2</P>
+<P>Mov&#9;AX, Fact</P>
+<P>Mul&#9;I</P>
+<P>Mov&#9;Fact, AX</P>
+<P>Mov&#9;AX,I</P>
+<P>Add&#9;AX,1</P>
+<P>Mov&#9;I,AX</P>
+<P>Mov&#9;AX,5</P>
+<P>Mov&#9;Dumb,AX</P>
+<P>Jmp&#9;L1</P>
+<P>L2:&#9;</P>
+<P>Mov&#9;AX, Fact</P>
+<P>Mov&#9;Factorial,AX</P>
+<P>Ret&#9;</P>
+</FONT>
+<B><P>Problem 2: </P>
+</B>
+<P>B1&#9;DOM&#9;&#9;(1)</P>
+<P>B1&#9;DOM&#9;&#9;(2)</P>
+<P>B2&#9;DOM&#9;&#9;(3)</P>
+<P>B3&#9;DOM&#9;&#9;(4)</P>
+<P>B3&#9;DOM&#9;&#9;(5)</P>
+<P>B3&#9;DOM&#9;&#9;(6)</P>
+<P>B2&#9;DOM&#9;&#9;(7)</P>
+<P>B4&#9;DOM&#9;&#9;(8)</P>
+
+<B><P>Problem 3: </P>
+</B>
+<P>Program loop: (2) <FONT FACE="Wingdings">&#224;</FONT>
+ (3) <FONT FACE="Wingdings">&#224;</FONT>
+ (4) <FONT FACE="Wingdings">&#224;</FONT>
+ (5) <FONT FACE="Wingdings">&#224;</FONT>
+ (6) <FONT FACE="Wingdings">&#224;</FONT>
+ (2)</P>
+
+<P>It’s a natural loop because we have a back edge (6) <FONT FACE="Wingdings">&#224;</FONT>
+ (2) and (2) is a header.</P>
+
+<B><P>&nbsp;</P>
+<P>Problem 4: </P>
+</B>
+<P>DAG for Block 3:</P>
+
+<FONT SIZE=2><P><IMG SRC="Image1.gif" WIDTH=454 HEIGHT=134></P>
+</FONT>
+<B><P>Problem 5 (a): </P>
+</B>
+<P>Adding definition Block 0:</P>
+
+<P></P>
+<P></P>
+<P>Block 0:</P>
+<P></P>
+<P></P>
+<P></P>
+<P></P>
+<P>Block 1: </P>
+<P></P>
+<P></P>
+<P>Block 2: </P>
+<P></P>
+<P></P>
+<P></P>
+<P>Block 3: </P>
+<P></P>
+<P><HR WIDTH="8%" SIZE=1></P>
+<P><HR WIDTH="20%" SIZE=1></P>
+<P></P>
+<P><HR WIDTH="18%" SIZE=1>Block 4: </P>
+
+<P></P>
+
+<B><P>Problem 5 (b): </P>
+</B>
+<P>The Reaching Definitions method would find, that at instruction (10), variable Fact might not be previously defined, which would mean that the result of the function returned at (11) will depend on the Block 0, which might be compiler and platform dependent. The compiler would therefor return a warning message of this kind: &quot;Variable Fact might not be initialized&quot;.</P>
+
+<B><P>Problem 5 (c):</P>
+</B>
+<P>The method would find that the Dumb variable is loop-irrelevant, and therefor it’s definition can be taken outside of the loop.</P>
+
+<B><P>Problem 6:</P>
+</B>
+<P>Following optimizations could be performed on the program:</P>
+
+<OL TYPE="a">
+
+<LI>Since Dumb doesn’t define any other variables within its scope, it can be disregarded.</LI>
+<LI>Predefinition of Fact should be introduced</LI>
+<LI>Registers should be assigned to most often used variables, to limit memory references:</LI>
+<P>AX = Fact</P>
+<P>BX = X</P>
+<P>CX = I</P>
+<LI>Change ‘I=I+1’ to ‘Inc I’</LI></OL>
+
+
+<B><P>Problem 7:</P>
+</B>
+<FONT FACE="Courier New"><P>Mov&#9;AX, <I>constant</P>
+</I><P>Mov&#9;CX,2</P>
+<P>Mov&#9;BX,X</P>
+<P>L1:</P>
+<P>Cmp&#9;CX,BX</P>
+<P>Ja&#9;L2</P>
+<P>Mul&#9;CX    ; AX:DX = AX * CX</P>
+<P>Inc&#9;CX</P>
+<P>Jmp&#9;L1</P>
+<P>L2:&#9;</P>
+<P>Mov&#9;Factorial,AX</P>
+<P>Ret</P></FONT></BODY>
+</HTML>

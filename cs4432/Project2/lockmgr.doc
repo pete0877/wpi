@@ -1,0 +1,100 @@
+AUTHOR(S):	Peter Golaszewski <peterg@wpi.edu>
+
+COURSE:		WPI, CS4432, D00
+
+PROJECT:	2
+
+VERSION:	1.0
+
+UPDATED:	4/23/00
+
+HOW TO REBUILD AND EXECUTE:
+	type 'make'
+
+REQUIREMENTS IMPLEMENTED:
+	All
+
+ADDITIONAL FEATURES:
+	1. Dead-lock detection.
+	2. State table printing 
+		(use the 'help' command for list of available commands)
+	
+KNOWN BUGS / PROBLEMS:
+	None
+	
+DESIGN OUTLINE:
+
+	__________________________________________________________
+	I. COMPONENT AND CLASS STRUCTURE
+
+	The core component of this project is the TransactionManager
+	package. Following are all the classes present within the 
+	TransactionManager package:
+	
+	TManager class
+		This is the main package class. Responsible for processing 
+		all requests from the outside.
+		
+	TStateTable class
+		This class is responsible for storing list of users
+		(transactions), objects (resources) and the associations
+		between them. One can think of this class as simply
+		an array with some extended functionality, but no business
+		logic. This class is used only by the TManager class.
+		
+	TUseStatus class
+		This class is used to indicate level of association
+		between a transaction and an object. It also stores
+		the time when the association was established.
+
+	TIdentifiable interface
+		Simple interface that abstracts behavior of an
+		identifier (an object that serves purpose of an ID).
+
+	TObjectID class	(implements TIdentifiable)
+		ID for an object (resource)
+
+	TTransactionID class (implements TIdentifiable)
+		ID for a transaction (user)		
+		
+	TIDIndex class
+		Simple index of TIdentifiable objects. Used only 
+		by the TStateTable class.
+	
+	For more details on the relations between these classes,
+	see the attached uml_design.gif image.
+	
+	__________________________________________________________
+	II. ALGORITHM DESIGN
+	
+	The only two component features that need detailed explanation
+	are:
+	
+	A. The scheduling algorithm:
+	
+	In general, FIFO is the method used.
+	When a lock is released from an object the manager will
+	first look for any transactions that are waiting to receive
+	share-lock. If there are such transactions, access is granted
+	to all of them at once. If no such transactions are found, 
+	the manager will look for the oldest exclusive-lock request
+	that is still pending and grant the access to it.
+	
+	B. The dead-lock detection:
+	
+	When a transaction T requests shared or exclusive access to 
+	an object and is given the wait-status, the manager will
+	first gather the list of transactions that are preventing
+	the access to be granted. Then, for each of these locking
+	transactions, the manager will check if any of them are
+	waiting for an access to any object currently locked by
+	the transaction T. If such condition occurs, then we have
+	just detected a dead-lock.
+	
+	
+	
+	
+	
+	
+	
+	

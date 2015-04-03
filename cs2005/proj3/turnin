@@ -1,0 +1,22 @@
+Script started on Tue Dec 10 22:34:38 1996
+%/cs/cs2005/bin/gturnin proj3 airline.pp[K[Kcpp
+turning in files for group 'crazyelephants' ...
+you have already turned in a file called 'airline.cpp'
+do you wish to turn it in again (y/n)? y
+/cs/users/cs2005/crazyelephants/proj3/airline.cpp successfully turned in for project 'proj3' group 'crazyelephants'
+%/cs/cs2005/bin/gturnin proj3 flight.cpp
+turning in files for group 'crazyelephants' ...
+/cs/users/cs2005/crazyelephants/proj3/flight.cpp successfully turned in for project 'proj3' group 'crazyelephants'
+%/cs/cs2005/bin/gturnin proj3 reserve.cpp
+turning in files for group 'crazyelephants' ...
+/cs/users/cs2005/crazyelephants/proj3/reserve.cpp successfully turned in for project 'proj3' group 'crazyelephants'
+%/cs/cs2005/bin/gturnin proj3 airlineh[K.h
+turning in files for group 'crazyelephants' ...
+/cs/users/cs2005/crazyelephants/proj3/airline.h successfully turned in for project 'proj3' group 'crazyelephants'
+%/cs/cs2005/bin/gturnin proj3 airline.h[K[K[K[K[K[K[K[K[KMakefile
+turning in files for group 'crazyelephants' ...
+/cs/users/cs2005/crazyelephants/proj3/Makefile successfully turned in for project 'proj3' group 'crazyelephants'
+%exit
+exit
+
+script done on Tue Dec 10 22:36:40 1996

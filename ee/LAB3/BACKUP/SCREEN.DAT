@@ -1,0 +1,25 @@
+
+ PEP v3.0 - Piano Editor / Player
+
+                    1st Octave
+ ÚÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿   Program Keys:
+ ³ A ³ B ³ C ³ D ³ E ³ F ³ G ³
+ ³   ³   ³   ³   ³   ³   ³   ³   1..8 - First octave
+ ³   ³   ³   ³   ³   ³   ³   ³   1..8 + Shift - Second octave
+ ³   ³   ³   ³   ³   ³   ³   ³
+ ³   ³   ³   ³   ³   ³   ³   ³   R - Start recording over the current song
+ ÀÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ   E - End recording
+
+                    2nd Octave   P - Play the current song
+ ÚÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄÂÄÄÄ¿   F - Play the current song with FX (VGA)
+ ³ A ³ B ³ C ³ D ³ E ³ F ³ G ³
+ ³   ³   ³   ³   ³   ³   ³   ³   S - Save the current song
+ ³   ³   ³   ³   ³   ³   ³   ³   L - Load a song
+ ³   ³   ³   ³   ³   ³   ³   ³
+ ³   ³   ³   ³   ³   ³   ³   ³   Q - Quit the PEP
+ ÀÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÁÄÄÄÙ
+
+
+
+
+

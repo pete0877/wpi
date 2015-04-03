@@ -1,0 +1,27 @@
+
+;No value
+
+2 ]=> (load "hw2_2")
+
+;Loading "hw2_2.scm" -- done
+;Value: count-occurrences
+
+2 error> (pp count-occurrences)
+
+(named-lambda (count-occurrences s lst)
+  (cond ((null? lst) 0)
+        ((eq? (car lst) s) (+ 1 (count-occurrences s (cdr lst))))
+        ((list? (car lst))
+         (+ (count-occurrences s (car lst)) (count-occurrences s (cdr lst))))
+        (else (count-occurrences s (cdr lst)))))
+;No value
+
+2 error> (count-occurrences 'a '(a b (c d a) ()))
+
+;Value: 2
+
+2 error> (count-occurrences 'a '(z c x))
+
+;Value: 0
+
+2 error> (transcript-off)

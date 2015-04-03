@@ -1,0 +1,35 @@
+ANSWERS TO QUESTIONS:
+
+1.
+     Can a hey process ever delete the shared memory
+     segment and semaphore as another key is trying to use
+     it? Why or why not? What do you think would happen
+     in this case? Observe what happens in your program or
+     make assumptions on what you think would happen.
+
+It is possible, because we can't use semaphores when we
+delete them. If another process tries to access deleted
+semaphore, it will get -1 returned and it will end process
+messaging error.
+
+2.
+     Besides using shared memory for the IPC, briefly
+     describe another way to communicate between chat
+     processes. Why would this way be better or worse than
+     using shared memory?
+
+We can use server process that will manage communication
+between client processes, and so we don't have to worry about
+deletion problem described above. In this case we would use
+local memory buffer accesable through the clients only
+through message methods.
+
+3.
+     Would you every want to allow more than one hey
+     program to read or write the shared memory? If so,
+     when? How would you modify your code to allow this?
+
+Yes, but only if we want to allow reading and no writing
+at all. This way we could probabbly speed up the turn-around
+time needed for one of these processes to aquire information 
+from the shared memory segment.

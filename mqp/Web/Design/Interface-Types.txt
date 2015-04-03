@@ -1,0 +1,74 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+// File Name:	Types.idl
+// Description:	Common data types.
+// Date:		02/12/2000
+// Author:		sjastrzebski
+//
+// Copyright © 1999 Worcester Polytechnic Institute, All Rights Reserved.
+
+typedef struct tagGameState 
+{
+	int actualSize;
+	int maxSize;
+	[ref, size_is(maxSize), length_is(actualSize)] char *gamestate;
+
+} GameState;
+
+typedef struct tagMove
+{
+	int actualSize;
+	int maxSize;	
+	[ref, size_is(maxSize), length_is(actualSize)] char *move;
+	int quality;
+	int status;
+	GameState gamestate;
+
+} Move;
+
+typedef enum tagLevelType
+{
+	MAXIMAXING = 1,
+	MINIMAZING = 2
+
+} LevelType;
+
+typedef struct tagGameTypeData
+{
+	char gameName[64];
+	char gameVersion[64];
+	char gameDescription[256];
+	char companyName[128];
+	char legalCopyright[256];
+	char legalTrademarks[256];
+	char gameEncoding[256];
+	int gameStateSize;
+	int moveSize;
+	int moveListSize;
+	float averageBranchingFactor;	
+
+} GameTypeData;
+
+typedef struct  tagHelperPerformanceData 
+{
+	// 0 = didn't do anything ... 1 = did the whole ply requested.
+	//
+	float pctCompleted;   
+
+	// time in seconds between the call request and the return of results
+	//
+	float totalWorkTime;  
+	
+	// number of nodes evaluated by the plugin
+	//
+	long nodesEvaluated; 
+	
+	// might not be the same as nodesEvaluated/totalWorkTime
+	//
+	long nodesEvaluatedPerSecond;
+	
+	// average branching factor during the evaluation
+	//
+	float averageBranchingFactor;  
+
+} HelperPerformanceData;

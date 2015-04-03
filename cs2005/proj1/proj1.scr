@@ -1,0 +1,95 @@
+Script started on Thu Nov  7 22:26:52 1996
+%g++ proj1.cpp[K[K[K[K[K[K[K[K[K-o proj1 proj1.cpp
+/usr/bin/ld:
+Warning: clog defined as GLOBAL DATA but is defined in a shared lib as a GLOBAL FUNC
+/usr/bin/ld:
+Warning: clog defined as GLOBAL DATA but is defined in a shared lib as a GLOBAL FUNC
+%proj1
+
+
+Polinomial Program Menu :
+
+  0. Print this menu.
+  1. Exit.
+  2. Input new polynomial.
+  3. Print the current polynomial.
+  4. Evaluate the current polynomial at point and print the
+result.
+  5. Differentiate the current polynomial and print the
+resulting polynomial.
+  6. Evaluate the differential at a point and print the
+result.
+  7. Integrate the current polynomial and print the resulting
+polynomial.
+  8. Evaluate the integral over an interval and print the
+result.
+
+Enter a command (2-8, 0-help, 1-exit): 2
+
+Enter degree of the polynomial (max=9): 3
+
+Enter the coefficient for the degree 3 term:2
+
+Enter the coefficient for the degree 2 term:1
+
+Enter the coefficient for the degree 1 term:3
+
+Enter the coefficient for the degree 0 term:-4
+
+
+Enter a command (2-8, 0-help, 1-exit): 3
+
+f(x)=+2x^3+1x^2+3x^1-4x^0
+
+Enter a command (2-8, 0-help, 1-exit): 4
+
+Enter the point of polynomial evaluation:2
+
+f(2)=22
+
+Enter a command (2-8, 0-help, 1-exit): 5
+
+f'(x)=+6x^2+2x^1+3x^0
+
+Enter a command (2-8, 0-help, 1-exit): 6
+
+Enter the point of evaluation of the f'(x):2
+
+f'(2)=31
+
+Enter a command (2-8, 0-help, 1-exit): 7
+
+F(x)=+0.5x^4+0.333333x^3+1.5x^2-4x^1+0x^0
+
+Enter a command (2-8, 0-help, 1-exit): 8
+
+Enter the first point of the F(x)interval:0
+
+Enter the second point of the F(x)interval:1
+F'(1)-F'(0)=-1.66667
+
+Enter a command (2-8, 0-help, 1-exit): 0
+
+
+Polinomial Program Menu :
+
+  0. Print this menu.
+  1. Exit.
+  2. Input new polynomial.
+  3. Print the current polynomial.
+  4. Evaluate the current polynomial at point and print the
+result.
+  5. Differentiate the current polynomial and print the
+resulting polynomial.
+  6. Evaluate the differential at a point and print the
+result.
+  7. Integrate the current polynomial and print the resulting
+polynomial.
+  8. Evaluate the integral over an interval and print the
+result.
+
+Enter a command (2-8, 0-help, 1-exit): 1
+%exit
+exit
+
+script done on Thu Nov  7 22:28:24 1996

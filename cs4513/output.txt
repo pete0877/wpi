@@ -1,0 +1,180 @@
+_________________________________________________________________________
+SERVER OUTPUT:
+
+Distributed File System Server
+   by Peter Golaszewski, for CS4513 D99 Proj3
+
+NFS server started (press Ctrl+C to stop the server)...
+
+Client request: create rfile_1 2
+
+Client request: create rfile_2 20
+
+Client request: extend rfile_1 20
+
+Client request: extend rfile_2 2
+
+Client request: delete rfile_1
+
+Client request: delete rfile_2   
+
+_________________________________________________________________________
+CLIENT OUTPUT:
+
+Distributed File System Client
+   by Peter Golaszewski, for CS4513 D99 Proj3
+(special commands are included in this program. Type help for help.)
+
+    - using bit map method
+    - using command file: input.txt
+Allocated 1 blocks: 2 
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      1 block(s)
+ Free blocks: 125
+Allocated 11 blocks: 3 4 5 6 7 8 9 10 11 12 13 
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      1 block(s)
+    lfile_2      10 block(s)
+ Free blocks: 114
+NFS: 
+Allocated 2 blocks: 2 3 
+
+
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      1 block(s)
+    lfile_2      10 block(s)
+    rfile_1      2 block(s)     (remote)
+ Free blocks: 114
+NFS: 
+Allocated 21 blocks: 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 
+
+
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      1 block(s)
+    lfile_2      10 block(s)
+    rfile_1      2 block(s)     (remote)
+    rfile_2      20 block(s)     (remote)
+ Free blocks: 114
+Blocks map: (each row has 10 blocks)
+
+##########
+###.......
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+.......
+  Total free blocks: 114
+  Total used blocks: 13
+  Total blocks     : 127
+  Max allocation   : 114
+Allocated 11 blocks: 14 15 16 17 18 19 20 21 22 23 24 
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      11 block(s)
+    lfile_2      10 block(s)
+    rfile_1      2 block(s)     (remote)
+    rfile_2      20 block(s)     (remote)
+ Free blocks: 103
+Allocated 1 blocks: 25 
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      11 block(s)
+    lfile_2      11 block(s)
+    rfile_1      2 block(s)     (remote)
+    rfile_2      20 block(s)     (remote)
+ Free blocks: 102
+NFS: 
+Allocated 21 blocks: 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 
+
+
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      11 block(s)
+    lfile_2      11 block(s)
+    rfile_1      22 block(s)     (remote)
+    rfile_2      20 block(s)     (remote)
+ Free blocks: 102
+NFS: 
+Allocated 2 blocks: 46 47 
+
+
+PATH: /
+   [.]     
+   [..]     
+    lfile_1      11 block(s)
+    lfile_2      11 block(s)
+    rfile_1      22 block(s)     (remote)
+    rfile_2      22 block(s)     (remote)
+ Free blocks: 102
+Blocks map: (each row has 10 blocks)
+
+##########
+##########
+#####.....
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+..........
+.......
+  Total free blocks: 102
+  Total used blocks: 25
+  Total blocks     : 127
+  Max allocation   : 102
+Deallocated blocks: 2 14 15 16 17 18 19 20 21 22 23 24 
+PATH: /
+   [.]     
+   [..]     
+    rfile_2      22 block(s)     (remote)
+    lfile_2      11 block(s)
+    rfile_1      22 block(s)     (remote)
+ Free blocks: 114
+Deallocated blocks: 3 4 5 6 7 8 9 10 11 12 13 25 
+PATH: /
+   [.]     
+   [..]     
+    rfile_2      22 block(s)     (remote)
+    rfile_1      22 block(s)     (remote)
+ Free blocks: 126
+NFS: 
+Deallocated blocks: 2 3 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 
+
+
+PATH: /
+   [.]     
+   [..]     
+    rfile_2      22 block(s)     (remote)
+ Free blocks: 126
+NFS: 
+Deallocated blocks: 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 46 47 
+
+
+PATH: /
+   [.]     
+   [..]     
+ Free blocks: 126
+ 
+ 
+_________________________________________________________________________

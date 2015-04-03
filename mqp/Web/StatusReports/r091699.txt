@@ -1,0 +1,29 @@
+MQP Status Report
+
+Date: 9/16/99
+
+______________________________________________________________________________
+What has been done since last meeting:
+
+1. Wrote the first draft of the requirements,
+
+2. Requested a number of articles from the library on the topic of 
+   game-tree searching algorithms and distributed computing,
+   
+3. Did more research on the chess and its parallel implementation,
+
+4. Started reviewing materials on DCOM and its applications,
+
+5. List of references has been composed and posted on the site. More 
+   references to come.
+
+______________________________________________________________________________
+What will be done by the next meeting:
+
+1. Prepare a plan for design and implementation of the project,
+
+2. Do more research on the topic of game-tree searching algorithms,
+
+3. Do more research on the DCOM architecture,
+
+4. Start the design.

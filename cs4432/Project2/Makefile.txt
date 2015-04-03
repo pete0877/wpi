@@ -1,0 +1,11 @@
+JDKPATH = /usr
+JAVAC = $(JDKPATH)/bin/javac 
+JAVA  = $(JDKPATH)/bin/java  
+
+all: TestDriver.java
+	$(JAVAC) TestDriver.java 
+	$(JAVA) TestDriver
+
+clean:
+	rm -f *.class 
+	rm -f TransactionManager/*.class 

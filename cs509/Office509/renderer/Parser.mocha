@@ -1,0 +1,75 @@
+/* Decompiled by Mocha from Parser.class */
+
+package renderer;
+
+import java.util.*;
+
+public synchronized class Parser
+{
+    protected String brr13;
+    protected Vector brr14;
+    protected Stack brr15;
+
+    public Parser(String string)
+    {
+        brr13 = null;
+        brr14 = new Vector();
+        brr15 = new Stack();
+        brr13 = string;
+    }
+
+    private Token brr11(String string)
+    {
+        if (BoldToken.isType(string))
+            return new BoldToken(string);
+        if (ItalicsToken.isType(string))
+            return new ItalicsToken(string);
+        if (FontToken.isType(string))
+            return new FontToken(string);
+        if (TextToken.isType(string))
+            return new TextToken(string);
+        if (GIFToken.isType(string))
+            return new GIFToken(string);
+        else
+            return new Token(string);
+    }
+
+    public Enumeration getTokens()
+    {
+        return brr15.elements();
+    }
+
+    public void parse()
+    {
+        StringTokenizer stringTokenizer = new StringTokenizer(brr13, "<>", 1);
+        brr12(stringTokenizer);
+    }
+
+    private void brr12(StringTokenizer stringTokenizer)
+    {
+        String string;
+        StringBuffer stringBuffer;
+        Object object;
+        while (stringTokenizer.hasMoreElements())
+        {
+            string = (String)stringTokenizer.nextElement();
+            if (string.equals(Token.startDelimiter))
+            {
+                stringBuffer = new StringBuffer(string);
+                while (stringTokenizer.hasMoreElements())
+                {
+                    object = (String)stringTokenizer.nextElement();
+                    stringBuffer.append(object);
+                    if (object.equals(Token.endDelimiter))
+                        break;
+                    if (stringTokenizer.hasMoreElements() == 0)
+                        stringBuffer.append(Token.startDelimiter);
+                }
+                object = brr11(stringBuffer.toString());
+                brr15.push(object);
+            }
+            else
+                brr15.push(new TextToken(string));
+        }
+    }
+}

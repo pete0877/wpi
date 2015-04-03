@@ -1,0 +1,16 @@
+// CSL     : CSL description for TableBean, TextBean, Scrollbar
+// Author  : George T. Heineman
+//         : heineman@cs.wpi.edu;
+//         : http://www.cs.wpi.edu/~heineman
+// Version : 1.0
+
+// CSL description for the gui components packages as part of the
+// Spreadsheet Application
+//
+//
+
+package gui;
+
+import gui.scrollbar;
+import gui.textbean;
+import gui.tablebean;

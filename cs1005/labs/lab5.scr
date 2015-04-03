@@ -1,0 +1,20 @@
+Script started on Wed Oct  2 15:58:23 1996
+tcsh: getwd: No such file or directory
+tcsh: Trying to start from "/usr9/peterg"
+> gcc lab5.c la[K[K-o lab5
+> lab5
+Input n: 8
+Input the list: 12 4 5 2 7 19 26 8
+The list entered: 12 4 5 2 7 19 26 8 
+  12 ************
+   4 ****
+   5 *****
+   2 **
+   7 *******
+  19 *******************
+  26 **************************
+   8 ********
+
+> exit
+
+script done on Wed Oct  2 15:59:26 1996

@@ -1,0 +1,77 @@
+Author:                         Peter Golaszewski
+Date:                           9/14/96
+Version:                        N/A
+Project ID:                     Homework Assigment #1
+CS Class:                       CS 1005
+Programming Language:           C (Unix)
+OS/Hardware dependencies:       This is Portable Program
+
+Problem Description:            To find optimal number of containers
+				neened for an order of paint. Calculate
+				total S&H cost.
+
+Overall Design:                 
+        System structure        Read number of galons of paint for order
+        Data representation     Number of galons should be a real number 
+				with 2 decimal places. Output numbers of
+				containers are integer values.
+				S&H prices are all 2 decimal real numbers
+				and total cost is also 2 decimal real 
+				number.
+        Algorithms              Program converts amount ordered to a
+				integer = 100 * amount. Then that integer
+				is divided by capacities of containers
+				and reminder is used for next division.
+
+Program Assumptions 
+      and Restrictions:         Entered strings are numbers
+
+Interfaces:                     Program uses direct user prompt to enter
+				Input values from Keyboard and uses 
+				screen display to give Output values.
+
+Implementation Details:
+        Data                    Program uses Real(double) and Integer
+				values 
+representation
+        Variables               order - (real) amount ordered
+				amount - (int) 100 * amount ordered
+				needed_x - (int) needed numbers of
+					containers
+					(x is capasity)
+				sh_x - (real) S&H price for particular
+					type of container
+					(x is capasity)
+				total_cost - (real) Total Cost
+        Algorithm               Program converts real number (amount
+				ordered) to integer value in order
+				to omit any round off / truncation error
+				The value is than divided by capacities
+				of each one of the containers, and the 
+				integer result is number of containers
+				needed. Only the renimder of this division
+				is taken for next calculations. Program
+				first divides the greatest capacities, so
+				that optimal number of containers will be
+				the resoult. 
+
+How to build the program:       gcc hw1.c -o hw1
+          Then run it by:       hw1
+
+Program Source:                 Attached
+
+Additional Files:               hw1.script (Attached)
+
+Results:                        N/A
+
+Test Procedures:                Program was tested on sample problem
+				values.
+Test Data:                      (see hw1.script)
+
+Performance Evaluation:         Time requirement is minimazed by use
+                                of integer data types which lowwers
+				CPU calculation time.				
+
+References:                     None
+
+

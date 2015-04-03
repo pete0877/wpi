@@ -1,0 +1,635 @@
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+Server-side use cases combined with class pseudo code. Start by analyzing the GameServer Class:
+
+NOTE: Some of the minor details are omitted. For example, unless a method's purpose is not
+self-explonatory, it is not include in the design below:
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// GameServer Class
+
+void GameServer::GameServer() 
+{
+	// The game server sits and waits for a connection from a game client.
+	// When a connection comes in, the main process thread creates a child
+	// thread process and directs it to handleClient()	
+}
+
+void GameServer::handleClient() 
+{
+	// 	try	
+	// 		send to client results of configuration.getWelcomeMessage()
+	//		desired_encoding = the encoding type requested by the client
+	// 		all_game_types = engine.getAllGameTypes()
+	// 		for each game_type in all_game_types do
+	//				if game_type.getEncodingType() = desired_encoding
+	// 					send to client game_type.toString()
+	// 		loop
+	// 		desired_gametype = game type chosen by client 	
+	// 		desired_ply = the ply that the client wants to play 		
+	// 		do
+	// 			wait until Move Request (MR) comes in from the client. (MR is a GameState)
+	//			sleep on jobManagersLock semaphore // it's a binary semaphore with initial count = 1
+	//			try
+	//				eval_time = engine.estimateMoveTime(desired_gametype, desired_ply)
+	//			catch GameNotSupportedException			
+	//				wake up jobManagersLock
+	//				send error message to the client 
+	//				close the connection with the client		
+	//				stop current thread
+	//			endtry
+	//			mng_index = index in currentGameTypes where currentGameTypes[index] is the same = desired_gametype
+	//			if mng_index = null 
+	//				append desired_gametype at the end of currentGameTypes
+	//				mng_index = size of currentGameTypes
+	//			endif
+	//			if jobManagers[mng_index] = null then
+	//				append new JobManager instance at the end of jobManagers
+	//			endif
+	//			jobManager = jobManagers[mng_index]
+	//			time_sum = jobManager.getTotalQueueTime() + eval_time
+	//			dead_line = new instance of SimpleDateTime + time_sum
+	//			job_semaphore = create new instance of CSemaphore with no initial wake-ups
+	//			job_number = jobManager.addJob(eval_time, job_semaphore)
+	//			wake up jobManagersLock
+	// 			send client time_sum as the estimated decision interval
+	//			sleep on job_semaphore	
+	//			// after the wake up we know that our job is scheduled to run now:
+	//			destroy job_semaphore
+	//			try 
+	//				result = engine.makeMove(MR, desired_gametype, desired_ply, dead_line)	//				
+	//				// note that MR is an instance of GameState
+	//				jobManager.deleteJob(job_number)	
+	//		    catch GameNotSupportedException exception 
+	//				jobManager.deleteJob(job_number)	
+	//				send error message to the client 
+	//				close the connection with the client		
+	//				stop current thread
+	//			catch GameOverException
+	//				// GameOverException is thrown only if the MR is already in game over
+	//				// configuration
+	//				jobManager.deleteJob(job_number)		
+	//				send 'good game' message to the client 
+	//				close the connection with the client
+	//				stop current thread
+	//			endtry
+	//			send result back to the client
+	//			if (result.gamestatus = WON) OR (result.gamestatus = LOST) OR (result.gamestatus = DRAW)
+	//				send 'good game' message to the client 
+	//				close the connection with the client
+	//				stop current thread
+	//			endif
+	//		loop
+	//	catch broken socket exception, 
+	//		stop current thread
+	//  endtry	
+}
+	
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Engine Class
+
+boolean Engine::isGameImplemented(const GameType& gametype)
+{
+	//	return helperRegistry.isGameImplemented(gametype)
+}
+
+vectorGameType Engine::getAllGameTypes()
+{
+	//	return helperRegistry.getAllGameTypes(gametype)
+}
+
+long Engine::estimateMoveTime(const GameType& gametype, int ply)
+{
+	//	helper_set = helperRegistry.getHelpers(gametype)
+	//  if helper_set is empty then throw GameNotSupportedException
+	//	helpers_count = number of helpers in helper_set	
+	//	for each helper in helper_set do
+	//		use helper.getPerformance() to create average helper performance avg_performance
+	//	loop
+	//  helperRegistry.returnHelpers(helper_set)
+	//	return (avg_performance.estimateEvaluationTime(ply) / helpers_count)
+}
+
+MoveDecision Engine::makeMove(const GameState& gamestate, const GameType& gametype, int ply, SimpleDateTime deadline)
+{
+	//	helper_set = helperRegistry.getHelpers(gametype)
+	//	helper_set_size = size of helper_set
+	//	if helper_set_size = 0 then throw GameNotSupportedException	
+	//	a = 1    
+	//	got_decision = false
+	//	do 
+	//		decision_helper = a'th helper in helper_set		
+	//		try 
+	//			rapid_move = decision_helper.makeRapidDesicion(gamestate)
+	//			got_decision = true
+	//		catch HelperDeadException
+	//			a = a + 1
+	//			if a > helper_set_size then throw GameNotSupportedException				
+	//  	catch GameOverException
+	//			throw GameOverException
+	//		endtry
+	//	loop until got_decision = true
+	//	if rapid_move is not empty then
+	//		move_decision = instance of MoveDecision
+	//		move_decision.move = rapid_move.move
+	//		move_decision.pctCompleted = 1 // percentage of computation completed
+	//		return move_decision
+	//	endif
+	//	// further evaluation of the tree is required:	
+	//	create processing_sleep_semaphore with no initial wake-ups	
+	//	create root_node = instance GameTreeRootNode (ply, gamestate, MAXIMIZING, null, null)		
+	//  root_node.setProcessingSemaphore(processing_sleep_semaphore)	
+	//	create thread that makes call to distributeNode(root_node, helper_set, deadline)	
+	//	sleep on processing_sleep_semaphore
+	//	to_be_thrown = null
+	//	move_desicion = null
+	//  try
+	//		move_desicion = root_node.generateDecision()
+	//  catch NodeEvaluationFailedException 
+	//		to_be_thrown = GameNotSupportedException
+	//	destroy processing_sleep_semaphore				
+	//	destroy root_node
+	//	helperRegistry.returnHelpers(helper_set)	
+	//  if to_be_thrown	<> null then throw to_be_thrown
+	//	return move_desicion 
+}
+
+void Engine::distributeNode(GameTreeNode* node, vectorHelper* helpers, SimpleDateTime deadline)
+{
+	//	helper_set_size = size of the helpers list
+	//  // check if it is the root node:
+	//  perform_split = true
+	//	assigned_helper = null
+	//  if node.getParentNode() <> null then 
+	//		// it's not the root node, so we might be able to 
+	//		// just evaluate it:
+	//		a = 1    
+	//		found_working_helper = false		
+	//		quit_loop = false
+	//		do 
+	//			considered_helper = a'th helper in helpers
+	//			try 
+	//				considered_helper.lockJobQueue()
+	//				turn_around_time = considered_helper.estimateEvaluationTurnaround(node)
+	//				found_working_helper = true
+	//				now = new instance of SimpleDateTime
+	//				if deadline.toLong() - now.toLong() >= turn_around_time
+	//					assigned_helper = considered_helper
+	//					quit_loop = true
+	//				else
+	//					considered_helper.unlockJobQueue()
+	//				endif
+	//			catch HelperDeadException
+	//				considered_helper.unlockJobQueue()
+	//				a = a + 1
+	//				if a > helper_set_size then quit_loop = true	
+	//			endtry
+	//		loop until quit_loop = true	
+	//		if found_working_helper = false
+	//			node.setPctCompleted(0)	
+	//			node.setEvaluationFailed(true)
+	//			node.markProcessingDone()  // from now on, we cannot access node
+	//			stop current thread	
+	//		endif
+	//	endif
+	//  if assigned_helper <> null
+	//		// one of the helpers can process the node entirely, so we
+	//		// don't need to split it:
+	//		perform_split = false	
+	//		try
+	//			assigned_helper.evaluateBoard(node, job_time) // leave the queue unlocking to the helper.
+	//			node.markProcessingDone() // from now on we cannot access node because it might get destroyed
+	//			stop the current thread
+	//		catch HelperDeadException 
+	//			// we get to this point if the evaluation failed
+	//			// either job timed out or the communication failed, so we try again:
+	//			distributeNode(node, helpers, deadline)
+	//		endtry
+	//	endif
+	//  // we do this if we need to split the node and distribute its child nodes:
+	//  if perform_split = true then
+	//		a = 1    
+	//		split_completed = false
+	//		do 
+	//			chosen_helper = a'th helper in helpers
+	//			try 
+	//				chosen_helper.splitBoard(node)	
+	//				split_completed = true
+	//			catch HelperDeadException
+	//				a = a + 1
+	//				if a > helper_set_size then 
+	//					// failed to find any helpers to split this node
+	//					node.setPctCompleted(0)		
+	//					node.setEvaluationFailed(true)
+	//					node.markProcessingDone() // from now on, we cannot access node
+	//					stop current thread
+	//			endtry
+	//		loop until split_completed = true	
+	//  	// the node is now split. Now we need to assign new threads to it:
+	//		child_nodes = node.getChildNodes();
+	//		for each child in child_nodes do
+	//			create a seperate thread and direct it to distributeNode(child, helpers, deadline)
+	//		loop
+	//	endif
+	//	stop the current thread
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// Helper Class
+
+long Helper::estimateEvaluationTime(GameTreeNode* node)
+{
+    //	return estimateEvaluationTime(node.getPly())
+}
+
+long Helper::estimateEvaluationTime(int ply)
+{
+	//	return performance.estimateEvaluationTime(ply)
+}
+
+long Helper::estimateBusyTime()
+{
+    //	return jobManager.getTotalQueueTime()
+}
+
+void Helper::evaluateBoard(GameTreeNode* node, long timelimit) {
+	//  // this function either returns (in case evaluation succeeds) or 
+	//  // throws HelperDeadException in case there was communication error 
+	//	// or the call timed out
+	//
+	//  //	check if the helper is dead:
+	//	if available = false then
+	//		// unlock the job manager and throw an expection	
+	//		unlockJobQueue()
+	//		throw HelperDeadException
+	//	endif
+	//  job_semaphore = new CSemaphore with no wake-ups
+	//	job_number = jobManager.addJob(timelimit, job_semaphore);
+	//	unlockJobQueue()
+	//	sleep on job_semaphore
+	//	destroy job_semaphore	
+	//	start_time = new instance of SimpleDateTime
+	//	result = DCom call to evaluate service (node.getGameState(), node.getLevel(), node.getPly(), quality&, performance_data&)
+	//	end_time = new instance of SimpleDateTime
+	//	turnaroundtime = end_time - start_time
+	//  if result is an error, then
+	//		available = false
+	//		throw HelperDeadException
+	//	endif	
+	//  // update the node information:
+	//  node.setQuality(quality)
+	//	node.setPctCompelted(performance_data.pctCompelted)
+	//	// update helper performance:
+	//	update(performance_data, turnaroundtime)
+	// 	return
+}
+
+void Helper::splitBoard(GameTreeNode* node)
+{	
+	//	if available = false then throw HelperDeadException	
+	//  // make DCom call:
+	//	result = DCom call to split service (node.getGameState(), node.getLevel(), count_moves&, moves&, gamestates&)	
+	//  if result is an error, then
+	//		available = false
+	//		throw HelperDeadException
+	//	endif
+	//	for count = 1 to count_moves
+	//		create a new child_node 
+	//		if node.getLevel() = MAXIMIZING then child_node.setLevel(MINIMIZING)
+	//		child_node.setPly(node.getPly() - 1)
+	//		child_node.setGameState(move.gamestate)
+	//		child_node.setLastMove(moves[count])
+	//		child_node.setParentNode(node)
+	//		child_node.setPctCompleted(0)
+	//		node.addChildNode(child_node)
+	//	loop 
+	//	return
+}
+
+move Helper::makeRapidDesicion(const GameState& gamestate)
+{
+	//	if available = false then throw HelperDeadException	
+	//  // make DCom call:
+	//	result = DCom call to get quick move service (node.getGameState(), move&, gameover&)	
+	//  if result is an error, then
+	//		available = false
+	//		throw HelperDeadException
+	//	endif	
+	//	if gameover = true then
+	//		// the game state sent by the client is already over	//		
+	//		gameover_exception = GameOverException	
+	//		gameover_exception.result = move.status
+	//		throw gameover_exception
+	//	endif	
+	//	return move
+}
+
+void Helper::lockJobQueue()
+{
+	//	lock jobManagerLock
+}
+
+void Helper::unlockJobQueue()
+{
+	//	unlock jobManagerLock
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// GameTreeNode Class
+
+boolean GameTreeNode::isProcessingDone()
+{
+	//	return processingDone;
+}
+
+void GameTreeNode::markProcessingDone()
+{
+	//	processingDone = true
+	//	if (parentNode <> null) then parentNode.markChildProcessingDone(lastMove.quality)	
+}
+
+void GameTreeNode::markChildProcessingDone(int quality)
+{
+	//	completed_all_children = false
+	//	lock doneChildProcessingsLock semaphore
+	//	doneChildProcessings = doneChildProcessings + 1
+	//	pctCompleted = pctCompleted + 1 / (nubmer of nodes in childrenNodes)	
+	//	if level = MAXIMIZING then
+	//			if (quality > lastMove.quality) or (consideredChildren = false) then
+	//				consideredChildren = true
+	//				lastMove.quality = quality
+	//			endif
+	//  else
+	//			if (quality < lastMove.quality) or (consideredChildren = false) then
+	//				consideredChildren = true
+	//				lastMove.quality = quality
+	//			endif	
+	//	endif
+	//	if doneChildProcessings = size of childrenNodes then completed_all_children = true	
+	//  unlock doneChildProcessingsLock semaphore
+	//  if completed_all_children = true then parentNode.markProcessingDone()
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// GameTreeRootNode Class
+
+void GameTreeRootNode::markProcessingDone()
+{
+	//	GameTreeNode::markProcessingDone()
+	//	if processingSemaphore is not null then wake up processingSemaphore
+}
+
+MoveDecision GameTreeRootNode::generateDecision()
+{		
+	//	if (childrenNodes = empty) or (getEvaluationFailed() = true) then throw NodeEvaluationFailedException
+	//  // we are on the maximizing level, so we simply pick the child with the higest quality:
+	//	move_decision = null	
+	//	child = 1'st child node in childrenNodes
+	//	max_quality = child.getQuality()
+	//	a = 1
+	//	max_count = size of childrenNodes
+	//	do	
+	//		child = a'th child node in childrenNodes
+	//		if child.getQuality() >= max_quality then
+	//			max_quality = child.getQuality()
+	//			move = child.getLastMove()
+	//			move_decision.pctCompleted = move_decision.pctCompleted + child.getPctCompleted()
+	//			move_decision.move = move.move
+	//			
+	//		endif
+	//		a = a + 1
+	//		// following condition should never happen, but we should check for it:
+	//		if a > size of childrenNodes then throw NodeEvaluationFailedException 
+	//  loop until a > max_count
+	//	move_decision.pctCompleted = move_decision.pctCompleted / max_count
+	//	return move_decision
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// JobManager Class
+
+int JobManager::addJob(long joblength, CSemaphore* new_semaphore)
+{	
+	// lock()
+	// assigned_jobnumber = newJobNumber + 1
+	// job = new instance of Job
+	// job.jobNumber = assigned_jobnumber
+	// job.length = joblength
+	// job.semaphore = new_semaphore
+	// if isEmpty() = true then wake up new_semaphore
+    // append job to jobs
+	// unlock()
+	// return 
+}
+
+void JobManager::deleteJob(int jobnumber)
+{
+	// lock()	
+    // for each job in jobs do 
+	// 		if job.jobNumber = jobnumber 		
+	//			if job.timeStarted <> null then 
+	//				// deleted job was running at the time. We might have 
+	//				// to wake up the next job:
+	//				next_job = next job in jobs 
+	//				if (next_job<>null) and (next_job.timeStarted = null)
+	//					wakeup next_job.semaphore
+	//				endif
+	//			endif
+	//			delete job
+	//			unlock()
+	//			return
+	//		endif
+	// loop
+	// unlock()
+	// return
+}
+
+long JobManager::getTotalQueueTime()
+{
+	// lock()
+	// sum = 0
+    // for each job in jobs do 
+	// 		if job.timeStarted = null then
+	//			sum = sum + job.length
+	//		else
+	//			now = new instance of SimpleDateTime 
+	//			sum = sum + max(job.length, (now - job.timeStarted).toLong())
+	//		endif
+	// loop
+	// unlock()
+	// return
+}
+
+void JobManager::lock()
+{
+	//	sleep on lockSemaphore
+}
+
+void JobManager::unlock()
+{
+	//	wake up lockSemaphore
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// HelperPerformance Class
+
+HelperPerformance::HelperPerformance(vector<HelperPerformance> new_helperperformance_list)
+{
+	// // gather and average out all parameters from all performances from new_helperperformance_list
+	// // this is simple loop, add and divide algorithm.
+}
+
+void HelperPerformance::update(const HelperPerformanceData& new_helperperformancedata, turnaroundtime : long)
+{
+	// lock()
+	// // average out the current performance data and new performance data:
+	helperPerformanceData.evaluationTime = helperPerformanceData.evaluationTime + new_helperperformancedata.evaluationTime / 2
+	helperPerformanceData.splitTime = helperPerformanceData.splitTime + new_helperperformancedata.splitTime /2	
+	helperPerformanceData.alphaBetaGain = helperPerformanceData.alphaBetaGain + new_helperperformancedata.alphaBetaGain /2	
+	helperPerformanceData.branchingFactor = helperPerformanceData.branchingFactor + new_helperperformancedata.branchingFactor / 2	
+	
+	// record the completion factor and work time of the last evaluation:
+	helperPerformanceData.pctCompleted = new_helperperformancedata.pctCompleted
+	helperPerformanceData.totalWorkTime= new_helperperformancedata.totalWorkTime
+	
+	// calculate the overhead time:
+	helperPerformanceData.totalWorkTime = turnaroundtime - helperPerformanceData.totalWorkTime
+	
+	// unlock()
+}
+
+void HelperPerformance::estimateEvaluationTime(int ply)
+{
+	//  lock()
+	//	N =  ply
+	//	B =  helperPerformanceData.branchingFactor
+    //	V =  helperPerformanceData.evaluationTime
+	//	S =  helperPerformanceData.splitTime
+	//  AB = helperPerformanceData.alphaBetaGain
+	//	O =  overHeadTime
+	//  unlock()	
+	//	T  = [((B^(N - 1) - 1) / (B - 1)) * S]  + [((B ^ N  - 1) / (B - 1)) * V] + O
+	//  T  = T * AB
+	//	return T	
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+// HelperRegistry Class
+
+HelperRegistry::HelperRegistry() 
+{
+	//	// This class sits and waits for DCom calls from the Helpers. When a DCom call is made, it
+	//	// calls either:
+	//	//		registerHelper(rclsid : REFCLSID, ipaddress : char*, data : GameTypeData)
+	//	// 				(to register with the game server), or
+	//	//		unregisterHelper(rclsid : REFCLSID, ipaddress : char*)
+	//	// 				(to unregister with the game server), or
+	//	//		isRegistered(rclsid : REFCLSID, ipaddress : char*)	
+	//	//				(to check if a helper is registered)
+}
+
+HelperRegistry::registerHelper(address : char*, data : GameTypeData)
+{
+	//	lock helpersListLock
+	//	append 0 to refereceReferenceCounts
+	//	new_helper = new instance of Helper
+	//	set new_helper's internet address to ipaddress 
+	//	set new_helper's performance to data
+	//	new_helper.setHelperID(nextHelperID)
+	//	nextHelperID = nextHelperID + 1
+	//	append to new_helper helpers
+	//	unlock helpersListLock
+}
+
+HelperRegistry::unregisterHelper(address : char*)
+{
+	//	lock helpersListLock
+	//	the_helper = helper in helpers that matches the ipaddress
+	//	helper_idx = the_helper's index in helpers 
+	//	the_helper.setAvailable(false)
+	//	if (refereceReferenceCounts[helper_idx] = 0) then
+	//		// helper is not referenced anywhere else, so we can delete it
+	//		delete helpers[helper_idx]
+	//		delete refereceReferenceCounts[helper_idx]
+	//	endif
+	//	unlock helpersListLock	
+}
+
+vector<Helper*> HelperRegistry::getHelpers(gametype : GameType)
+{
+	//	lock helpersListLock
+	//	result = empty set
+	//	for each helper in helpers do
+	//		if helper.getGameType() =gametype then append helper to result
+	//	loop
+	//	unlock helpersListLock	
+	//	return result
+}
+
+vector<GameType> HelperRegistry::getAllGameTypes() 
+{
+	//	lock helpersListLock
+	//	result = empty set
+	//	for each helper in helpers do
+	//		if (result does not contain helper.getGameType()) and 
+	//			(helper.isAvailable() = true)
+	//		then
+	//			append helper.getGameType() to result
+	//		endif
+	//	loop
+	//	unlock helpersListLock	
+	//	return result
+}
+
+boolean HelperRegistry::isGameImplemented(gametype : const GameType&)
+{
+	//	lock helpersListLock
+	//	for each helper in helpers do
+	//		if (gametype = helper.getGameType()) and
+	//			(helper.isAvailable() = true)
+	//		then 
+	//			unlock helpersListLock	
+	//			return true
+	//		endif
+	//	loop
+	//	unlock helpersListLock	
+	//	return false
+}
+
+void HelperRegistry::returnHelpers(helpers : vector<Helper*>)
+{
+	//	lock helpersListLock
+	//	for each helper in returnedhelpers do
+	//		helper_list_size = size of helpers
+	//		a = 1
+	//		do 
+	//			record_helper = a'th helper in helpers list
+	//			if helper.getHelperID() = record_helper.getHelperID() then
+	//				// found the helper among registered helpers
+	//				refereceReferenceCounts[a] = refereceReferenceCounts[a] - 1
+	//				if refereceReferenceCounts[a] < 0 then refereceReferenceCounts[a] = 0
+	//				if (record_helper.isAvailable() = flase) and (refereceReferenceCounts[a] = 0) then
+	//					// returned helper is not available anymore and is not referenced by anybody else,
+	//					// so we can just delete it:
+	//					delete helpers[helper_idx]
+	//					delete refereceReferenceCounts[helper_idx]	
+	//				endif	
+	//				// skip the rest of the helpers
+	//				a = helper_list_size
+	//			endif
+	//			a = a + 1
+	//		loop until a > helper_list_size
+	//	loop
+	//	unlock helpersListLock	
+	//	return result
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+

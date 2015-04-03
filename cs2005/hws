@@ -1,0 +1,14 @@
+CFLAGS = -g
+
+lab4_rr: lab4_rr.o lab4_stack.o
+	g++ $(CFLAGS) -o lab4_rr lab4_rr.o lab4_stack.o
+
+lab4_stack.o: lab4_stack.C lab4_stack.h
+	g++ -c $(CFLAGS) lab4_stack.C
+
+lab4_rr.o: lab4_rr.C lab4_stack.h
+	g++ -c $(CFLAGS) lab4_rr.C
+
+clean: 
+	rm *.o lab4_rr
+

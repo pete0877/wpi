@@ -1,0 +1,70 @@
+
+;No value
+
+1 ]=> (load "defs")
+
+;Loading "defs.scm" -- done
+;Value: rexp12
+
+1 ]=> (load "hw6_1")
+
+;Loading "hw6_1.scm" -- done
+;Value: rexp?
+
+1 ]=> (rexp? rexp0)
+
+;Value: #t
+
+1 ]=> (rexp? rexp1)
+
+;Value: #t
+
+1 ]=> (rexp? rexp2)
+
+;Value: #t
+
+1 ]=> (rexp? rexp3)
+
+;Value: #t
+
+1 ]=> (rexp? rexp4)
+
+;Value: #t
+
+1 ]=> (rexp? rexp5)
+
+;Value: #t
+
+1 ]=> (rexp? rexp6)
+
+;Value: #t
+
+1 ]=> (rexp? rexp7)
+
+;Value: #t
+
+1 ]=> (rexp? rexp8)
+
+;Value: #t
+
+1 ]=> (rexp? rexp9)
+
+;Value: #t
+
+1 ]=> (rexp? nonrexp0)
+
+;Value: ()
+
+1 ]=> (rexp? nonrexp1)
+
+;Value: ()
+
+1 ]=> (rexp? nonrexp2)
+
+;Value: ()
+
+1 ]=> (rexp? nonrexp4)
+
+;Value: ()
+
+1 ]=> (transcript-off)

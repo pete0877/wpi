@@ -1,0 +1,18 @@
+Script started on Mon Feb 16 00:47:17 1998
+%hostname
+wpi.WPI.EDU
+%hey_server
+Trying to create socket at port 6929...
+Socket created! Accepting connections.
+
+Hey-Server activating on port 6929:
+
+Connection request received.
+Adding: peterg @ ernie.WPI.EDU (8687)
+Connection request received.
+Adding: peterg @ wpi.WPI.EDU (23975)
+Removing: peterg @ ernie.WPI.EDU (8687)
+Removing: peterg @ wpi.WPI.EDU (23975)%exit
+exit
+
+script done on Mon Feb 16 00:50:55 1998

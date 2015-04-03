@@ -1,0 +1,128 @@
+ 
+TEST CASES FOR THE DATABASE COMPONENT:
+
+ Creating new FreeRecord:
+  result: {*[ID=''] [First Name=''] [SN='000-00-0000'] }
+
+ Create new database object from the FreeRecord:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: }
+
+ Get record template:
+  result: {*[ID=''] [First Name=''] [SN='000-00-0000'] }
+
+ Adding new record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='123-45-6789'] }
+
+ Adding new record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='123-45-6789'] 
+   RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] }
+
+ Adding new record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='123-45-6789'] 
+   RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] 
+   RECORD: *[ID='3'] [First Name='Mark'] [SN='999-88-7777'] }
+
+ Adding new record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='123-45-6789'] 
+   RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] 
+   RECORD: *[ID='3'] [First Name='Mark'] [SN='999-88-7777'] 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] }
+
+ Fetching all Peter records:
+  result: {
+RETURNED RECORD: *[ID='1'] [First Name='Peter'] [SN='123-45-6789'] 
+RETURNED RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] }
+
+ Fetching all Peter records with ID of 2:
+  result: {
+RETURNED RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] }
+
+ Serializing DBC instance:
+  result: DONE
+
+ Creating empty DBC and setting the template:
+  result: {DBC STATE: DEFINITION: *[SOMEID=''] 
+DATA: }
+
+ Bringing back serialized DBC state:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='123-45-6789'] 
+   RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] 
+   RECORD: *[ID='3'] [First Name='Mark'] [SN='999-88-7777'] 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] }
+
+ Fetching all Peter records with ID of 1:
+  result: {
+RETURNED RECORD: *[ID='1'] [First Name='Peter'] [SN='123-45-6789'] }
+
+ Updating the SN of the obtained record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='999-99-9999'] 
+   RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] 
+   RECORD: *[ID='3'] [First Name='Mark'] [SN='999-88-7777'] 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] }
+
+ Fetching all Mark records with ID of 3:
+  result: {
+RETURNED RECORD: *[ID='3'] [First Name='Mark'] [SN='999-88-7777'] }
+
+ Update the Name and SN of the obtained record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='999-99-9999'] 
+   RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] 
+   RECORD: *[ID='3'] [First Name='---------'] [SN='###-##-####'] 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] }
+
+ Fetch the record with ID of 3:
+  result: {
+RETURNED RECORD: *[ID='3'] [First Name='---------'] [SN='###-##-####'] }
+
+ Delete the obtained record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='1'] [First Name='Peter'] [SN='999-99-9999'] 
+   RECORD: *[ID='2'] [First Name='Peter'] [SN='111-22-3333'] 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] }
+
+ Delete all Peters:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] }
+
+ Adding new record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] 
+   RECORD: *[ID='5'] [First Name='John'] [SN='999-88-7777'] }
+
+ Adding new record:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] 
+   RECORD: *[ID='5'] [First Name='John'] [SN='999-88-7777'] 
+   RECORD: *[ID='6'] [First Name='Dude'] [SN='999-88-7777'] }
+
+ Delete all Peters:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: 
+   RECORD: *[ID='4'] [First Name='John'] [SN='999-88-7777'] 
+   RECORD: *[ID='5'] [First Name='John'] [SN='999-88-7777'] 
+   RECORD: *[ID='6'] [First Name='Dude'] [SN='999-88-7777'] }
+
+ Delete all records:
+  result: {DBC STATE: DEFINITION: *[ID=''] [First Name=''] [SN='000-00-0000'] 
+DATA: }
+
+DONE WITH ALL TEST CASES.

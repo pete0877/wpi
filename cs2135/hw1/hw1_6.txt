@@ -1,0 +1,13 @@
+
+;No value
+
+1 ]=> (load "hw1_6")
+
+;Loading "hw1_6.scm" -- done
+;Value: subst
+
+1 ]=> (subst 'n 'o '((o p o) o n))
+
+;Value 2: ((n p n) n n)
+
+1 ]=> (transcript-off)

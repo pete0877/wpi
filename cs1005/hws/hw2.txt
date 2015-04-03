@@ -1,0 +1,137 @@
+Author:                         Peter Golaszewski (peterg@wpi.edu)
+Date:                           9/25/96
+Version:                        N/A
+Project ID:                     Homework Assigment #2
+CS Class:                       CS 1005
+Programming Language:           C (Unix)
+OS/Hardware dependencies:       This is Portable Program
+
+Problem Description:            To write a hunter - prey text game.
+				Game should be played on 5 by 5 field.
+				User is suppose be able to enter initial
+				coordinatesa of the hunter and prey and
+				then play game by moving the hunter
+				around. Prey can randomly move around too.
+				User can use basic Up, Down, Right left
+				and Quit connamds. Game ends when hunter
+				catches the prey.
+
+Overall Design:                 
+        Data representation     
+				All variables except for key are integers.
+				Positions of objects are described by two     
+				Variables. First is x coordinates, second
+				is y coordinate. Program also uses some 
+				flag variables to control game states. 
+
+        Algorithms  
+			        On each loop run computers ask player for
+                                command and check result of the move.
+				To move a prey computer generates random 
+				number to find a direction of the move.
+
+Program Assumptions 
+      and Restrictions:         Minimum field size - 5 units
+				Iinitial coordinates have to be within
+					the field.
+				Hunter Can't walk out of the field.
+					Neither can prey.
+		 
+Interfaces:                     Program uses direct user prompt to enter
+				Commands to move the hunter around. As an
+				output computer gives player new coordnets
+				of the hunter and prey. It also displays a
+				little map of the field and the legend. 
+
+Implementation Details:
+        Data                    Program uses only Integer and char data
+				types
+representation
+        Variables               
+
+		x_hunter,y_hunter - x and y of the hunter 
+		x_prey,y_prey - x and y of the prey 
+		dim - hunt field dimention
+		got_it=0 - 0 prey alive, 1 prey killed
+		a,b - handy variables 
+		quit - if wants to quit it =1 
+		prey - 1 smart prey, 2 stupid 
+		step_x,step_y - prey decision steps (smart prey) 
+		same_x,same_y - 1 if same vert/horiz position of H and P 
+		wrong - wrong/illegal command typed 
+		key - for keyboard input 
+
+        Algorithm 	First program asks for desired field size (minimum
+			of 5). Then Initial values of the hunter and prey
+			coordinates are entered. These four values have to 
+			be in range (0..field width-1). 
+			Next computer ask for type of the motion desired
+			for prey. "Dead" describes no motion. "Stupid" is
+			random motion, and "Smart" motion depends on the
+			position of the hunter.
+			On the begining of the game, computer displays few
+			command directions, and game begins.  
+			In each turn, computer :
+				1. Draws map of the filed, depending on
+				the size of the filed and positions of the
+				two objects. Hunter is displayed as 'H'
+				and prey as 'P'.
+				2. Asks for command from user:
+					'U' or 'u' : move hunter up,
+					'D' or 'd' : move him down,
+					'R' or 'r' : move him right,
+					'L' or 'l' : move him left,
+					'Q' or 'q' : quit game.
+				3. Checks if it is a legal move. (not
+				out of field.
+				4. Checks is hunter got the prey (x and y 
+				coordinates are the same)
+				5. If it is not a stupid prey, it would
+				make prey move:
+					a) if prey is stupid:
+					It would move prey based on the
+					random number(0..4). 0 - up, 1 -
+					down, 2 - right, 3 - left. If the
+					direction comes to be illegal move
+					(out of field, prey would move in
+					opposite direction)
+					b) if the prey is smart, It would 
+					try to run way from hunter. First
+					it would try to increase the
+					distance in horizontal direction
+					and then vertical. This way it
+					would end up in one of the four
+					corners. When hunter traps the
+					prey, the prey would runn away in
+					one remaining direction. This way
+					It is impossible to catch the
+					prey.
+				6. Then computer displays new coordinates
+				and,
+				7. Again checks if hunter got prey. (in
+				case prey ran into the hunter.)
+
+				8. Unless player wants to quit or the
+				hunter got the prey, computer repeats
+				process from point 1.
+
+How to build the program:       gcc hw2.c -o hw2
+          Then run it by:       hw2
+
+Program Source:                 Attached
+
+Additional Files:               hw2.script (Attached)
+
+Results:                        N/A
+
+Test Procedures:                Program was tested for all possible 
+				user inouts and cases
+
+Test Data:                      (see hw2.script)
+
+Performance Evaluation:         Run time of the program is practicly
+				limited only to delay due to user inputs.
+
+References:                     None
+
+

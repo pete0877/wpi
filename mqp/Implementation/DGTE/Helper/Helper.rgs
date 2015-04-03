@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{78B98F26-C513-4992-8387-665F1DCF95E6} = s 'Helper'
+		'Helper.EXE'
+		{
+			val AppID = s {78B98F26-C513-4992-8387-665F1DCF95E6}
+		}
+	}
+}

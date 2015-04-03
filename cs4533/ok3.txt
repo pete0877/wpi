@@ -1,0 +1,47 @@
+
+E:\Compilers>c:\jdk1.2beta4\bin\java tea sample_c.tea  
+
+program (
+LINE 1:
+
+     method_declaration (
+          void
+          input_c
+          while (
+               && (
+                    < (
+                         i
+                         j
+                    )
+                    < (
+                         j
+                         k
+                    )
+               )
+LINE 3:
+
+               = (
+                    k
+                    + (
+                         k
+                         1
+                    )
+               )
+               while (
+                    == (
+                         i
+                         j
+                    )
+LINE 5:
+
+                    = (
+                         i
+                         + (
+                              i
+                              2
+                         )
+                    )
+               )
+          )
+     )
+)Parse completed.

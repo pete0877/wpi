@@ -1,0 +1,55 @@
+/////////////////////////////////////////////////////////////////////////////
+//
+// File Name:	Types.idl
+// Description:	Common data types.
+// Date:		11/15/99
+// Author:		sjastrzebski
+//
+// Copyright © 1999 Worcester Polytechnic Institute, All Rights Reserved.
+
+typedef struct tagGameState 
+{
+	int actualSize;
+	int maxSize;
+	[ref, size_is(maxSize), length_is(actualSize)] char *gamestate;
+} GameState;
+
+typedef struct tagMove
+{
+	int actualSize;
+	int maxSize;	
+	[ref, size_is(maxSize), length_is(actualSize)] char *move;
+	int quality;
+	int status;
+	GameState gamestate;
+} Move;
+
+typedef enum tagLevelType
+{
+	MAXIMAXING = 1,
+	MINIMAZING = 2
+} LevelType;
+
+typedef struct tagGameTypeData
+{
+	char gameName[64];
+	char gameVersion[64];
+	char gameDescription[256];
+	char companyName[128];
+	char legalCopyright[256];
+	char legalTrademarks[256];
+	char gameEncoding[256];
+	int gameStateSize;
+	int moveSize;
+	int moveListSize;
+} GameTypeData;
+
+typedef struct tagHelperPerformanceData
+{
+	float alphaBetaGain;
+	float branchingFactor;
+	float evaluationTime;
+	float pctCompleted;
+	float splitTime;
+	float totalWorkTime;
+} HelperPerformanceData;

@@ -1,0 +1,13 @@
+
+;No value
+
+1 ]=> (load "hw1_1.scm")
+
+;Loading "hw1_1.scm" -- done
+;Value: count
+
+1 ]=> (Count '(This is working ok))
+
+;Value: 4
+
+1 ]=> (transcript-off)

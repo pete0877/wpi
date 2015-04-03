@@ -1,0 +1,10 @@
+; Peter M. Golaszewski
+; CS 2135, section 4
+; Homework #3 problem #1
+
+<LEXPs> :: = (L-AND <LEXPs> <LEXPs>)
+	   | (L-OR  <LEXPs> <LEXPs>)
+	   | (L-EQUIVALENT <LEXPs> <LEXPs>)
+	   | (L-IMPLIES <LEXPs> <LEXPs>)
+	   | (L-NOT <LEXPs>)
+	   | <symbol>

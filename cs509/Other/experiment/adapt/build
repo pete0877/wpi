@@ -1,0 +1,16 @@
+#!/bin/csh -f
+#
+#		       ADAPT project
+#            WPI - Worcester Polytechnic Institute
+#          (c) Copyright 1999  All rights reserved
+#
+#
+
+#
+#   Build the supporting source code for the CSL parser
+#
+
+setenv ADAPT_HOME /proj/adapt
+setenv DEBUG -g
+
+javac $DEBUG -d $ADAPT_HOME/classes $ADAPT_HOME/src/adapt/*.java

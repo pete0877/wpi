@@ -1,0 +1,20 @@
+
+;No value
+
+2 ]=> (load "hw2_5")
+
+;Loading "hw2_5.scm" -- done
+;Value: get-vals
+
+2 error> (pp let->application)
+
+(named-lambda (let->application let)
+  (append (list (list 'lambda (get-vars (cadr let)) (caddr let)))
+          (get-vals (cadr let))))
+;No value
+
+2 error> (let->application '(let ((x 4) (y 3)) (let ((z 5)) (+ x (+ y x)))))
+
+;Value 4: ((lambda (x y) (let ((z 5)) (+ x (+ y x)))) 4 3)
+
+2 error> (transcript-off)

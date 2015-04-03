@@ -1,0 +1,18 @@
+MQP Status Report
+Date: 10/07/99
+______________________________________________________________________________
+Done since last meeting:
+
+1. Started writing the Project Proposal.
+______________________________________________________________________________
+To Do for next week:
+
+1. Will come up with the final set of methods and algorithms
+
+2. Complete the Project proposal.
+
+
+
+
+
+

@@ -1,0 +1,429 @@
+export CLASSPATH; CLASSPATH=.:/proj/adapt/parser/classes; \
+java CSLParser arch.csl
+PARSING:arch.csl
+PARSING:/export/home/proj/adapt/spreadsheet/csl/gui/gui.csl
+PARSING:/export/home/proj/adapt/spreadsheet/csl/gui/scrollbar.csl
+PARSING:/export/home/proj/adapt/spreadsheet/csl/csl/javaBeans.csl
+PARSING:/export/home/proj/adapt/spreadsheet/csl/csl/primitives.csl
+PARSING:/export/home/proj/adapt/spreadsheet/csl/gui/textbean.csl
+PARSING:/export/home/proj/adapt/spreadsheet/csl/gui/tablebean.csl
+PARSING:/export/home/proj/adapt/spreadsheet/csl/csl/activeInterface.csl
+
+--- The original CSL for arch.csl is:
+
+  port type OutgoingMethod;
+  port type IncomingMethod;
+  port type ExceptionMethod : IncomingMethod;
+  port type Constructor : IncomingMethod;
+  port type PrivateMethod;
+  port type ReceiveEvent : IncomingMethod;
+  port type ActionMethod : IncomingMethod;
+  port type PropertySetter : IncomingMethod;
+  port type PropertyGetter : IncomingMethod;
+  port type ReceiveVetoEvent : ExceptionMethod, ReceiveEvent;
+  port type ActionEvent : ActionMethod;
+  port type ActionEventReceiveEvent : ActionEvent, ReceiveEvent;
+  port type BoundPropertySetter : ActionEvent, PropertySetter;
+  port type VetoablePropertySetter : BoundPropertySetter, ReceiveVetoEvent;
+  port type FireEvent : OutgoingMethod;
+  port type FirePropertyChangeEvent : FireEvent;
+  port type EventHandler : IncomingMethod, FireEvent;
+  port type AddListener : IncomingMethod;
+  port type Adaptable {
+      void setAdapter(adapt.ComponentAdapter);
+    adapt.ComponentAdapter getAdapter();
+  }
+  component typeConnectingComponent;
+  component typeJavaBean;
+  component typeScrollbar : JavaBean {
+      port Adjustable {
+          port StaticProperties {
+              void setValues(int, int, int, int);
+        port Orientation {
+                  int getOrientation();
+          void setOrientation(int);
+        }
+        port LineIncrement {
+                  void setLineIncrement(int);
+          int getLineIncrement();
+        }
+        port UnitIncrement {
+                  void setUnitIncrement(int);
+          int getUnitIncrement();
+        }
+        port PageIncrement {
+                  void setPageIncrement(int);
+          int getPageIncrement();
+        }
+        port BlockIncrement {
+                  void setBlockIncrement(int);
+          int getBlockIncrement();
+        }
+        port MinimumValue {
+                  void setMinimum(int);
+          int getMinimum();
+        }
+        port MaximumValue {
+                  void setMaximum(int);
+          int getMaximum();
+        }
+        port VisibleAmount {
+                  void setVisibleAmount(int);
+          int getVisibleAmount();
+          int getVisible();
+        }
+      }
+      port DynamicProperties {
+              int getValue();
+        void setValue(int);
+      }
+    }
+    port Event {
+          void addAdjustmentListener(java.awt.event.AdjustmentListener);
+      void removeAdjustmentListener(java.awt.event.AdjustmentListener);
+      void processEvent(java.awt.AWTEvent);
+      void processAdjustmentEvent(java.awt.event.AdjustmentEvent);
+    }
+    port Serializable {
+          void writeObject(java.io.ObjectOutputStream);
+      void readObject(java.io.ObjectInputStream);
+    }
+    port Miscellaneous {
+          void addNotify();
+      boolean eventEnabled(java.awt.AWTEvent);
+      java.lang.String paramString();
+    }
+    port con : Constructor {
+          Scrollbar Scrollbar();
+      Scrollbar Scrollbar(int);
+      Scrollbar Scrollbar(int, int, int, int);
+    }
+
+  }
+  component typeTextBean : JavaBean {
+      port EchoChar {
+          char getEchoChar();
+      void setEchoChar(char);
+      void setEchoCharacter(char);
+      boolean echoCharIsSet();
+    }
+    port Contents {
+          void setText(String);
+    }
+    port KeyListener {
+          void keyTyped(KeyEvent);
+      void keyPressed(KeyEvent);
+      void keyReleased(KeyEvent);
+    }
+    port Structure {
+          int getColumns();
+      void setColumns(int);
+    }
+    port Presentation {
+          java.awt.Dimension getMinimumSize();
+      java.awt.Dimension minimumSize();
+      java.awt.Dimension getPreferredSize(int);
+      java.awt.Dimension preferredSize(int);
+      java.awt.Dimension getPreferredSize();
+      java.awt.Dimension preferredSize();
+      java.awt.Dimension getMinimumSize(int);
+      java.awt.Dimension minimumSize(int);
+      java.awt.Font getFont();
+      void setFont(java.awt.Font);
+    }
+    port EventRegistration {
+          void addTextBeanListener(java.awt.event.ActionListener);
+      void removeTextBeannListener(java.awt.event.ActionListener);
+      void fireAction(TextBeanEventObject);
+      void addActionListener(java.awt.event.ActionListener);
+      void removeActionListener(java.awt.event.ActionListener);
+      void processEvent(java.awt.AWTEvent);
+      void processActionEvent(java.awt.event.ActionEvent);
+    }
+    port Miscellaneous {
+          void addNotify();
+      boolean eventEnabled(java.awt.AWTEvent);
+      java.lang.String paramString();
+    }
+    port Serializable {
+          void writeObject(java.io.ObjectOutputStream);
+      void readObject(java.io.ObjectInputStream);
+    }
+
+  }
+  component typeTableBean : JavaBean {
+      port con : Constructor {
+          TableBean TableBean();
+      TableBean TableBean(int, int);
+    }
+    port Content {
+          void setTableValue(int, int, String);
+      String getTableValue(int, int);
+      void clearTableValue();
+    }
+    port Presentation {
+          void paint(java.awt.Graphics);
+      void redraw(java.awt.Graphics, int, int);
+      port Rows {
+              port Height {
+                  int getRowHeight();
+          void setRowHeight(int);
+        }
+        port Number {
+                  int getNumRows();
+          void setNumRows(int);
+        }
+      }
+      port Columns {
+              port Width {
+                  int getColumnWidth();
+          void setColumnWidth(int);
+        }
+        port Number {
+                  int getNumColumns();
+          void setNumColumns(int);
+        }
+      }
+      port Foreground {
+              java.awt.Color getForeground();
+        void setForeground(java.awt.Color);
+      }
+      port Background {
+              java.awt.Color getBackground();
+        void setBackground(java.awt.Color);
+      }
+      port Font {
+              java.awt.Font getFont();
+        void setFont(java.awt.Font);
+      }
+      java.awt.Dimension getPreferredSize();
+      void sizeToFit();
+    }
+    port adapt : Adaptable;
+    port SelectedRegion {
+          gui.TableRegion getSelectedRegion();
+      void setSelectedRegion(gui.TableRegion);
+      void setSelectedRegion(gui.TableElement, gui.TableElement);
+      void clip(gui.TableElement);
+      void deselect();
+      void redrawRegion(int, int, int, int);
+      void redrawRegion(gui.TableElement, gui.TableElement);
+      void setMinimum(gui.TableElement);
+      void setMinimum(int, int);
+      void maintainRegion();
+      boolean inInvertedRegion(int, int);
+    }
+    port MouseListener {
+          gui.TableElement convertMouseEvent(java.awt.event.MouseEvent);
+      void mouseClicked(java.awt.event.MouseEvent);
+      void mousePressed(java.awt.event.MouseEvent);
+      void mouseReleased(java.awt.event.MouseEvent);
+      void mouseEntered(java.awt.event.MouseEvent);
+      void mouseExited(java.awt.event.MouseEvent);
+      void mouseDragged(java.awt.event.MouseEvent);
+      void mouseMoved(java.awt.event.MouseEvent);
+    }
+    port EventRegistration {
+          void addTableListener(gui.TableListener);
+      void removeTableListener(gui.TableListener);
+      void fireAction(gui.TableEventObject);
+    }
+    port PropertyChange {
+          void addPropertyChangeListener(java.beans.PropertyChangeListener);
+      void removePropertyChangeListener(java.beans.PropertyChangeListener);
+    }
+
+  }
+  port Adjustable {
+      port StaticProperties {
+          void setValues(int, int, int, int);
+      port Orientation {
+              int getOrientation();
+        void setOrientation(int);
+      }
+      port LineIncrement {
+              void setLineIncrement(int);
+        int getLineIncrement();
+      }
+      port UnitIncrement {
+              void setUnitIncrement(int);
+        int getUnitIncrement();
+      }
+      port PageIncrement {
+              void setPageIncrement(int);
+        int getPageIncrement();
+      }
+      port BlockIncrement {
+              void setBlockIncrement(int);
+        int getBlockIncrement();
+      }
+      port MinimumValue {
+              void setMinimum(int);
+        int getMinimum();
+      }
+      port MaximumValue {
+              void setMaximum(int);
+        int getMaximum();
+      }
+      port VisibleAmount {
+              void setVisibleAmount(int);
+        int getVisibleAmount();
+        int getVisible();
+      }
+    }
+    port DynamicProperties {
+          int getValue();
+      void setValue(int);
+    }
+  }
+  port Event {
+      void addAdjustmentListener(java.awt.event.AdjustmentListener);
+    void removeAdjustmentListener(java.awt.event.AdjustmentListener);
+    void processEvent(java.awt.AWTEvent);
+    void processAdjustmentEvent(java.awt.event.AdjustmentEvent);
+  }
+  port Serializable {
+      void writeObject(java.io.ObjectOutputStream);
+    void readObject(java.io.ObjectInputStream);
+  }
+  port Miscellaneous {
+      void addNotify();
+    boolean eventEnabled(java.awt.AWTEvent);
+    java.lang.String paramString();
+  }
+  port con : Constructor {
+      Scrollbar Scrollbar();
+    Scrollbar Scrollbar(int);
+    Scrollbar Scrollbar(int, int, int, int);
+  }
+  port EchoChar {
+      char getEchoChar();
+    void setEchoChar(char);
+    void setEchoCharacter(char);
+    boolean echoCharIsSet();
+  }
+  port Contents {
+      void setText(String);
+  }
+  port KeyListener {
+      void keyTyped(KeyEvent);
+    void keyPressed(KeyEvent);
+    void keyReleased(KeyEvent);
+  }
+  port Structure {
+      int getColumns();
+    void setColumns(int);
+  }
+  port Presentation {
+      java.awt.Dimension getMinimumSize();
+    java.awt.Dimension minimumSize();
+    java.awt.Dimension getPreferredSize(int);
+    java.awt.Dimension preferredSize(int);
+    java.awt.Dimension getPreferredSize();
+    java.awt.Dimension preferredSize();
+    java.awt.Dimension getMinimumSize(int);
+    java.awt.Dimension minimumSize(int);
+    java.awt.Font getFont();
+    void setFont(java.awt.Font);
+  }
+  port EventRegistration {
+      void addTextBeanListener(java.awt.event.ActionListener);
+    void removeTextBeannListener(java.awt.event.ActionListener);
+    void fireAction(TextBeanEventObject);
+    void addActionListener(java.awt.event.ActionListener);
+    void removeActionListener(java.awt.event.ActionListener);
+    void processEvent(java.awt.AWTEvent);
+    void processActionEvent(java.awt.event.ActionEvent);
+  }
+  port Miscellaneous {
+      void addNotify();
+    boolean eventEnabled(java.awt.AWTEvent);
+    java.lang.String paramString();
+  }
+  port Serializable {
+      void writeObject(java.io.ObjectOutputStream);
+    void readObject(java.io.ObjectInputStream);
+  }
+  port con : Constructor {
+      TableBean TableBean();
+    TableBean TableBean(int, int);
+  }
+  port Content {
+      void setTableValue(int, int, String);
+    String getTableValue(int, int);
+    void clearTableValue();
+  }
+  port Presentation {
+      void paint(java.awt.Graphics);
+    void redraw(java.awt.Graphics, int, int);
+    port Rows {
+          port Height {
+              int getRowHeight();
+        void setRowHeight(int);
+      }
+      port Number {
+              int getNumRows();
+        void setNumRows(int);
+      }
+    }
+    port Columns {
+          port Width {
+              int getColumnWidth();
+        void setColumnWidth(int);
+      }
+      port Number {
+              int getNumColumns();
+        void setNumColumns(int);
+      }
+    }
+    port Foreground {
+          java.awt.Color getForeground();
+      void setForeground(java.awt.Color);
+    }
+    port Background {
+          java.awt.Color getBackground();
+      void setBackground(java.awt.Color);
+    }
+    port Font {
+          java.awt.Font getFont();
+      void setFont(java.awt.Font);
+    }
+    java.awt.Dimension getPreferredSize();
+    void sizeToFit();
+  }
+  port adapt : Adaptable;
+  port SelectedRegion {
+      gui.TableRegion getSelectedRegion();
+    void setSelectedRegion(gui.TableRegion);
+    void setSelectedRegion(gui.TableElement, gui.TableElement);
+    void clip(gui.TableElement);
+    void deselect();
+    void redrawRegion(int, int, int, int);
+    void redrawRegion(gui.TableElement, gui.TableElement);
+    void setMinimum(gui.TableElement);
+    void setMinimum(int, int);
+    void maintainRegion();
+    boolean inInvertedRegion(int, int);
+  }
+  port MouseListener {
+      gui.TableElement convertMouseEvent(java.awt.event.MouseEvent);
+    void mouseClicked(java.awt.event.MouseEvent);
+    void mousePressed(java.awt.event.MouseEvent);
+    void mouseReleased(java.awt.event.MouseEvent);
+    void mouseEntered(java.awt.event.MouseEvent);
+    void mouseExited(java.awt.event.MouseEvent);
+    void mouseDragged(java.awt.event.MouseEvent);
+    void mouseMoved(java.awt.event.MouseEvent);
+  }
+  port EventRegistration {
+      void addTableListener(gui.TableListener);
+    void removeTableListener(gui.TableListener);
+    void fireAction(gui.TableEventObject);
+  }
+  port PropertyChange {
+      void addPropertyChangeListener(java.beans.PropertyChangeListener);
+    void removePropertyChangeListener(java.beans.PropertyChangeListener);
+  }
+
+--- Attachments ---
+

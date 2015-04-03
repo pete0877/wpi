@@ -1,0 +1,11 @@
+HKCR
+{
+	NoRemove AppID
+	{
+		{2CE3C48E-A77B-11D3-90F1-004095100085} = s 'DistributedGameTreeServer'
+		'DistributedGameTreeServer.EXE'
+		{
+			val AppID = s {2CE3C48E-A77B-11D3-90F1-004095100085}
+		}
+	}
+}

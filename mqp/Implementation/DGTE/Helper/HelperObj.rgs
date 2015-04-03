@@ -1,0 +1,23 @@
+HKCR
+{
+	Helper.Helper.1 = s 'Helper Class'
+	{
+		CLSID = s '{E729EB35-6A87-498F-B115-57C99B551044}'
+	}
+	Helper.Helper = s 'Helper Class'
+	{
+		CLSID = s '{E729EB35-6A87-498F-B115-57C99B551044}'
+		CurVer = s 'Helper.Helper.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {E729EB35-6A87-498F-B115-57C99B551044} = s 'Helper Class'
+		{
+			ProgID = s 'Helper.Helper.1'
+			VersionIndependentProgID = s 'Helper.Helper'
+			LocalServer32 = s '%MODULE%'
+			val AppID = s '{78B98F26-C513-4992-8387-665F1DCF95E6}'
+			'TypeLib' = s '{E8659191-1A0F-4A86-86BC-FBF92FA6F47E}'
+		}
+	}
+}

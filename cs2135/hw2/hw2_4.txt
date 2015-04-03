@@ -1,0 +1,30 @@
+
+;No value
+
+1 ]=> (load "hw2_4")
+
+;Loading "hw2_4.scm" -- done
+;Value: path
+
+1 ]=> (pp path)
+
+(named-lambda (path n lst)
+  (cond ((null? lst) 'error)
+        ((eq? (car lst) n) ())
+        ((> (car lst) n)
+         (if (eq? (path n (cadr lst)) 'error)
+             'error
+             (cons 'l (path n (cadr lst)))))
+        ((eq? (path n (caddr lst)) 'error) 'error)
+        (else (cons 'r (path n (caddr lst))))))
+;No value
+
+1 ]=> (path 17 '(14 (7 () (12 () ())) (26 (20 (17 () ()) ()) (31 () ()))))
+
+;Value 1: (r l l)
+
+1 ]=> (path 17 '(0 () ()))
+
+;Value: error
+
+1 ]=> (transcript-off)

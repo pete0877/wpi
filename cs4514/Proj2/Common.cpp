@@ -1,0 +1,27 @@
+/////////////////////////////////////////////////////////////////////////////
+// Common.cpp
+//
+//	Version 1.00
+//
+//	This file is for portability purposes only.
+//
+/////////////////////////////////////////////////////////////////////////////
+
+#include "Common.h"
+
+#ifdef WIN32
+
+void bcopy(char *from, char *to, int len)
+{
+	for (int i = 0; i < len; i++)
+		*to++ = *from++;
+}
+
+int close(SOCKET s)
+{
+	return closesocket(s);
+}
+
+#endif // _WIN32
+
+// END OF COMMON.CPP ////////////////////////////////////////////////////////

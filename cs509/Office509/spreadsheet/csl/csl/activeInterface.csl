@@ -1,0 +1,8 @@
+package csl;
+
+// These are the basic primitives for the ActiveInterface
+
+port type Adaptable {
+  public void setAdapter (adapt.ComponentAdapter);
+  public adapt.ComponentAdapter getAdapter();
+}

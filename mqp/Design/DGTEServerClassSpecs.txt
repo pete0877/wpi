@@ -1,0 +1,3167 @@
+
+
+
+
+
+       Class name:
+          Engine
+
+       Category:		Analysis
+       Documentation:
+          Engine Class is responsible for providing game
+          decision services for games of various types. It also
+          provides estimation on how long a move desicion might
+          take.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                Helper	
+	                GameTreeNode	
+	                EngineConfiguration	
+	                HelperRegistry	
+	                GameType	
+	                GameState	
+	                MoveDecision	
+	                GameTreeRootNode	
+
+       Public Interface:
+          Operations:
+                        Engine
+                        Engine
+                        Engine
+                        getConfiguration
+                        setConfiguration
+                        isGameImplemented
+                        getAllGameTypes
+                        estimateMoveTime
+                        makeMove
+                        ~Engine
+
+       Protected Interface:
+          Attributes:
+                        helperRegistry : HelperRegistry
+                        configuration : EngineConfiguration
+
+          Operations:
+                        distributeNode
+
+       Private Interface:
+          Attributes:
+                        helperRegistry : HelperRegistry
+                        configuration : EngineConfiguration
+
+       Implementation:
+          Attributes:
+                        helperRegistry : HelperRegistry
+                        configuration : EngineConfiguration
+
+       State machine:	No
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          Engine
+
+       Public member of:	Engine
+       Documentation:
+          Engine () - default constructor.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Engine
+
+       Public member of:	Engine
+       Arguments:
+	          const Engine&	new_engine
+       Documentation:
+          Engine () - copy constructor.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Engine
+
+       Public member of:	Engine
+       Arguments:
+	          const EngineConfiguration&	new_configuration
+       Documentation:
+          Engine() - constructor with the default configuration
+          for the engine.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getConfiguration
+
+       Public member of:	Engine
+       Return Class:	EngineConfiguration
+       Documentation:
+          getConfiguration() - returns current engine
+          configuration.
+
+       Concurrency:	Sequential
+
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          setConfiguration
+
+       Public member of:	Engine
+       Arguments:
+	          const EngineConfiguration&	new_configuration
+       Documentation:
+          setConfiguration() - overwrites the current engine
+          configuration with the one provided as the argument.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          isGameImplemented
+
+       Public member of:	Engine
+       Return Class:	boolean
+       Arguments:
+	          const GameType&	gametype
+       Documentation:
+          isGameImplemented() - returns true if the engine
+          supports given game type, else returns false.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAllGameTypes
+
+       Public member of:	Engine
+       Return Class:	vector<GameType>
+       Documentation:
+          getAllGameTypes() - returns all game types supported
+          by the Engine.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          estimateMoveTime
+
+       Public member of:	Engine
+       Return Class:	long
+       Arguments:
+	          const GameType&	gametype
+	          int	ply
+       Documentation:
+          estimateMoveTime() - returns float value of seconds
+          that the engine would need to come up with the
+          decision move if all resources were free.
+          THROWS: 
+             GameNotSupportedException
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          makeMove
+
+       Public member of:	Engine
+       Return Class:	MoveDecision
+       Arguments:
+	          const GameState&	gamestate
+	          const GameType&	gametype
+	          int	ply
+	          SimpleDateTime	deadline
+       Documentation:
+          makeMove() - returns decision move to a given board
+          setup within certain amount of time.
+          THROWS: 
+             GameNotSupportedException
+             GameOverException
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          distributeNode
+
+       Protected member of:	Engine
+       Arguments:
+	          GameTreeNode*	node
+	          vector<Helper*>	helpers
+	          SimpleDateTime	deadline
+       Documentation:
+          distributeNode() - takes a tree node, list of
+          available helpers that implement the game type and the
+          deadline for finishing evaluation of the node.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~Engine
+
+       Public member of:	Engine
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          EngineConfiguration
+
+       Category:		Analysis
+       Documentation:
+          EngineConfiguration Class stores customized settings
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          for the functionality of the Engine Class.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        EngineConfiguration
+                        EngineConfiguration
+                        getLogContext
+                        setLogContext
+                        save
+                        load
+                        operator==
+                        operator=
+                        ~EngineConfiguration
+
+       Protected Interface:
+          Attributes:
+                        logContext : CDumpContext
+
+       Private Interface:
+          Attributes:
+                        logContext : CDumpContext
+
+       Implementation:
+          Attributes:
+                        logContext : CDumpContext
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          EngineConfiguration
+
+       Public member of:	EngineConfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          EngineConfiguration
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          const EngineConfiguration&	new_engineconfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getLogContext
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+
+       Public member of:	EngineConfiguration
+       Return Class:	CDumpContext
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLogContext
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          CDumpContext	new_logstream
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          save
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          const CFile&	file
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          load
+
+       Public member of:	EngineConfiguration
+       Arguments:
+	          const CFile&	file
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	EngineConfiguration
+       Return Class:	boolean
+       Arguments:
+	          const EngineConfiguration&	new_engineconfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	EngineConfiguration
+       Return Class:	EngineConfiguration&
+       Arguments:
+	          const EngineConfiguration&	new_engineconfiguration
+       Concurrency:	Sequential
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+
+
+
+       Operation name:
+          ~EngineConfiguration
+
+       Public member of:	EngineConfiguration
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameServer
+
+       Category:		Analysis
+       Documentation:
+          GameServer Class is responsible for providing
+          multi-threaded interface to outside game clients. It
+          provides simple text-based interface using TCP
+          sockets. GameServer Class uses the Engine Class for
+          all game computations and it stores all current game
+          sessions.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                Engine	
+	                GameServerConfiguration	
+	                MoveDecision	
+	                GameType	
+	                JobManager	
+
+       Private Uses:
+	                GameState	
+
+       Public Interface:
+          Operations:
+                        GameServer
+                        GameServer
+                        GameServer
+                        GameServer
+                        handleClient
+                        getEngine
+                        setEngine
+                        getConfiguration
+                        setConfiguration
+                        ~GameServer
+
+       Protected Interface:
+          Attributes:
+                        engine : Engine*
+                        jobManagers : vector<JobManager>
+                        currentGameTypes : vector<GameType>
+                        jobManagersLock : CSemaphore
+
+                        File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+                        configuration : GameServerConfiguration
+
+       Private Interface:
+          Attributes:
+                        engine : Engine*
+                        jobManagers : vector<JobManager>
+                        currentGameTypes : vector<GameType>
+                        jobManagersLock : CSemaphore
+                        configuration : GameServerConfiguration
+
+       Implementation:
+          Attributes:
+                        engine : Engine*
+                        jobManagers : vector<JobManager>
+                        currentGameTypes : vector<GameType>
+                        jobManagersLock : CSemaphore
+                        configuration : GameServerConfiguration
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Arguments:
+	          const GameServerConfiguration&	new_configuration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+       Arguments:
+	          Engine*	new_engine
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServer
+
+       Public member of:	GameServer
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Arguments:
+	          const GameServerConfiguration&	new_configuration
+	          Engine*	new_engine
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          handleClient
+
+       Public member of:	GameServer
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getEngine
+
+       Public member of:	GameServer
+       Return Class:	Engine*
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setEngine
+
+       Public member of:	GameServer
+       Arguments:
+	          Engine*	new_engine
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getConfiguration
+
+       Public member of:	GameServer
+       Return Class:	GameServerConfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setConfiguration
+
+       Public member of:	GameServer
+       Arguments:
+	          const GameServerConfiguration&	new_configuration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~GameServer
+
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Public member of:	GameServer
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameServerConfiguration
+
+       Category:		Analysis
+       Documentation:
+          GameServerConfiguration Class is used to store
+          parameters that customize functionality of the Game
+          Server Class.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        GameServerConfiguration
+                        GameServerConfiguration
+                        getPort
+                        setPort
+                        getLogContext
+                        setLogContext
+                        getServerName
+                        setServerName
+                        getServerDescription
+                        setServerDescription
+                        getServerOwner
+                        setServerOwner
+                        getWelcomeMessage
+                        save
+                        load
+                        operator==
+                        operator=
+                        ~GameServerConfiguration
+
+       Protected Interface:
+          Attributes:
+                        port : int
+                        logContext : CDumpContext
+                        serverName : CString
+                        serverDescription : CString
+                        serverOwner : CString
+
+       Private Interface:
+          Attributes:
+                        port : int
+                        logContext : CDumpContext
+                        serverName : CString
+                        serverDescription : CString
+                        serverOwner : CString
+
+       Implementation:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          Attributes:
+                        port : int
+                        logContext : CDumpContext
+                        serverName : CString
+                        serverDescription : CString
+                        serverOwner : CString
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          GameServerConfiguration
+
+       Public member of:	GameServerConfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameServerConfiguration
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const GameServerConfiguration&	new_gameserverconfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPort
+
+       Public member of:	GameServerConfiguration
+       Return Class:	int
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPort
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          int	new_port
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getLogContext
+
+       Public member of:	GameServerConfiguration
+       Return Class:	CDumpContext
+       Concurrency:	Sequential
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+
+
+
+       Operation name:
+          setLogContext
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const CDumpContext&	new_logstream
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getServerName
+
+       Public member of:	GameServerConfiguration
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setServerName
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const CString&	new_servername
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getServerDescription
+
+       Public member of:	GameServerConfiguration
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setServerDescription
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const CString&	new_serverdescription
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getServerOwner
+
+       Public member of:	GameServerConfiguration
+       Return Class:	CString
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setServerOwner
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const CString&	new_serverowner
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getWelcomeMessage
+
+       Public member of:	GameServerConfiguration
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          save
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const CFile&	file
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          load
+
+       Public member of:	GameServerConfiguration
+       Arguments:
+	          const CFile&	filepath
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	GameServerConfiguration
+       Return Class:	boolean
+       Arguments:
+	          const GameServerConfiguration&	new_gameserverconfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+
+       Public member of:	GameServerConfiguration
+       Return Class:	GameServerConfiguration&
+       Arguments:
+	          const GameServerConfiguration&	new_gameserverconfiguration
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~GameServerConfiguration
+
+       Public member of:	GameServerConfiguration
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameState
+
+       Category:		Analysis
+       Documentation:
+          GameState Structure encapsulates the current board
+          state and the color of server's pieces.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        gamestate : char*
+
+       Protected Interface:
+          Attributes:
+                        gamestate : char*
+
+       Private Interface:
+          Attributes:
+                        gamestate : char*
+
+       Implementation:
+          Attributes:
+                        gamestate : char*
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          GameTreeNode
+
+       Category:		Analysis
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Documentation:
+          GameTreeNode Class is used to create game trees. It
+          encapsulates any information that might be required by
+          the system to make the decision as to what the next
+          move should be. 
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                GameState	
+	                Move	
+
+       Public Interface:
+          Operations:
+                        GameTreeNode
+                        GameTreeNode
+                        addChildNode
+                        getChildNodes
+                        getPly
+                        setPly
+                        getGameState
+                        setGameState
+                        getLevel
+                        setLevel
+                        getLastMove
+                        setLastMove
+                        getQuality
+                        setQuality
+                        getParentNode
+                        setParentNode
+                        isProcessingDone
+                        markProcessingDone
+                        markChildProcessingDone
+                        getEvaluationFailed
+                        setEvaluationFailed
+                        getPctCompleted
+                        setPctCompleted
+                        ~GameTreeNode
+
+       Protected Interface:
+          Attributes:
+                        ply : int
+                        gameState : GameState
+                        level : LevelType
+                        lastMove : Move
+                        processingDone : boolean
+                        consideredChildren : boolean
+                        evaluationFailed : boolean
+                        pctCompleted : float
+                        parentNode : GameTreeNode*
+                        childrenNodes : vector<GameTreeNode*>
+                        doneChildProcessings : int
+                        doneChildProcessingsLock : CSemaphore
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Private Interface:
+          Attributes:
+                        ply : int
+                        gameState : GameState
+                        level : LevelType
+                        lastMove : Move
+                        processingDone : boolean
+                        consideredChildren : boolean
+                        evaluationFailed : boolean
+                        pctCompleted : float
+                        parentNode : GameTreeNode*
+                        childrenNodes : vector<GameTreeNode*>
+                        doneChildProcessings : int
+                        doneChildProcessingsLock : CSemaphore
+
+       Implementation:
+          Attributes:
+                        ply : int
+                        gameState : GameState
+                        level : LevelType
+                        lastMove : Move
+                        processingDone : boolean
+                        consideredChildren : boolean
+                        evaluationFailed : boolean
+                        pctCompleted : float
+                        parentNode : GameTreeNode*
+                        childrenNodes : vector<GameTreeNode*>
+                        doneChildProcessings : int
+                        doneChildProcessingsLock : CSemaphore
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          GameTreeNode
+
+       Public member of:	GameTreeNode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameTreeNode
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	new_ply
+	          const GameState&	new_gamestate
+	          LevelType	new_level
+	          const Move&	new_lastmove
+	          GameTreeNode*	parentNode
+       Concurrency:	Sequential
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          addChildNode
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          GameTreeNode*	childnode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getChildNodes
+
+       Public member of:	GameTreeNode
+       Return Class:	vector<GameTreeNode*>
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPly
+
+       Public member of:	GameTreeNode
+       Return Class:	int
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPly
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	new_ply
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameState
+
+       Public member of:	GameTreeNode
+       Return Class:	GameState
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameState
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          const GameState&	new_gamestate
+       Concurrency:	Sequential
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          getLevel
+
+       Public member of:	GameTreeNode
+       Return Class:	LevelType
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLevel
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          LevelType	new_level
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getLastMove
+
+       Public member of:	GameTreeNode
+       Return Class:	Move
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLastMove
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          const Move&	new_lastmove
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getQuality
+
+       Public member of:	GameTreeNode
+       Return Class:	int
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setQuality
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	new_quality
+       Concurrency:	Sequential
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          getParentNode
+
+       Public member of:	GameTreeNode
+       Return Class:	GameTreeNode*
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setParentNode
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          GameTreeNode*	new_parentnode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          isProcessingDone
+
+       Public member of:	GameTreeNode
+       Return Class:	boolean
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          markProcessingDone
+
+       Public member of:	GameTreeNode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          markChildProcessingDone
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          int	quality
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getEvaluationFailed
+
+       Public member of:	GameTreeNode
+       Return Class:	boolean
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          setEvaluationFailed
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          boolean	new_evaluationfailed
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPctCompleted
+
+       Public member of:	GameTreeNode
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPctCompleted
+
+       Public member of:	GameTreeNode
+       Arguments:
+	          float	new_pctcompleted
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~GameTreeNode
+
+       Public member of:	GameTreeNode
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameTreeRootNode
+
+       Category:		Analysis
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	GameTreeNode
+       Public Uses:
+	                GameTreeNode	
+	                GameState	
+	                Move	
+
+       Public Interface:
+          Operations:
+                        markProcessingDone
+                        setProcessingSemaphore
+                        generateDecision
+
+       Protected Interface:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          Attributes:
+                        processingSemaphore : CSemaphore*
+
+       Private Interface:
+          Attributes:
+                        processingSemaphore : CSemaphore*
+
+       Implementation:
+          Attributes:
+                        processingSemaphore : CSemaphore*
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          markProcessingDone
+
+       Public member of:	GameTreeRootNode
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setProcessingSemaphore
+
+       Public member of:	GameTreeRootNode
+       Arguments:
+	          CSemaphore*	new_processingSemaphore
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          generateDecision
+
+       Public member of:	GameTreeRootNode
+       Return Class:	MoveDecision
+       Documentation:
+          THROWS:
+             GameOverException
+             NodeEvaluationFailedException
+             
+
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameType
+
+       Category:		Analysis
+       Documentation:
+          GameType Class contains any descriptive informaiton
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          directly related to a particular game type (e.g. game
+          name, author, game version, description, copyright,
+          etc.)
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                GameTypeData	
+
+       Public Interface:
+          Operations:
+                        GameType
+                        GameType
+                        GameType
+                        getGameName
+                        setGameName
+                        getCompanyName
+                        setCompanyName
+                        getGameVersion
+                        setGameVersion
+                        getLegalCopyright
+                        setLegalCopyright
+                        getLegalTrademarks
+                        setLegalTrademarks
+                        getGameDescription
+                        setGameDescription
+                        getAvgBranchingFactor
+                        setAvgBranchingFactor
+                        getAvgAlphaBetaGain
+                        setAvgAlphaBetaGain
+                        getGameEncoding
+                        setGameEncoding
+                        toString
+                        operator=
+                        operator==
+                        ~GameType
+
+       Protected Interface:
+          Attributes:
+                        gameTypeData : GameTypeData
+
+       Private Interface:
+          Attributes:
+                        gameTypeData : GameTypeData
+
+       Implementation:
+          Attributes:
+                        gameTypeData : GameTypeData
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          GameType
+
+       Public member of:	GameType
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameType
+
+       Public member of:	GameType
+       Arguments:
+	          const GameType&	gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          GameType
+
+       Public member of:	GameType
+       Arguments:
+	          const GameTypeData&	new_gametypedata
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameName
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameName
+
+       Public member of:	GameType
+       Arguments:
+	          CString	new_gamename
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getCompanyName
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          setCompanyName
+
+       Public member of:	GameType
+       Arguments:
+	          CString	new_companyname
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameVersion
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameVersion
+
+       Public member of:	GameType
+       Arguments:
+	          CString	new_gameversion
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getLegalCopyright
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setLegalCopyright
+
+       Public member of:	GameType
+       Arguments:
+	          CString	new_legalcopyright
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getLegalTrademarks
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          setLegalTrademarks
+
+       Public member of:	GameType
+       Arguments:
+	          CString	new_legaltrademarks
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameDescription
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameDescription
+
+       Public member of:	GameType
+       Arguments:
+	          CString	new_gamedescription
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAvgBranchingFactor
+
+       Public member of:	GameType
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setAvgBranchingFactor
+
+       Public member of:	GameType
+       Arguments:
+	          float	new_avebranchingfactor
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAvgAlphaBetaGain
+
+       Public member of:	GameType
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          setAvgAlphaBetaGain
+
+       Public member of:	GameType
+       Arguments:
+	          float	new_avgalphabetagain
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameEncoding
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameEncoding
+
+       Public member of:	GameType
+       Arguments:
+	          CString	new_gameencoding
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          toString
+
+       Public member of:	GameType
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	GameType
+       Return Class:	GameType&
+       Arguments:
+	          const GameType&	gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	GameType
+       Return Class:	boolean
+       Arguments:
+	          const GameType&	gametype
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Documentation:
+          based only on the gameName, gameVersion and company.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~GameType
+
+       Public member of:	GameType
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          GameTypeData
+
+       Category:		Analysis
+       Documentation:
+          GameTypeData Structure holds all data members required
+          for game identification.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                LevelType	
+
+       Public Interface:
+          Attributes:
+                        gameName : char*
+                        gameVersion : char*
+                        gameDescription : char*
+                        companyName : char*
+                        legalCopyright : char*
+                        legalTrademarks : char*
+                        gameEncoding : char*
+
+       Protected Interface:
+          Attributes:
+                        gameName : char*
+                        gameVersion : char*
+                        gameDescription : char*
+                        companyName : char*
+                        legalCopyright : char*
+                        legalTrademarks : char*
+                        gameEncoding : char*
+
+       Private Interface:
+          Attributes:
+                        gameName : char*
+                        gameVersion : char*
+                        gameDescription : char*
+
+                        File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+                        companyName : char*
+                        legalCopyright : char*
+                        legalTrademarks : char*
+                        gameEncoding : char*
+
+       Implementation:
+          Attributes:
+                        gameName : char*
+                        gameVersion : char*
+                        gameDescription : char*
+                        companyName : char*
+                        legalCopyright : char*
+                        legalTrademarks : char*
+                        gameEncoding : char*
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          Helper
+
+       Category:		Analysis
+       Documentation:
+          Helper Class provides logical connection between the
+          current process on the game server and the physical
+          helper process on a different machine. Helper Class
+          uses DCom in all network communication. It provides
+          game state  evaluation services, game state split
+          services and other. It throws HelperDeadException
+          exception.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                HelperPerformance	
+	                JobManager	
+	                InternetAddress	
+	                GameType	
+	                IHelper	
+	                GameTreeNode	
+	                GameState	
+	                HelperPerformanceData	
+
+       Public Interface:
+          Operations:
+                        Helper
+                        Helper
+                        getPerformance
+                        setPerformance
+                        getAddress
+                        setAddress
+
+                        File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+                        getGameType
+                        setGameType
+                        getAvailable
+                        setAvailable
+                        getHelperID
+                        setHelperID
+                        estimateEvaluationTurnaround
+                        estimateEvaluationTurnaround
+                        evaluateBoard
+                        splitBoard
+                        makeRapidDesicion
+                        lockJobQueue
+                        unlockJobQueue
+                        ~Helper
+
+       Protected Interface:
+          Attributes:
+                        performance : HelperPerformance
+                        address : InternetAddress
+                        jobManager : JobManager
+                        jobManagerLock : CSemaphore
+                        gameType : GameType
+                        available : boolean
+                        helperID : long
+
+       Private Interface:
+          Attributes:
+                        performance : HelperPerformance
+                        address : InternetAddress
+                        jobManager : JobManager
+                        jobManagerLock : CSemaphore
+                        gameType : GameType
+                        available : boolean
+                        helperID : long
+
+       Implementation:
+          Attributes:
+                        performance : HelperPerformance
+                        address : InternetAddress
+                        jobManager : JobManager
+                        jobManagerLock : CSemaphore
+                        gameType : GameType
+                        available : boolean
+                        helperID : long
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          Helper
+
+       Public member of:	Helper
+       Documentation:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          Helper() - default constructor.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          Helper
+
+       Public member of:	Helper
+       Arguments:
+	          const HelperPerformance&	new_performance
+	          const InternetAddress&	new_address
+	          const GameType&	new_gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPerformance
+
+       Public member of:	Helper
+       Return Class:	HelperPerformance
+       Documentation:
+          THROWS HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPerformance
+
+       Public member of:	Helper
+       Arguments:
+	          const HelperPerformance&	new_performance
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAddress
+
+       Public member of:	Helper
+       Return Class:	InternetAddress
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          setAddress
+
+       Public member of:	Helper
+       Arguments:
+	          const InternetAddress&	new_address
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getGameType
+
+       Public member of:	Helper
+       Return Class:	GameType
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setGameType
+
+       Public member of:	Helper
+       Arguments:
+	          const GameType&	new_gametype
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAvailable
+
+       Public member of:	Helper
+       Return Class:	boolean
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setAvailable
+
+       Public member of:	Helper
+       Arguments:
+	          boolean	new_available
+       Concurrency:	Sequential
+
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          getHelperID
+
+       Public member of:	Helper
+       Return Class:	long
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setHelperID
+
+       Public member of:	Helper
+       Arguments:
+	          long	new_helperid
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          estimateEvaluationTurnaround
+
+       Public member of:	Helper
+       Return Class:	long
+       Arguments:
+	          GameTreeNode*	node
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          estimateEvaluationTurnaround
+
+       Public member of:	Helper
+       Return Class:	long
+       Arguments:
+	          int	ply
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          evaluateBoard
+
+       Public member of:	Helper
+       Arguments:
+	          GameTreeNode*	node
+	          long	timelimit
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          splitBoard
+
+       Public member of:	Helper
+       Arguments:
+	          GameTreeNode*	node
+       Documentation:
+          throws HelperDeadException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          makeRapidDesicion
+
+       Public member of:	Helper
+       Return Class:	Move
+       Arguments:
+	          const GameState&	gamestate
+       Documentation:
+          THROWS:
+             HelperDeadException exception
+             GameOverException exception
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          lockJobQueue
+
+       Public member of:	Helper
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          unlockJobQueue
+
+       Public member of:	Helper
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~Helper
+
+       Public member of:	Helper
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          HelperPerformance
+
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Category:		Analysis
+       Documentation:
+          HelperPerformance Class is used by each helper to
+          store and evaluate certain parameters, such as the
+          average time that a particular helper needs to
+          evlauate a board, or overhead time in communication.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                HelperPerformanceData	
+
+       Public Interface:
+          Operations:
+                        HelperPerformance
+                        HelperPerformance
+                        HelperPerformance
+                        HelperPerformance
+                        update
+                        getBranchingFactor
+                        setBranchingFactor
+                        getOverheadTime
+                        setOverheadTime
+                        getEvaluationTime
+                        setEvaluationTime
+                        getSplitTime
+                        setSplitTime
+                        getPctCompleted
+                        setPctCompleted
+                        getAlphaBetaGain
+                        setAlphaBetaGain
+                        estimateEvaluationTime
+                        operator=
+                        operator==
+                        ~HelperPerformance
+
+       Protected Interface:
+          Attributes:
+                        helperPerformanceData : HelperPerformanceData
+                        overHeadTime : long
+                        lockSemaphore : CSemaphore
+
+          Operations:
+                        lock
+                        unlock
+
+       Private Interface:
+          Attributes:
+                        helperPerformanceData : HelperPerformanceData
+                        overHeadTime : long
+                        lockSemaphore : CSemaphore
+
+       Implementation:
+          Attributes:
+
+                        File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+                        helperPerformanceData : HelperPerformanceData
+                        overHeadTime : long
+                        lockSemaphore : CSemaphore
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          HelperPerformance
+
+       Public member of:	HelperPerformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          HelperPerformance
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          const HelperPerformance&	new_helperperformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          HelperPerformance
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          const HelperPerformanceData&	new_helperperformancedata
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          HelperPerformance
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          vector<HelperPerformance>	new_helperperformance_list
+       Documentation:
+          HelperPerformance() - constructor. Creates the new
+          instance of the class based on averages drawn from the
+          provided list of exising performances.
+
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          update
+
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          const HelperPerformanceData&	new_helperperformancedata
+	          long	new_turnaroundtime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getBranchingFactor
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setBranchingFactor
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_branchingfactor
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getOverheadTime
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setOverheadTime
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_overheadtime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getEvaluationTime
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          setEvaluationTime
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_evaluationtime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getSplitTime
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setSplitTime
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_splittime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getPctCompleted
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          setPctCompleted
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_pctcompleted
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAlphaBetaGain
+
+       Public member of:	HelperPerformance
+       Return Class:	float
+       Concurrency:	Sequential
+
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          setAlphaBetaGain
+
+       Public member of:	HelperPerformance
+       Arguments:
+	          float	new_alphabetagain
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          estimateEvaluationTime
+
+       Public member of:	HelperPerformance
+       Return Class:	long
+       Arguments:
+	          int	ply
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          lock
+
+       Protected member of:	HelperPerformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          unlock
+
+       Protected member of:	HelperPerformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	HelperPerformance
+       Return Class:	HelperPerformance&
+       Arguments:
+	          const HelperPerformance&	new_helperperformance
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	HelperPerformance
+       Return Class:	boolean
+       Arguments:
+	          const HelperPerformance&	helperperformance
+       Concurrency:	Sequential
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+
+
+
+       Operation name:
+          ~HelperPerformance
+
+       Public member of:	HelperPerformance
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          HelperPerformanceData
+
+       Category:		Analysis
+       Documentation:
+          HelperPerformanceData Structure encapsulates data
+          members that are used by the HelperPerformance Class.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        alphaBetaGain : float
+                        branchingFactor : float
+                        evaluationTime : float
+                        pctCompleted : float
+                        splitTime : float
+                        totalWorkTime : float
+
+       Protected Interface:
+          Attributes:
+                        alphaBetaGain : float
+                        branchingFactor : float
+                        evaluationTime : float
+                        pctCompleted : float
+                        splitTime : float
+                        totalWorkTime : float
+
+       Private Interface:
+          Attributes:
+                        alphaBetaGain : float
+                        branchingFactor : float
+                        evaluationTime : float
+                        pctCompleted : float
+                        splitTime : float
+                        totalWorkTime : float
+
+       Implementation:
+          Attributes:
+                        alphaBetaGain : float
+                        branchingFactor : float
+                        evaluationTime : float
+
+                        File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+                        pctCompleted : float
+                        splitTime : float
+                        totalWorkTime : float
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          HelperRegistry
+
+       Category:		Analysis
+       Documentation:
+          HelperRegistry Class provides DCom interface for
+          helpers to register and unregister with the server. It
+          stores references to all known helpers.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	IRegisterHelper
+       Public Uses:
+	                Helper	
+	                GameType	
+	                GameTypeData	
+
+       Public Interface:
+          Operations:
+                        getHelpers
+                        getAllGameTypes
+                        isGameImplemented
+                        returnHelpers
+                        ~HelperRegistry
+
+       Protected Interface:
+          Attributes:
+                        helpers : vector<Helper*>
+                        refereceReferenceCounts : vector<int>
+                        helpersListLock : CSemaphore
+                        nextHelperID : long
+
+       Private Interface:
+          Attributes:
+                        helpers : vector<Helper*>
+                        refereceReferenceCounts : vector<int>
+                        helpersListLock : CSemaphore
+                        nextHelperID : long
+
+       Implementation:
+          Attributes:
+                        helpers : vector<Helper*>
+                        refereceReferenceCounts : vector<int>
+                        helpersListLock : CSemaphore
+                        nextHelperID : long
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          getHelpers
+
+       Public member of:	HelperRegistry
+       Return Class:	vector<Helper*>
+       Arguments:
+	          GameType	gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getAllGameTypes
+
+       Public member of:	HelperRegistry
+       Return Class:	vector<GameType>
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          isGameImplemented
+
+       Public member of:	HelperRegistry
+       Return Class:	boolean
+       Arguments:
+	          const GameType&	gametype
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          returnHelpers
+
+       Public member of:	HelperRegistry
+       Arguments:
+	          vector<Helper*>	returnedhelpers
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~HelperRegistry
+
+       Public member of:	HelperRegistry
+       Concurrency:	Sequential
+
+
+
+       Class name:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          IHelper
+
+       Category:		Analysis
+       Documentation:
+          IHelper Interface is used by the system to communicate
+          with the physical helper machines.  It allows the
+          system to talk to the helpers.
+
+       Stereotype:	Interface
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        evaluate
+                        split
+                        getQuickMove
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          evaluate
+
+       Public member of:	IHelper
+       Arguments:
+	          GameState	gs
+	          LevelType	level
+	          int	ply
+	          long	timelimit
+	          int*	quality
+	          HelperPerformanceData*	data
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          split
+
+       Public member of:	IHelper
+       Arguments:
+	          GameState	gs
+	          LevelType	level
+	          int*	movecount
+	          Move*	moves
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          getQuickMove
+
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Public member of:	IHelper
+       Arguments:
+	          GameState	gs
+	          Move*	move
+	          int	gameOver*
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          InternetAddress
+
+       Category:		Analysis
+       Documentation:
+          InternetAddress Class is used to store the Internet
+          identity of a particular helper. It gathers all the
+          information on would need to contact the helper
+          process on another machine and request one of the
+          services.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        ipAddress : char*
+
+       Protected Interface:
+          Attributes:
+                        ipAddress : char*
+
+       Private Interface:
+          Attributes:
+                        ipAddress : char*
+
+       Implementation:
+          Attributes:
+                        ipAddress : char*
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          IRegisterHelper
+
+       Category:		Analysis
+       Documentation:
+          IRegisterHelper Interface is the interface allows
+          physical helpers to talk to the system (e.g. when a
+          helper needs to register with the system)
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Stereotype:	Interface
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        registerHelper
+                        unregisterHelper
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          registerHelper
+
+       Public member of:	IRegisterHelper
+       Arguments:
+	          char*	address
+	          GameTypeData	data
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          unregisterHelper
+
+       Public member of:	IRegisterHelper
+       Arguments:
+	          char*	address
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          Job
+
+       Category:		Analysis
+       Documentation:
+          Job Structure is a simple data type to store and track
+          work assigments.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                SimpleDateTime	
+
+       Public Interface:
+          Attributes:
+                        timeStarted : SimpleDateTime
+
+                        File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+                        jobNumber : int
+                        length : long
+                        semaphore : CSemaphore*
+
+       Protected Interface:
+          Attributes:
+                        timeStarted : SimpleDateTime
+                        jobNumber : int
+                        length : long
+                        semaphore : CSemaphore*
+
+       Private Interface:
+          Attributes:
+                        timeStarted : SimpleDateTime
+                        jobNumber : int
+                        length : long
+                        semaphore : CSemaphore*
+
+       Implementation:
+          Attributes:
+                        timeStarted : SimpleDateTime
+                        jobNumber : int
+                        length : long
+                        semaphore : CSemaphore*
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          JobManager
+
+       Category:		Analysis
+       Documentation:
+          JobManager Class is used by each helper to put in jobs
+          of particular lenghts into its schedule as well as to
+          figure out how much time will elapse before the helper
+          is idle.
+
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Uses:
+	                Job	
+
+       Public Interface:
+          Operations:
+                        JobManager
+                        addJob
+                        deleteJob
+                        getTotalQueueTime
+                        isEmpty
+                        ~JobManager
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Protected Interface:
+          Attributes:
+                        jobs : vector<Job>
+                        newJobNumber : int
+                        lockSemaphore : CSemaphore
+
+          Operations:
+                        lock
+                        unlock
+
+       Private Interface:
+          Attributes:
+                        jobs : vector<Job>
+                        newJobNumber : int
+                        lockSemaphore : CSemaphore
+
+       Implementation:
+          Attributes:
+                        jobs : vector<Job>
+                        newJobNumber : int
+                        lockSemaphore : CSemaphore
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          JobManager
+
+       Public member of:	JobManager
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          addJob
+
+       Public member of:	JobManager
+       Return Class:	int
+       Arguments:
+	          long	joblength
+	          CSemaphore*	new_semaphore
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          deleteJob
+
+       Public member of:	JobManager
+       Arguments:
+	          int	jobnumber
+       Concurrency:	Sequential
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Operation name:
+          getTotalQueueTime
+
+       Public member of:	JobManager
+       Return Class:	long
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          isEmpty
+
+       Public member of:	JobManager
+       Return Class:	boolean
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          lock
+
+       Protected member of:	JobManager
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          unlock
+
+       Protected member of:	JobManager
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          ~JobManager
+
+       Public member of:	JobManager
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          Move
+
+       Category:		Analysis
+       Documentation:
+          Move Structure is used to ecapsulate move string and
+          the quality of the move. It is used in the game tree
+          evaluation and in communication between the system and
+          the helpers.
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        gamestate : GameState
+                        move : char*
+                        quality : int
+                        stutus : int
+
+       Protected Interface:
+          Attributes:
+                        gamestate : GameState
+                        move : char*
+                        quality : int
+                        stutus : int
+
+       Private Interface:
+          Attributes:
+                        gamestate : GameState
+                        move : char*
+                        quality : int
+                        stutus : int
+
+       Implementation:
+          Attributes:
+                        gamestate : GameState
+                        move : char*
+                        quality : int
+                        stutus : int
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          MoveDecision
+
+       Category:		Analysis
+       Documentation:
+          MoveDecision Structure encapsulates any informaiton
+          that the system needs to return results back to the
+          game client (e.g. the move string).
+
+       Stereotype:	Structure
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Attributes:
+                        move : CString
+                        pctCompleted : float
+                        gamestatus : int
+
+       Protected Interface:
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+          Attributes:
+                        move : CString
+                        pctCompleted : float
+                        gamestatus : int
+
+       Private Interface:
+          Attributes:
+                        move : CString
+                        pctCompleted : float
+                        gamestatus : int
+
+       Implementation:
+          Attributes:
+                        move : CString
+                        pctCompleted : float
+                        gamestatus : int
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Class name:
+          SimpleDateTime
+
+       Category:		Analysis
+       Export Control:	Public
+       Cardinality:		n
+       Hierarchy:
+          Superclasses:	none
+       Public Interface:
+          Operations:
+                        SimpleDateTime
+                        toLong
+                        toString
+                        operator-
+                        operator=
+                        operator==
+
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+       Operation name:
+          SimpleDateTime
+
+       Public member of:	SimpleDateTime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          toLong
+
+          File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+
+       Public member of:	SimpleDateTime
+       Return Class:	long
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          toString
+
+       Public member of:	SimpleDateTime
+       Return Class:	CString
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator-
+
+       Public member of:	SimpleDateTime
+       Return Class:	long
+       Arguments:
+	          const SimpleDateTime&	simpledatetime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator=
+
+       Public member of:	SimpleDateTime
+       Return Class:	SimpleDateTime&
+       Arguments:
+	          const SimpleDateTime&	simpledatetime
+       Concurrency:	Sequential
+
+
+
+       Operation name:
+          operator==
+
+       Public member of:	SimpleDateTime
+       Return Class:	boolean
+       Arguments:
+	          const SimpleDateTime&	simpledatetime
+       Concurrency:	Sequential
+
+
+
+       Class name:
+          LevelType
+
+       Category:		Analysis
+       Stereotype:	SimpleValue
+       Export Control:	Public
+       Cardinality:		n
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999
+
+
+
+
+       Hierarchy:
+          Superclasses:	none
+       State machine:	No
+       Concurrency:		Sequential
+       Persistence:		Transient
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       File: E:\MQP\Analysis\SRV-Model.mdl    11:46:41 AM Thursday, November 18, 1999

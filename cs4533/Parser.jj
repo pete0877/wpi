@@ -1,0 +1,201 @@
+options {
+   IGNORE_CASE = false;
+   OPTIMIZE_TOKEN_MANAGER = true;
+}
+ 
+PARSER_BEGIN(tea)
+ import java.io.*;
+ public class tea {
+  public static void main(String[] args) throws ParseException, FileNotFoundException {
+   if ( args.length < 1 ) {
+    System.out.println("Please pass in the filename for a parameter.");
+    System.exit(1);
+   }
+   
+   tea parser = new tea( new FileInputStream(args[0]) );
+   parser.program();
+   System.out.println("Parse completed.");
+  }
+ }
+PARSER_END(tea)
+
+SKIP: /* Whitespace */
+ {
+   "\t"
+ | "\n"
+ | "\r"
+ | " "
+ }
+ 
+TOKEN: 
+ {
+   <VOIDTYPE:      "void">
+ | <DATATYPE:      "int">   
+ | <IF_KEYWORD:    "if">
+ | <ELSE_KEYWORD:  "else">
+ | <DO_KEYWORD:    "do">
+ | <WHILE_KEYWORD: "while">
+ | <FOR_KEYWORD:   "for">
+ | <LBRACE:        "{">
+ | <RBRACE:        "}">
+ | <LPAREN:        "(">
+ | <RPAREN:        ")">
+ | <SEMICOLON:     ";">
+ | <ASSIGNOP:      "=">
+ | <OR_OP:         "||">
+ | <AND_OP:        "&&">
+ | <EQ_OP:         "==">
+ | <NEQ_OP:        "!=">
+ | <LT_OP:         "<">
+ | <LT_EQ_OP:      "<=">
+ | <GT_OP:         ">">
+ | <GT_EQ_OP:      ">=">
+ | <PLUS_OP:       "+">
+ | <MINUS_OP:      "-">
+ | <MUL_OP:        "*">
+ | <DIV_OP:        "/">
+ | <MOD_OP:        "%">
+ | <LNEG:          "!"> 
+ | <COMMA:         ",">
+ | <NAME:          (["a"-"z"] | ["A"-"Z"]) ( ["a"-"z"] | ["A"-"Z"] | ["0"-"9"] | "_" )*>
+ | <NUMBER:        (["0"-"9"])+>
+ | <OTHER:         ~[]>
+}
+
+void program() :
+ {System.out.println("program");}
+ { method_declaration() <EOF> }
+ 
+void method_declaration() :
+ { System.out.println("method_declaration"); }
+ { type() <NAME> <LPAREN> <RPAREN> <LBRACE> statement_block() <RBRACE> }
+ 
+void type() :
+ {System.out.println("type");}
+ { <VOIDTYPE> | variable_type() }
+
+void variable_type() :
+ {System.out.println("variable_type");}
+ { <DATATYPE> }
+
+void statement_block() :
+ {System.out.println("statement_block");}
+ { ( statement() )* }
+ 
+void statement() :
+ {System.out.println("statement");}
+ { simple_statement() <SEMICOLON> | compound_statement() | <LBRACE> statement_block() <RBRACE> }
+
+void simple_statement() :
+  { System.out.println("simple_statement"); }
+  { declarative_statement() | assignment_statement() }
+
+void declarative_statement() :
+  { System.out.println("declarative_statement"); }   
+  { variable_type() assignment_statement() (<COMMA> assignment_statement())* }
+  
+void assignment_statement() :
+ { System.out.println("assignment_statement"); }
+ { <NAME> (<ASSIGNOP> expression())? }
+ 
+void expression() :
+ { System.out.println("expression"); }
+ { or_expression() }
+ 
+void or_expression() :
+ { System.out.println("or_expression"); }
+ { and_expression() (or() and_expression())* }
+
+void and_expression() :
+ { System.out.println("and_expression"); }
+ { relop_expression() (and() relop_expression())* }
+ 
+void relop_expression() :
+ { System.out.println("relop_expression"); }
+ { ltgt_expression() (relop() ltgt_expression())* }
+ 
+void ltgt_expression() :
+ { System.out.println("ltgt_expression"); }
+ { addop_expression() (ltgt() addop_expression())* }
+ 
+void addop_expression() :
+ { System.out.println("addop_expression"); }
+ { mulop_expression() (addop() mulop_expression())* }
+ 
+void mulop_expression() :
+ { System.out.println("mulop_expression"); }
+ { term() (mulop() term())* }
+ 
+void term() :
+ { System.out.println("term"); }
+ { not() value() | addop() value() | value() }
+
+void value() :
+ { System.out.println("value"); }
+ { <NAME> | <NUMBER> | <LPAREN> expression() <RPAREN> }
+
+void assignop() :
+ { System.out.println("assignop"); }
+ { <ASSIGNOP> }
+ 
+void not() :
+ { System.out.println("not"); }
+ { <LNEG> } 
+ 
+void or() :
+ { System.out.println("or"); }
+ { <OR_OP> } 
+ 
+void and() :
+ { System.out.println("and"); }
+ { <AND_OP> } 
+ 
+void relop() :
+ { System.out.println("relop"); }
+ { <EQ_OP> | <NEQ_OP> } 
+ 
+void ltgt() :
+ { System.out.println("ltgt"); }
+ { <LT_OP> | <LT_EQ_OP> | <GT_OP> | <GT_EQ_OP> } 
+ 
+void addop() :
+ { System.out.println("addop"); }
+ { <PLUS_OP> | <MINUS_OP> } 
+ 
+void mulop() :
+ { System.out.println("mulop"); }
+ { <MUL_OP> | <DIV_OP> | <MOD_OP> } 
+ 
+void compound_statement() :
+ { System.out.println("compound_statement"); }
+ { if_statement() | loop_statement() }  
+
+void if_statement() :
+ { System.out.println("if_statement"); }		
+ { <IF_KEYWORD> <LPAREN> expression() <RPAREN> statement() (<ELSE_KEYWORD> statement())? }  
+ 
+void loop_statement() :
+ { System.out.println("loop_statement"); }
+ { while_statement() | do_while_statement() | for_statement() }  
+ 
+void while_statement() :
+ { System.out.println("while_statement"); }
+ { <WHILE_KEYWORD> <LPAREN> expression() <RPAREN> statement() }  
+ 
+void do_while_statement() :
+ { System.out.println("do_whilestatement"); }	
+ { <DO_KEYWORD> statement() <WHILE_KEYWORD> <LPAREN> expression() <RPAREN> <SEMICOLON> }  
+ 
+void for_statement() :
+ { System.out.println("for_statement"); }	  
+ { 
+ 	<FOR_KEYWORD> <LPAREN> (for_expression())? <SEMICOLON> 
+ 	(expression())? <SEMICOLON> 
+	(for_expression())? 
+	<RPAREN> statement() 
+ }  
+
+void for_expression() :
+ { System.out.println("for_expression"); }
+ { declarative_statement() | assignment_statement() ( <COMMA> assignment_statement() )* }   
+ 

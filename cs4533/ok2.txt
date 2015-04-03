@@ -1,0 +1,38 @@
+
+E:\Compilers>c:\jdk1.2beta4\bin\java tea sample_b.tea  
+
+program (
+LINE 1:
+
+     method_declaration (
+          void
+          input_b
+          if (
+               > (
+                    i
+                    j
+               )
+LINE 3:
+
+               = (
+                    i
+                    + (
+                         i
+                         j
+                    )
+               )
+               if (
+                    < (
+                         i
+                         j
+                    )
+LINE 5:
+
+                    = (
+                         i
+                         1
+                    )
+               )
+          )
+     )
+)Parse completed.

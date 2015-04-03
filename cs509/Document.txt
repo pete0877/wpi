@@ -1,0 +1,10 @@
+  				FileOutputStream ostream = new FileOutputStream("dbc.tmp");
+	            ObjectOutputStream p = new ObjectOutputStream(ostream);
+    	        p.writeObject(DBC.getState());
+    	        p.flush();
+    	        ostream.close();
+                
+                FileInputStream istream = new FileInputStream("t.tmp");
+    	        ObjectInputStream q = new ObjectInputStream(istream);
+    	        Database temp = (Database)q.readObject();
+    	        istream.close();

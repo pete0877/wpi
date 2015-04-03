@@ -1,0 +1,16 @@
+Author:				Sebastian Jastrzebski 
+				Peter Golaszewski
+Date:				2/4/98
+Project ID:			Project 2
+CS Class:			CS3013
+Programming Language:		C
+OS/Hardware dependencies:	None
+
+Problem Description:		This program monitors login and logout
+				information for a group of users. Each
+				time a user logs in or out, hey prints
+				a message to the screen.
+
+How to build the program:	make
+How to run the program:		hey
+

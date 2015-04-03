@@ -1,0 +1,26 @@
+create		lfile_1		1
+longdir
+create		lfile_2		10
+longdir
+rcreate		rfile_1		2
+longdir
+rcreate		rfile_2		20
+longdir
+map
+extend		lfile_1		10
+longdir
+extend		lfile_2		1
+longdir
+extend		rfile_1		20
+longdir
+extend		rfile_2		2
+longdir
+map
+delete 		lfile_1
+longdir
+delete 		lfile_2
+longdir
+delete 		rfile_1
+longdir
+delete 		rfile_2
+longdir

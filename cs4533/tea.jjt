@@ -1,0 +1,224 @@
+options {
+   IGNORE_CASE = false;
+   OPTIMIZE_TOKEN_MANAGER = true;
+   MULTI = false;
+   STATIC = false;
+}
+ 
+PARSER_BEGIN(tea)
+ 
+import java.io.*;
+ 
+public class tea {
+	public static void main(String[] args) throws ParseException, FileNotFoundException  {
+		if ( args.length < 1 ) {
+			System.out.println("Please pass in the filename for a parameter.");
+			System.exit(1);
+		}
+ 
+		tea parser = new tea( new FileInputStream(args[0]) );
+ 
+		SimpleNode root = parser.program();
+		root.dump("");
+		System.out.println("Parse completed.");
+	}
+}
+ 
+PARSER_END(tea)
+
+SKIP: /* Whitespace */
+ { "\t"
+ | "\n"
+ | "\r"
+ | " " }
+ 
+TOKEN: 
+ { <VOIDTYPE:      "void">
+ | <DATATYPE:      "int">   
+ | <IF_KEYWORD:    "if">
+ | <ELSE_KEYWORD:  "else">
+ | <DO_KEYWORD:    "do">
+ | <WHILE_KEYWORD: "while">
+ | <FOR_KEYWORD:   "for">
+ | <LBRACE:        "{">
+ | <RBRACE:        "}">
+ | <LPAREN:        "(">
+ | <RPAREN:        ")">
+ | <SEMICOLON:     ";">
+ | <ASSIGNOP:      "=">
+ | <OR_OP:         "||">
+ | <AND_OP:        "&&">
+ | <EQ_OP:         "==">
+ | <NEQ_OP:        "!=">
+ | <LT_OP:         "<">
+ | <LT_EQ_OP:      "<=">
+ | <GT_OP:         ">">
+ | <GT_EQ_OP:      ">=">
+ | <PLUS_OP:       "+">
+ | <MINUS_OP:      "-">
+ | <MUL_OP:        "*">
+ | <DIV_OP:        "/">
+ | <MOD_OP:        "%">
+ | <LNEG:          "!"> 
+ | <COMMA:         ",">
+ | <NAME:          (["a"-"z"] | ["A"-"Z"]) ( ["a"-"z"] | ["A"-"Z"] | ["0"-"9"] | "_" )*>
+ | <NUMBER:        (["0"-"9"])+>
+ | <OTHER:         ~[]> }
+
+SimpleNode program() : {}
+ { method_declaration() <EOF>  
+ {  jjtThis.myname = "program";
+ 	return jjtThis; } 
+}
+ 
+void method_declaration() : { Token tok1, tok2; }
+ { (tok1=<VOIDTYPE> | tok1=<DATATYPE>) tok2=<NAME> <LPAREN> <RPAREN> <LBRACE> statement_block() <RBRACE>
+ 	{ jjtThis.myname = "method_declaration"; 
+      jjtThis.value  = tok1.image;
+	  jjtThis.ovalue  = tok2.image; 
+	  jjtThis.line_number = tok1.beginLine; }
+ }
+ 
+void statement_block() #void : {}
+ { ( statement() )* }
+ 
+void statement() #void : {}
+ { simple_statement() <SEMICOLON> 
+ | compound_statement() 
+ | <LBRACE> statement_block() <RBRACE> }
+
+void simple_statement() #void : {}
+ { declarative_statement() 
+ | assignment_statement() }
+
+void declarative_statement() : { Token tok1; }
+ {	tok1=<DATATYPE>
+  	assignment_statement() (<COMMA> assignment_statement())*
+	{ jjtThis.myname = "declarative_statement"; 
+	  jjtThis.value  = tok1.image; 
+	  jjtThis.line_number = tok1.beginLine; }
+ }
+  
+void assignment_statement() : { Token tok1;}
+ { tok1=<NAME> (<ASSIGNOP> expression() )?
+ 	{ jjtThis.myname = "=";
+	  jjtThis.value = tok1.image;
+	  jjtThis.line_number = tok1.beginLine; }
+ }
+  
+void expression() #void : { }
+ { or_expression() }
+ 
+void or_expression() : { Token tok1=null;}
+ { and_expression() (tok1=<OR_OP> or_expression() #or_expression(>1))* 
+    { if (tok1==null) jjtThis.myname = null; 
+	  else {
+			jjtThis.myname = tok1.image;	
+			jjtThis.line_number = tok1.beginLine; 
+	  }
+	}
+ } 
+
+void and_expression() : { Token tok1=null;}
+ { relop_expression() (tok1=<AND_OP> and_expression() #and_expression(>1))* 
+ 	{ if (tok1==null) jjtThis.myname = null; 
+	  else {
+				jjtThis.myname = tok1.image;	
+				jjtThis.line_number = tok1.beginLine; 
+	  }
+	}
+ }
+ 
+void relop_expression() : { Token tok1=null;}
+ { ltgt_expression() ((tok1=<EQ_OP> | tok1=<NEQ_OP>) relop_expression() #relop_expression(>1))* 
+ 	{ if (tok1==null) jjtThis.myname = null; 
+	  else {
+					jjtThis.myname = tok1.image;	
+					jjtThis.line_number = tok1.beginLine; 
+	  }
+	} 
+ }
+ 
+void ltgt_expression() : { Token tok1=null;}
+ { addop_expression() ( (tok1=<LT_OP> | tok1=<LT_EQ_OP> | tok1=<GT_OP> | tok1=<GT_EQ_OP>) ltgt_expression() #ltgt_expression(>1))* 
+ 	{ if (tok1==null) jjtThis.myname = null; 
+	  else {
+	  					jjtThis.myname = tok1.image;	
+	  					jjtThis.line_number = tok1.beginLine; 
+	  }
+	}  
+ }
+  
+void addop_expression() : { Token tok1=null;}
+ { mulop_expression() ( (tok1=<PLUS_OP> | tok1=<MINUS_OP>) addop_expression() #addop_expression(>1))* 
+ 	{ if (tok1==null) jjtThis.myname = null; 
+	  else {
+	  					jjtThis.myname = tok1.image;	
+	  					jjtThis.line_number = tok1.beginLine; 
+	  }
+	}  
+ }
+
+void mulop_expression() : { Token tok1=null;}
+ { term() ((tok1=<MUL_OP> | tok1=<DIV_OP> | tok1=<MOD_OP>) mulop_expression() #mulop_expression(>1))* 
+ 	{ if (tok1==null) jjtThis.myname = null; 
+	  else {
+	  					jjtThis.myname = tok1.image;	
+	  					jjtThis.line_number = tok1.beginLine; 
+	  }
+	} 
+ }
+  
+void term(): { Token tok1;}
+ { tok1=<LNEG> value() { jjtThis.myname = tok1.image; jjtThis.line_number = tok1.beginLine; }
+ | value() { jjtThis.myname = null; } 
+ }
+
+void value() : { Token tok1; }
+ { 	tok1=<NAME> { jjtThis.myname = tok1.image; jjtThis.line_number = tok1.beginLine; }
+ |	tok1=<NUMBER> { jjtThis.myname = tok1.image; jjtThis.line_number = tok1.beginLine; } 
+ | 	<LPAREN> expression() <RPAREN> { jjtThis.myname = null; }
+ }
+  
+void compound_statement() #void: { }
+ { if_statement() | loop_statement() }  
+
+void if_statement() : { Token tok1; }
+ { tok1=<IF_KEYWORD> 
+ 	<LPAREN> expression() <RPAREN> statement() 
+   (<ELSE_KEYWORD> statement())? 	   
+	   { jjtThis.myname = tok1.image; 
+	     jjtThis.line_number = tok1.beginLine; 
+	   }
+ }  
+ 
+void loop_statement() #void: { }
+ { while_statement() | do_while_statement() | for_statement() }  
+ 
+void while_statement() : { Token tok1; }
+ { tok1=<WHILE_KEYWORD> <LPAREN> expression() <RPAREN> statement() 
+ 		{ jjtThis.myname = tok1.image; 
+		  jjtThis.line_number = tok1.beginLine; } 
+ }  
+ 
+void do_while_statement() : { Token tok1; }
+ { tok1=<DO_KEYWORD> statement()
+   <WHILE_KEYWORD> <LPAREN> expression() <RPAREN> <SEMICOLON>
+	   { jjtThis.myname = tok1.image; 
+	     jjtThis.line_number = tok1.beginLine; }
+ }  
+ 
+void for_statement() : { Token tok1; }
+ { tok1=<FOR_KEYWORD> <LPAREN>   (for_expression())? <SEMICOLON> 
+						 	(expression())? <SEMICOLON> 
+							(for_expression())? 
+				 <RPAREN>
+				 statement()	
+		{ jjtThis.myname = tok1.image; 
+		  jjtThis.line_number = tok1.beginLine; 
+		}
+ }  
+
+void for_expression() #void:
+ { }
+ { declarative_statement() | assignment_statement() ( <COMMA> assignment_statement() )* }   

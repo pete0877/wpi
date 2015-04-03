@@ -1,0 +1,23 @@
+MQP Status Report
+Date: 10/14/99
+______________________________________________________________________________
+Things done since the last meeting:
+
+1. Finalized the methodology of the project (exact methods and protocols).
+
+2. Got DCom to work over LAN
+
+2. Completed the Project proposal.
+
+______________________________________________________________________________
+Things to do before the next meeting:
+
+1. Find out how DCom will work over Internet
+
+2. Brainstorm design
+
+
+
+
+
+

@@ -1,0 +1,150 @@
+
+GamesEngine:
+
+	isGameImplemented(GT) {
+		found helper = false
+		lock HELPERSCOUNT for reading
+		for helper H from 1 to HELPERSCOUNT do
+			lock H for reading
+			if H is not NULL AND if H implements GT
+				found helper = true				
+			endif 
+			unlock H for reading		
+		next
+		unlock HELPERSCOUNT for reading	
+		return found helper
+	}
+
+	
+	estimateMoveTime(GT, ply) {
+		sum = 0
+		hcount = 0
+		lock HELPERSCOUNT for reading
+		for helper H from 1 to HELPERSCOUNT do
+			lock H for reading
+			if H is not NULL and H implements GT 
+				increment hcount 
+				add H.estimateEvaluation (ply) to the sum
+			endif
+			unlock H for reading		
+		next
+		unlock HELPERSCOUNT for reading				
+		if hcount is 0
+			throw exception 
+		else 
+			return sum / hcount
+		endif			
+	}	
+	
+	
+	makeMove (board, ply, timelimit) {
+		start time = now
+		// grab the first helper that implements GT to make the rapid decision:
+		made_quick_decision = false
+		do
+			selected helper = null
+			lock HELPERSCOUNT for reading
+			for helper H from 1 to HELPERSCOUNT do
+				lock H for reading
+				if H is NULL or if H does not implement GT
+					unlock H for reading		
+				else 
+					// keep H locked for reading
+					selected helper = H
+					quit loop
+				endif
+			next
+			unlock HELPERSCOUNT for reading	
+			if selected helper = null then throw exception
+			// we still have the helper locked here:
+			try 
+				move = null
+				move = H.getQuickMove()			
+				made_quick_decision = true
+			catch helper_dead 			
+				unlock H for reading		
+				lock H for writing
+				if H is not null, then 
+					delete H and set it to Null			
+				endif
+				unlock H for writing
+			endtry
+		while made_quick_decision == false
+		if move is not null
+			return move
+		endif
+		
+		// decision was made to evaluate the move:
+		
+		// create the game tree with only the board as the root
+		game_tree = new game_tree_node (...)
+		
+		//create a thread to process the root node of the tree:		
+		t = current thread handle
+		create thread on distributeNode (root node, t)
+		
+		do 
+			sleep for (timelimit - (now - start time)) time or until a signal is received
+		loop while (not (root node).isCompleted()) AND ((timelimit - (now - start time)) > 0)
+		
+		//return decision:
+		return (root node).generateDecision();		
+	}
+	
+
+	registerHelper(rclsid : REFCLSID, ipaddress : char*, data : GameTypeData) {
+		found empty spot = false
+		lock HELPERSCOUNT for reading
+		for helper H from 1 to HELPERSCOUNT  do
+			lock H for reading
+			if H is NULL 							
+				unlock H for reading		
+				lock H for writing
+				if N is null 
+					create new H with the data
+					found empty spot = true						
+				endif 
+				unlock H for writing				
+			else
+				unlock H for reading		
+			endif
+		next
+		unlock HELPERSCOUNT for reading				
+		if found empty spot is false 			
+			lock HELPERSCOUNT for writing
+			add new helper to the array
+			increment HELPERSCOUNT
+			unlock HELPERSCOUNT for writing
+		endif
+	}
+	
+	unregisterHelper(rclsid : REFCLSID, ipaddress : char*) {		
+		lock HELPERSCOUNT for reading
+		for helper H from 1 to HELPERSCOUNT do
+			lock H for reading
+			if H matches reference then:
+				unlock H for reading		
+				lock H for writing
+				if H is not null then
+					delete H and set it to Null
+				endif
+				unlock H for writing
+			else
+				unlock H for reading		
+			endif
+		next
+		unlock HELPERSCOUNT for reading				
+	}
+	
+	isRegistered (rclsid : REFCLSID, ipaddress : char*) {
+		lock HELPERSCOUNT for reading
+		for helper H from 1 to HELPERSCOUNT do
+			lock H for reading
+			check if H matches the reference
+			unlock H for reading		
+		next
+		unlock HELPERSCOUNT for reading				
+	}
+	
+	
+	

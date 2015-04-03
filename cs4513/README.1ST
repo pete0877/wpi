@@ -1,0 +1,26 @@
+Few comments to the grader:
+
+0. Program implements A-level requirements.
+
+1. To compile type 'make'.
+
+2. Please run client with 'client -help' before anything else. 
+   My program provies few more features then required.
+
+3. Contiguous allocation mode was implemented for both,
+   the linked-list method and the bit-map method. To 
+   turn the contiguous mode on the client, include '-c' 
+   switch in the command line. Then either '-l' or '-b' 
+   (default) can be chosen. In contiguous mode, the 
+   smallest possible free range of blocks is used.
+   
+4. The server is always ran with just 'server' command, and it 
+   initializes to the following parameters: bitmap method, 
+   non-silent, non-contiguous mode. All these can be changed
+   by editing #define statements in the server.cpp file and
+   recompiling.
+  
+5. input.txt is sample input file. The output.txt is the output 
+   of running the client with following command: 
+   client -nfs ernie.wpi.edu -f input.txt > output.txt
+   

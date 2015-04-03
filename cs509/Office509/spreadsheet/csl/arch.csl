@@ -1,0 +1,11 @@
+// CSL     : CSL description for Architecture
+// Author  : George T. Heineman
+//         : heineman@cs.wpi.edu;
+//         : http://www.cs.wpi.edu/~heineman
+// Version : 1.0
+
+// Master architecture of Spreadsheet application
+//
+//
+
+import gui.gui;
